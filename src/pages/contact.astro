@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const contactInfo = [
+  {
+    icon: "map",
+    title: "Visit Us",
+    content: "123 Business Street, Suite 100, City, State 12345"
+  },
+  {
+    icon: "phone",
+    title: "Call Us",
+    content: "+1 (555) 123-4567"
+  },
+  {
+    icon: "mail",
+    title: "Email Us",
+    content: "contact@veblabs.com"
+  }
+];
+---
+
+<Layout title="Contact Us - Veblabs">
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <header class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Get in Touch</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">Have a project in mind? Let's discuss how we can help.</p>
+    </header>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      {contactInfo.map(info => (
+        <div class="text-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+          <div class="w-12 h-12 mx-auto mb-4 flex items-center justify-center bg-primary/10 text-primary rounded-full">
+            <i class={`fas fa-${info.icon}`}></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{info.title}</h3>
+          <p class="text-gray-600 dark:text-gray-400">{info.content}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send Us a Message</h2>
+        <ContactForm />
+      </div>
+      <div class="bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
+        <!-- Replace with your map embed code -->
+        <div class="h-full min-h-[400px] bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
+          <span class="text-gray-500 dark:text-gray-400">Map Placeholder</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

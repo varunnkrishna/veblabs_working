@@ -1,0 +1,74 @@
+---
+import Layout from './Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { formatDistance } from 'date-fns';
+
+const { frontmatter, readingTime } = Astro.props;
+const formattedDate = formatDistance(new Date(frontmatter.date), new Date(), { addSuffix: true });
+---
+
+<Layout title={frontmatter.title}>
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <Breadcrumbs
+      items={[
+        { text: 'Home', href: '/' },
+        { text: 'Blog', href: '/blog' },
+        { text: frontmatter.title, href: '#' },
+      ]}
+    />
+
+    <header class="mb-8">
+      <img
+        src={frontmatter.image}
+        alt={frontmatter.title}
+        class="w-full h-[400px] object-cover rounded-lg mb-8"
+      />
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        {frontmatter.title}
+      </h1>
+      <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400">
+        <span>{frontmatter.author}</span>
+        <span>•</span>
+        <time datetime={frontmatter.date}>{formattedDate}</time>
+        <span>•</span>
+        <span>{readingTime}</span>
+      </div>
+    </header>
+
+    <div class="prose prose-lg dark:prose-inverse dark:text-gray-300 max-w-none">
+      <slot />
+    </div>
+
+    <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+      <div class="flex items-center justify-between">
+        <div class="flex gap-2">
+          {frontmatter.tags.map(tag => (
+            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div class="flex gap-4">
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(frontmatter.title)}&url=${encodeURIComponent(Astro.url.toString())}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-600 hover:text-primary dark:text-gray-400"
+          >
+            Share on Twitter
+          </a>
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(Astro.url.toString())}&title=${encodeURIComponent(frontmatter.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-600 hover:text-primary dark:text-gray-400"
+          >
+            Share on LinkedIn
+          </a>
+        </div>
+        
+      </div>
+    </footer>
+  </article>
+</Layout>

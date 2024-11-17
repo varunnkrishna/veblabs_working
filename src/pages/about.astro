@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TeamMember from '../components/TeamMember.astro';
+
+const team = [
+  {
+    name: "John Smith",
+    role: "Founder & CEO",
+    image: "/images/team/john.jpg",
+    bio: "15+ years of experience in web development and digital strategy"
+  },
+  {
+    name: "Sarah Johnson",
+    role: "Lead Designer",
+    image: "/images/team/sarah.jpg",
+    bio: "Award-winning designer with a passion for user experience"
+  },
+  {
+    name: "Mike Wilson",
+    role: "Technical Lead",
+    image: "/images/team/mike.jpg",
+    bio: "Full-stack developer specialized in scalable applications"
+  }
+];
+---
+
+<Layout title="About Us - Veblabs">
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <!-- Hero Section -->
+    <section class="text-center mb-20">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">About Veblabs</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+        We're a team of passionate designers and developers dedicated to creating exceptional digital experiences that drive business growth.
+      </p>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="grid md:grid-cols-2 gap-12 items-center mb-20">
+      <div>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          To empower businesses with innovative digital solutions that drive growth and success in the modern digital landscape.
+        </p>
+      </div>
+      <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-8">
+        <ul class="space-y-4">
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Delivering exceptional quality</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Fostering innovation</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-6 h-6 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">Building lasting partnerships</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="mb-20">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-12">Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {team.map(member => <TeamMember {...member} />)}
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {[
+        { number: "500+", label: "Projects Completed" },
+        { number: "50+", label: "Team Members" },
+        { number: "10+", label: "Years Experience" },
+        { number: "100%", label: "Client Satisfaction" }
+      ].map(stat => (
+        <div>
+          <div class="text-4xl font-bold text-primary mb-2">{stat.number}</div>
+          <div class="text-gray-600 dark:text-gray-400">{stat.label}</div>
+        </div>
+      ))}
+    </section>
+  </div>
+</Layout>

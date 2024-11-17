@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<Layout title="Works | Portfolio">
+  <div class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-center mb-12">Our Works</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map(project => (
+        <a href={`/works/${project.slug}`} class="group">
+          <article class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
+            <div class="aspect-video relative overflow-hidden">
+              <img
+                src={project.data.image}
+                alt={project.data.title}
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white font-medium">View Project</span>
+              </div>
+            </div>
+            
+            <div class="p-6">
+              <h2 class="text-xl font-semibold mb-2">{project.data.title}</h2>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                {project.data.description}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {project.data.tags.slice(0, 3).map(tag => (
+                  <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogGrid from '../../components/BlogGrid.astro';
+---
+
+<Layout title="Blog - Veblabs">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Our Blog
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        Insights and updates from our team
+      </p>
+    </header>
+
+    <div class="mb-12">
+      <input
+        type="search"
+        placeholder="Search posts..."
+        class="w-full max-w-xl mx-auto block px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+      />
+    </div>
+
+    <BlogGrid />
+  </div>
+</Layout>

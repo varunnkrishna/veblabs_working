@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<Layout title="Our Works - Veblabs">
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <header class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Works</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">Showcasing our best projects and success stories</p>
+    </header>
+
+    <div class="flex flex-wrap gap-4 justify-center mb-12">
+      <button class="px-4 py-2 bg-primary text-white rounded-full">All</button>
+      <button class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-primary hover:text-white transition-colors">Web Development</button>
+      <button class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-primary hover:text-white transition-colors">UI/UX Design</button>
+      <button class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-primary hover:text-white transition-colors">Mobile Apps</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map(project => (
+        <ProjectCard 
+          title={project.data.title} 
+          description={project.data.description} 
+          image={project.data.image} 
+          category={project.data.category} 
+          link={`/works/${project.slug}`} 
+        />
+      ))}
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,467 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout 
+  title="Professional Web Design Services | SEO-Optimized Websites | Veblabs"
+  description="Transform your online presence with Veblabs' professional web design services. We create SEO-optimized, high-converting websites that drive real business results."
+>
+<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-gray-50 to-secondary/5 dark:from-primary/10 dark:via-gray-900 dark:to-secondary/10">
+  <!-- Custom Background Layers -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <!-- Grid Pattern -->
+    <div class="absolute -z-40 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:14px_24px] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
+
+    <!-- Radial Gradient -->
+    <div class="absolute -z-50 left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#3843d63b,#fff)] dark:bg-[radial-gradient(circle_400px_at_50%_300px,#ffffff5a,#000)] "></div>
+  </div>    
+
+
+    <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="flex flex-col items-center">
+        <div class="text-center ">
+          <div class="mb-8">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+              Transform Your Online Presence with 
+              <span class="text-primary">High-Converting Websites</span>
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+              We craft SEO-optimized, lightning-fast websites that don't just look stunning—they drive real business results and fuel your growth.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a
+              href="/contact"
+              class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors duration-200"
+            >
+              Get Your Free Quote
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a
+              href="/works"
+              class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
+            >
+              View Our Work
+            </a>
+          </div>
+
+          <div class="flex justify-center items-center pt-8">
+          <div class="grid sm:grid-cols-2 gap-12 text-left">
+            {[
+              {
+                title: "SEO-Optimized Designs",
+                description: "Rank higher on Google and attract the right audience"
+              },
+              {
+                title: "Lightning-Fast Loading",
+                description: "Exceptional performance on all devices"
+              },
+              {
+                title: "Customized Solutions",
+                description: "Tailored designs to match your business goals"
+              },
+              {
+                title: "Boost Conversions",
+                description: "Turn visitors into loyal customers"
+              }
+            ].map(feature => (
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                  <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div class="w-64">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">{feature.title}</h3>
+                  <p class="text-gray-600 dark:text-gray-400">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        </div>
+
+       
+
+      <div class="mt-16 border-t border-gray-200 dark:border-gray-800 pt-8">
+        <p class="text-center text-sm text-gray-600 dark:text-gray-400 mb-4"> Trusted by Visionary Founders and Entrepreneurs Worldwide</p>
+        <div class="flex flex-row justify-center items-center mt-4">
+          <div class="flex -space-x-4 ">
+            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/pk1.webp" alt="">
+            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/pk2.webp" alt="">
+            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/pk3.webp" alt="">
+            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/pk4.webp" alt="">
+          </div>
+          <div class="flex -space-x-4">
+            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/pk4.webp" alt="">
+            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/pk5.webp" alt="">
+            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="/pk6.webp" alt="">
+            <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800" href="#">+99</a>
+          </div>
+          </div>
+          
+              </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative mx-4 md:mx-24 p-12">
+    <!-- Background Design -->
+    <div class="relative py-16 px-8 bg-blue-500 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg">
+      <!-- Pattern -->
+      <div class="absolute inset-0 z-[-1] bg-[radial-gradient(circle,_rgba(255,255,255,0.2)_1px,_transparent_1px)] bg-size-[20px_20px] opacity-50 dark:opacity-20"></div>
+  
+      <!-- Content -->
+      <div class="max-w-[800px] mx-auto text-center">
+        <!-- Problem Statement -->
+        <h1
+          class="text-[20px] md:text-[55px]  font-bold lending-2 text-gray-900 dark:text-white "
+        >
+          Why Settle for <br>Half-Baked Websites?
+        </h1>
+  
+        <!-- Supporting Text -->
+        <p class="mt-8 text-lg text-gray-700 dark:text-gray-300">
+          Imagine paying premium prices for a dish at a fine restaurant, only to find it’s bland and poorly plated. Frustrating, right? Many developers and agencies deliver websites just like that—lacking the essentials like SEO, responsive design, and proper functionality.
+        </p>
+  
+        <!-- Call to Action -->
+        <div class="mt-12">
+          <a
+            href="/contact"
+            class="px-8 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 transition-all dark:bg-blue-500 dark:hover:bg-blue-600"
+          >
+            Let’s Fix It
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+      <!-- Division -->
+      <div class="w-full border-t border-gray-300 dark:border-gray-700 my-12"></div>
+  
+      <!-- Solution -->
+      <h3 class="text-2xl font-bold text-primary mb-6">The Veblabs Solution</h3>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-12">
+        At Veblabs, we deliver websites that are not only visually stunning but also built to perform. Here’s why our clients love us:
+      </p>
+  
+      <!-- Benefits Grid -->
+      <div class="grid gap-8 sm:grid-cols-2">
+        <!-- Benefit 1 -->
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <svg class="h-8 w-8 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m2 6H7m4-12v12" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white">SEO-Optimized Websites</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Your website will be crafted to rank higher on search engines, helping you attract the right audience and boost visibility.
+            </p>
+          </div>
+        </div>
+  
+        <!-- Benefit 2 -->
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <svg class="h-8 w-8 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.866-1.866 4.928-1.866 6.794 0M12 8c-1.866-1.866-4.928-1.866-6.794 0M12 20v-2c1.866 0 4.928 0 6.794 0M12 20v-2c-1.866 0-4.928 0-6.794 0" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white">Fully Responsive Design</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Veblabs ensures your website looks and works beautifully on any device—desktop, tablet, or mobile.
+            </p>
+          </div>
+        </div>
+  
+        <!-- Benefit 3 -->
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <svg class="h-8 w-8 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white">1 Year of Free Support</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              We offer a full year of free support to ensure your website remains functional, up-to-date, and ready for growth.
+            </p>
+          </div>
+        </div>
+  
+        <!-- Benefit 4 -->
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <svg class="h-8 w-8 text-primary" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l4-4 4 4m-4 4v8m0 0l4-4m-4 4l-4-4" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white">Tailored Solutions</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Every website we create is designed specifically to match your business goals, brand identity, and customer needs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-[1000px] mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Our Services</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-12">
+        We provide end-to-end solutions to help businesses thrive online. From crafting stunning websites to boosting traffic and ensuring seamless functionality, we’ve got you covered.
+      </p>
+  
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
+        <!-- Service 1: Lead Generation -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <svg class="h-12 w-12 text-primary mb-4 mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11m-5-5v10m7-7v6m-4-3h5" />
+          </svg>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Lead Generation</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            We design websites that convert visitors into customers. Maximize your online presence and drive more leads for your business.
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors duration-200"
+          >
+            Get Started
+          </a>
+        </div>
+  
+        <!-- Service 2: Websites for Startups -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <svg class="h-12 w-12 text-primary mb-4 mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0-1.657-1.343-3-3-3s-3 1.343-3 3 1.343 3 3 3 3-1.343 3-3zm0 0c0 3.313-2.686 6-6 6m6-6c0-3.313 2.686-6 6-6m-6 6c0 3.313 2.686 6 6 6" />
+          </svg>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Websites for Startups</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Affordable, stunning, and functional websites tailored for startups to establish a strong online presence and grow.
+          </p>
+          <a 
+            href="/works" 
+            class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors duration-200"
+          >
+            View Our Work
+          </a>
+        </div>
+  
+        <!-- Service 3: SEO Optimization -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <svg class="h-12 w-12 text-primary mb-4 mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.866-1.866 4.928-1.866 6.794 0M12 8c-1.866-1.866-4.928-1.866-6.794 0M12 20v-2c1.866 0 4.928 0 6.794 0M12 20v-2c-1.866 0-4.928 0-6.794 0" />
+          </svg>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">SEO Optimization</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Boost your visibility with our expert SEO services. Rank higher on search engines and attract the right audience.
+          </p>
+          <a 
+            href="/blog" 
+            class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors duration-200"
+          >
+            Learn More
+          </a>
+        </div>
+  
+        <!-- Service 4: Maintenance and Support -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <svg class="h-12 w-12 text-primary mb-4 mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 6h6m-6-12h6m6 12h.01M3 6h.01m-.011 6h.01m-.011 6h.01M21 6h.01M3 18h.01m-2.021 3.25h20.032m-16.006 0h12m-2 0h2m-16.016 0H2" />
+          </svg>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Maintenance and Support</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Stay worry-free with our 24/7 support and regular maintenance. We’ll keep your website running smoothly.
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors duration-200"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+  <section class="py-12 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <!-- Title and Description -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white">
+          All You Need to Launch a Stunning Website
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mt-4">
+          Veblab combines creativity and technology to craft websites that look
+          amazing and work seamlessly, helping you stand out online.
+        </p>
+      </div>
+  
+      <!-- Grid Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Grid Items -->
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Responsive Templates
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Modern, mobile-friendly designs that look great on any device.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Built for Speed
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Optimized websites to deliver blazing-fast user experiences.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            SEO-Ready
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Boost your search engine rankings with clean, optimized code.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Multi-Language Support
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Expand your reach with full support for multiple languages.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Easy Customization
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Tailor every aspect of your website to fit your unique needs.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Advanced Analytics
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Track your website's performance with powerful tools.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Custom Integrations
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Seamlessly connect with your favorite platforms and tools.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            E-Commerce Ready
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Build stunning online stores with ease.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Reliable Hosting
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Host your website on secure and high-performing servers.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            CMS Integration
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Manage your content with powerful CMS platforms.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Modern Design
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Clean, sleek, and modern designs for a professional online presence.
+          </p>
+        </div>
+  
+        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            World-Class Support
+          </h3>
+          <p class="mt-3 text-gray-600 dark:text-gray-300">
+            Get help whenever you need it with our dedicated support team.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-white dark:bg-black py-8">
+    <div class="max-w-[1000px] px-4 mx-auto text-center lg:py-8 lg:px-4">
+      <figure class="max-w-screen-md mx-auto">
+        <!-- Decorative Icon -->
+        <svg
+          class="h-12 mx-auto mb-4 text-gray-400 dark:text-gray-600"
+          viewBox="0 0 24 27"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
+            fill="currentColor"
+          />
+        </svg>
+
+  
+        <!-- Testimonial Text -->
+        <blockquote>
+          <p class="text-xl font-medium text-gray-900 dark:text-gray-100">
+            "Choosing Veblabs was the best decision for our business. Their team delivered a stunning, SEO-optimized website that not only looks amazing but has significantly boosted our online presence. A perfect partner for growing your brand online!"
+          </p>
+        </blockquote>
+  
+        <!-- Reviewer Details -->
+        <figcaption class="flex items-center justify-center mt-6 space-x-3">
+          <img
+            class="w-10 h-10 rounded-full"
+            src="/images/reviewer.jpg"
+            alt="Reviewer profile picture"
+          />
+          <div class="flex flex-col items-start text-left">
+            <div class="font-medium text-gray-900 dark:text-white">John Smith</div>
+            <div class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Founder, Creative Agency
+            </div>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  
+</Layout>

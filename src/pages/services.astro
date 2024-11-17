@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const services = [
+  {
+    title: "Web Development",
+    description: "Custom websites built with modern technologies and best practices",
+    icon: "code",
+    features: ["Responsive Design", "SEO Optimization", "Performance Tuning", "Custom CMS"]
+  },
+  {
+    title: "UI/UX Design",
+    description: "User-centered design solutions that enhance user experience",
+    icon: "palette",
+    features: ["User Research", "Wireframing", "Prototyping", "Usability Testing"]
+  },
+  {
+    title: "E-Commerce Solutions",
+    description: "Full-featured online stores with secure payment processing",
+    icon: "shopping-cart",
+    features: ["Product Management", "Secure Checkout", "Inventory System", "Order Tracking"]
+  },
+  {
+    title: "Mobile Development",
+    description: "Native and cross-platform mobile applications",
+    icon: "mobile",
+    features: ["iOS Development", "Android Development", "React Native", "Progressive Web Apps"]
+  },
+  {
+    title: "Digital Marketing",
+    description: "Comprehensive digital marketing strategies",
+    icon: "chart-line",
+    features: ["SEO Services", "Content Marketing", "Social Media", "Analytics"]
+  },
+  {
+    title: "Maintenance & Support",
+    description: "Ongoing website maintenance and technical support",
+    icon: "wrench",
+    features: ["Regular Updates", "Security Monitoring", "Performance Optimization", "24/7 Support"]
+  }
+];
+---
+
+<Layout title="Services - Veblabs">
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <header class="text-center mb-16">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">Comprehensive web solutions for your business needs</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map(service => <ServiceCard {...service} />)}
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,44 @@
+---
+import { formatDistance } from 'date-fns';
+
+interface Props {
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  image: string;
+  tags: string[];
+  url: string;
+}
+
+const { title, excerpt, author, date, image, tags, url } = Astro.props;
+const formattedDate = formatDistance(new Date(date), new Date(), { addSuffix: true });
+---
+
+<article class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+  <a href={url} class="block">
+    <img 
+      src={image} 
+      alt={title}
+      class="w-full h-48 object-cover"
+      loading="lazy"
+    />
+  </a>
+  <div class="p-6">
+    <div class="flex gap-2 mb-4">
+      {tags.map(tag => (
+        <span class="px-2 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light rounded text-sm">
+          {tag}
+        </span>
+      ))}
+    </div>
+    <h2 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+      <a href={url} class="hover:text-primary">{title}</a>
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400 mb-4">{excerpt}</p>
+    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+      <span>{author}</span>
+      <time datetime={date}>{formattedDate}</time>
+    </div>
+  </div>
+</article>
