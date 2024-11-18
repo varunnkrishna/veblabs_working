@@ -1,12 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import TestimonialMarquee from '../components/TestimonialMarquee.astro';
+import ProblemSection from '../components/ProblemSection.astro';
+
 ---
 
 <Layout 
   title="Professional Web Design Services | SEO-Optimized Websites | Veblabs"
   description="Transform your online presence with Veblabs' professional web design services. We create SEO-optimized, high-converting websites that drive real business results."
 >
+
+
 <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-gray-50 to-secondary/5 dark:from-primary/10 dark:via-gray-900 dark:to-secondary/10">
   <!-- Custom Background Layers -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden">
@@ -42,11 +47,12 @@ import { Image } from 'astro:assets';
               </svg>
             </a>
             <a
-              href="/works"
-              class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
-            >
-              View Our Work
-            </a>
+            href="/works"
+            class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-00 dark:border-gray-600 rounded-lg transition-colors duration-200"
+          >
+            View Our Work
+          </a>
+          
           </div>
 
           <div class="flex justify-center items-center pt-8">
@@ -109,51 +115,26 @@ import { Image } from 'astro:assets';
     </div>
   </section>
 
-  <section class="relative mx-4 md:mx-24 p-12">
-    <!-- Background Design -->
-    <div class="relative py-16 px-8 bg-blue-500 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg">
-      <!-- Pattern -->
-      <div class="absolute inset-0 z-[-1] bg-[radial-gradient(circle,_rgba(255,255,255,0.2)_1px,_transparent_1px)] bg-size-[20px_20px] opacity-50 dark:opacity-20"></div>
+  <section>
   
-      <!-- Content -->
-      <div class="max-w-[800px] mx-auto text-center">
-        <!-- Problem Statement -->
-        <h1
-          class="text-[20px] md:text-[55px]  font-bold lending-2 text-gray-900 dark:text-white "
-        >
-          Why Settle for <br>Half-Baked Websites?
-        </h1>
-  
-        <!-- Supporting Text -->
-        <p class="mt-8 text-lg text-gray-700 dark:text-gray-300">
-          Imagine paying premium prices for a dish at a fine restaurant, only to find it’s bland and poorly plated. Frustrating, right? Many developers and agencies deliver websites just like that—lacking the essentials like SEO, responsive design, and proper functionality.
-        </p>
-  
-        <!-- Call to Action -->
-        <div class="mt-12">
-          <a
-            href="/contact"
-            class="px-8 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 transition-all dark:bg-blue-500 dark:hover:bg-blue-600"
-          >
-            Let’s Fix It
-          </a>
-        </div>
-      </div>
-    </div>
+     
+      <ProblemSection />
+ 
   </section>
+ 
   
-  
+  <section class="my-24 ">
+
+  <h3 class="text-5xl font-bold dark:text-white mb-6 text-center ">The <span class="text-blue-500">veb</span>Labs Solution</h3>
       <!-- Division -->
-      <div class="w-full border-t border-gray-300 dark:border-gray-700 my-12"></div>
   
       <!-- Solution -->
-      <h3 class="text-2xl font-bold text-primary mb-6">The Veblabs Solution</h3>
-      <p class="text-lg text-gray-600 dark:text-gray-300 mb-12">
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 text-center ">
         At Veblabs, we deliver websites that are not only visually stunning but also built to perform. Here’s why our clients love us:
       </p>
   
       <!-- Benefits Grid -->
-      <div class="grid gap-8 sm:grid-cols-2">
+      <div class="grid gap-8 sm:grid-cols-2 max-w-[1000px] mx-auto justify-center items-center pb-12">
         <!-- Benefit 1 -->
         <div class="flex items-start space-x-4">
           <div class="flex-shrink-0">
@@ -215,8 +196,22 @@ import { Image } from 'astro:assets';
         </div>
       </div>
     </div>
+  </section>
 
-  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+  <section title="Testimonials">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+   <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400">
+     What Our Clients Say
+   </h1>
+   <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-4">
+     Don't just take our word for it. Here's what our amazing clients have to say about their experience working with us.
+   </p>
+ </div>
+ <TestimonialMarquee :visible/>
+
+</section>
+
+  <section class="my-24 py-24 bg-gray-50 dark:bg-gray-900">
     <div class="max-w-[1000px] mx-auto px-4 text-center">
       <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Our Services</h2>
       <p class="text-lg text-gray-600 dark:text-gray-300 mb-12">
@@ -252,7 +247,7 @@ import { Image } from 'astro:assets';
           </p>
           <a 
             href="/works" 
-            class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors duration-200"
+            class="inline-flex items-center justify-center px-6 py-2  text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-lg transition-colors duration-200"
           >
             View Our Work
           </a>
@@ -421,6 +416,8 @@ import { Image } from 'astro:assets';
       </div>
     </div>
   </section>
+
+
   
   <section class="bg-white dark:bg-black py-8">
     <div class="max-w-[1000px] px-4 mx-auto text-center lg:py-8 lg:px-4">
@@ -463,5 +460,8 @@ import { Image } from 'astro:assets';
       </figure>
     </div>
   </section>
+ 
+  
+ 
   
 </Layout>

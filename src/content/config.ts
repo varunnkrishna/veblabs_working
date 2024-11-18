@@ -27,7 +27,20 @@ const projectsCollection = defineCollection({
   }),
 });
 
+// Testimonials Collection
+const testimonialCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    author: z.string(),
+    role: z.string(),
+    company: z.string(),
+    testimonial: z.string(),
+    avatar: z.string(),
+  }),
+});
+
 export const collections = {
   posts: blogCollection, // Existing blog collection
   projects: projectsCollection, // New projects collection
+  testimonials: testimonialCollection,
 };
