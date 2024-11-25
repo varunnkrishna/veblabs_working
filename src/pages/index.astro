@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import TestimonialMarquee from '../components/TestimonialMarquee.astro';
 import ProblemSection from '../components/ProblemSection.astro';
+import Verticletab from '../components/Verticletab.astro';
 
 ---
 
@@ -10,29 +11,32 @@ import ProblemSection from '../components/ProblemSection.astro';
   title="Professional Web Design Services | SEO-Optimized Websites | Veblabs"
   description="Transform your online presence with Veblabs' professional web design services. We create SEO-optimized, high-converting websites that drive real business results."
 >
+ 
 
+<section class="relative flex flex-col items-center justify-center bg-gradient-to-br from-primary/5 via-gray-50 to-secondary/5 dark:from-primary/10 dark:via-gray-900 dark:to-secondary/10">
 
-<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-gray-50 to-secondary/5 dark:from-primary/10 dark:via-gray-900 dark:to-secondary/10">
-  <!-- Custom Background Layers -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <!-- Grid Pattern -->
-    <div class="absolute -z-40 bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:14px_24px] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]"></div>
+ <!-- Light Mode Background -->
+ <div
+ class="absolute  inset-0 bg-cover bg-center -z-10 block dark:hidden"
+ style="background-image: url('/images/bglight.jpg');"
+></div>
 
-    <!-- Radial Gradient -->
-    <div class="absolute -z-50 left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#3843d63b,#fff)] dark:bg-[radial-gradient(circle_400px_at_50%_300px,#ffffff5a,#000)] "></div>
-  </div>    
+<!-- Dark Mode Background -->
+<div
+ class="absolute inset-0 bg-cover bg-center -z-10 hidden dark:block"
+ style="background-image: url('/images/bgdark.jpg');"
+></div>
 
-
-    <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="px-4 sm:px-6 lg:px-8 py-24">
       <div class="flex flex-col items-center">
         <div class="text-center ">
-          <div class="mb-8">
+          <div class="mb-8 max-w-[1000px] mx-auto">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
               Transform Your Online Presence with 
               <span class="text-primary">High-Converting Websites</span>
             </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              We craft SEO-optimized, lightning-fast websites that don't just look stunning—they drive real business results and fuel your growth.
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 ">
+              We craft SEO-optimized, lightning-fast websites that don't just look stunning<br>—they drive real business results and fuel your growth.
             </p>
           </div>
 
@@ -60,22 +64,22 @@ import ProblemSection from '../components/ProblemSection.astro';
             {[
               {
                 title: "SEO-Optimized Designs",
-                description: "Rank higher on Google and attract the right audience"
+                description: "Rank higher on Google and connect with your target audience seamlessly"
               },
               {
                 title: "Lightning-Fast Loading",
-                description: "Exceptional performance on all devices"
+                description: "Experience exceptional performance and speed across all devices"
               },
               {
                 title: "Customized Solutions",
-                description: "Tailored designs to match your business goals"
+                description: "Get tailored designs perfectly aligned with your business goals"
               },
               {
                 title: "Boost Conversions",
-                description: "Turn visitors into loyal customers"
+                description: "Transform visitors into loyal customers with proven strategies"
               }
             ].map(feature => (
-              <div class="flex items-start space-x-3">
+              <div class="flex items-start p-2 space-x-3">
                 <div class="flex-shrink-0">
                   <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -112,11 +116,13 @@ import ProblemSection from '../components/ProblemSection.astro';
           
               </div>
       </div>
+      
     </div>
+    <Verticletab />
   </section>
 
   <section>
-  
+   
      
       <ProblemSection />
  
