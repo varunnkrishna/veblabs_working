@@ -1,0 +1,158 @@
+---
+const faqs = [
+  {
+    question: "What services does VebLabs offer?",
+    answer: "VebLabs offers comprehensive web development services including custom website design, e-commerce solutions, SEO optimization, multilingual website development, and digital marketing strategies tailored to your business needs."
+  },
+  {
+    question: "How long does it take to complete a website project?",
+    answer: "Project timelines vary depending on complexity and requirements. Typically, a standard website takes 4-8 weeks from concept to launch. We'll provide you with a detailed timeline during our initial consultation."
+  },
+  {
+    question: "Do you provide ongoing support after the website launch?",
+    answer: "Yes, we offer comprehensive post-launch support and maintenance packages. This includes regular updates, security monitoring, performance optimization, and technical support to ensure your website runs smoothly."
+  },
+  {
+    question: "How do you ensure websites are SEO-friendly?",
+    answer: "We implement SEO best practices throughout development, including optimized code structure, fast loading times, mobile responsiveness, and proper meta tags. We also provide guidance on content optimization and keyword strategy."
+  },
+  {
+    question: "Can you help with multilingual website development?",
+    answer: "Absolutely! We specialize in creating multilingual websites that effectively reach global audiences. We implement proper language switching, content translation, and cultural adaptations to ensure a seamless experience for all users."
+  }
+];
+---
+
+<section class="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-24 overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
+    <div class="absolute -left-1/4 -top-1/4 w-1/2 h-1/2 bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-full blur-3xl"></div>
+    <div class="absolute -right-1/4 -bottom-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative">
+    <div class="text-center space-y-4 mb-16 reveal-on-scroll">
+      <h2 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+        Frequently Asked Questions
+      </h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Find answers to common questions about our services and process
+      </p>
+    </div>
+
+    <div class="space-y-6 reveal-on-scroll">
+      {faqs.map((faq, index) => (
+        <div 
+          class="faq-item group"
+          style={`animation-delay: ${index * 150}ms`}
+        >
+          <details class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
+            <summary class="relative flex items-center justify-between p-6 cursor-pointer list-none">
+              <h3 class="text-lg font-semibold text-gray-800 dark:text-white pr-8">{faq.question}</h3>
+              <span class="relative flex-shrink-0 ml-4 transform group-open:rotate-180 transition-transform duration-300">
+                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="relative px-6 pb-6">
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {faq.answer}
+              </p>
+            </div>
+          </details>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center reveal-on-scroll">
+      <a 
+        href="/contact" 
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl"
+      >
+        Have more questions?
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .faq-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  details[open] summary ~ * {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll,
+    .faq-item,
+    details[open] summary ~ * {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
+  /* Custom styling for the details marker */
+  details > summary::-webkit-details-marker,
+  details > summary::marker {
+    display: none;
+    content: "";
+  }
+</style>
+
+<script>
+  // Add intersection observer for scroll animations
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-on-scroll, .faq-item').forEach((element) => {
+    (element as HTMLElement).style.animationPlayState = 'paused';
+    observer.observe(element);
+  });
+</script>

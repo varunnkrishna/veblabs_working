@@ -1,7 +1,7 @@
 ---
-author: "Michael Chen"
-role: "CTO"
-company: "InnovateLabs"
-testimonial: "The level of expertise and professionalism displayed by the team is outstanding. They've consistently delivered beyond our expectations."
-avatar: "/avatars/michael.jpg"
+author: "Layla Hassan"
+role: "Marketing Manager"
+company: "Oasis Solutions"
+testimonial: "The team’s ability to deliver a beautifully crafted, bilingual website was exactly what we needed to connect with our Arabic-speaking clients. Exceptional work!"
+avatar: "/avatars/layla.jpg"
 ---

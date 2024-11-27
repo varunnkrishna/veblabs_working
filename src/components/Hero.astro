@@ -1,0 +1,195 @@
+---
+import Verticletab from "./Verticletab.astro";
+const features = [
+  {
+    title: "SEO-Optimized Designs",
+    description: "Rank higher on Google and connect with your target audience seamlessly",
+    icon: "search"
+  },
+  {
+    title: "Lightning-Fast Loading",
+    description: "Experience exceptional performance and speed across all devices",
+    icon: "speed"
+  },
+  {
+    title: "Customized Solutions",
+    description: "Tailored designs expertly crafted to align perfectly with your unique business goals.",
+    icon: "customize"
+  },
+  {
+    title: "Multilingual Support",
+    description: "Engage customers worldwide with seamless Arabic and English language support",
+    icon: "language"
+  }
+];
+---
+<section class="relative font-sans min-h-[90vh] flex flex-col items-center justify-center">
+  <div class="relative w-full py-24 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute inset-0 bg-light-background dark:bg-dark-background"></div>
+      <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.02] dark:opacity-[0.05]"></div>
+    </div>
+
+    <!-- Gradient Orbs -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <!-- Main gradient sphere -->
+      <div 
+        class="absolute -top-1/4 left-1/2 w-[800px] h-[800px] -translate-x-1/2 rounded-full"
+        style="background: radial-gradient(circle at center, rgba(59,130,246,0.08) 0%, rgba(147,51,234,0.08) 50%, transparent 70%);"
+      ></div>
+      
+      <!-- Animated floating orbs -->
+      <div class="absolute top-1/4 right-1/4 w-[300px] h-[300px] rounded-full animate-float-slow"
+        style="background: radial-gradient(circle at center, rgba(59,130,246,0.1) 0%, transparent 70%);">
+      </div>
+      <div class="absolute bottom-1/4 left-1/4 w-[200px] h-[200px] rounded-full animate-float-slower"
+        style="background: radial-gradient(circle at center, rgba(147,51,234,0.1) 0%, transparent 70%);">
+      </div>
+    </div>
+
+    <div class="relative flex flex-col items-center max-w-[1200px] mx-auto px-4">
+      <div class="text-center">
+        <div class="mb-8 max-w-[1000px] mx-auto">
+          <!-- Main Heading -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6">
+            <span class="inline-block text-light-textPrimary dark:text-dark-textPrimary">Transform Your Online Presence with</span>
+            <br class="hidden sm:block" />
+            <span class="inline-block bg-gradient-to-r from-light-primary via-light-secondary to-light-primary dark:from-dark-primary dark:via-dark-secondary dark:to-dark-primary bg-[length:200%_auto] animate-gradient text-transparent bg-clip-text">
+              High-Converting Websites
+            </span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-xl  text-light-textSecondary dark:text-dark-textSecondary mt-6 mb-8 max-w-3xl mx-auto leading-relaxed">
+            We craft SEO-optimized, lightning-fast websites that don't just look stunning
+            <br class="hidden sm:block" />
+            —they drive real business results and fuel your growth.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a
+            href="/contact"
+            class="group inline-flex items-center justify-center px-8 py-3 text-lg font-medium light-textPrimary dark:text-white bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+          >
+            Get Your Free Quote
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a
+            href="/works"
+            class="group inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+          >
+            View Our Work
+            <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="flex justify-center items-center pt-8">
+          <div class="grid sm:grid-cols-2 gap-8 text-left">
+            {features.map((feature, index) => (
+              <div 
+                class="flex items-start p-4 space-x-4 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
+                style={`animation-delay: ${0.6 + index * 0.1}s`}
+              >
+                <div class="flex-shrink-0">
+                  {feature.icon === "search" && (
+                    <div class="p-2 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg">
+                      <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </div>
+                  )}
+                  {feature.icon === "speed" && (
+                    <div class="p-2 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-lg">
+                      <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                  )}
+                  {feature.icon === "customize" && (
+                    <div class="p-2 bg-gradient-to-br from-yellow-500/20 to-red-500/20 rounded-lg">
+                      <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                      </svg>
+                    </div>
+                  )}
+                  {feature.icon === "language" && (
+                    <div class="p-2 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg">
+                      <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 dark:text-white">{feature.title}</h3>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">{feature.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-16 border-t border-gray-200 dark:border-gray-800 pt-8">
+          <p class="text-center text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Trusted by Visionary Founders and Entrepreneurs Worldwide
+          </p>
+          <div class="flex flex-row justify-center items-center mt-4 space-x-4">
+            <div class="flex -space-x-4 hover:space-x-1 transition-all duration-300">
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk1.webp" alt="" />
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk2.webp" alt="" />
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk3.webp" alt="" />
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk4.webp" alt="" />
+            </div>
+            <div class="flex -space-x-4 hover:space-x-1 transition-all duration-300">
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk4.webp" alt="" />
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk5.webp" alt="" />
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk6.webp" alt="" />
+              <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gradient-to-br from-gray-700 to-gray-600 border-2 border-white rounded-full hover:from-gray-600 hover:to-gray-500 dark:border-gray-800 transform hover:scale-110 transition-all duration-300" href="#">
+                +99
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Verticletab />
+  </div>
+
+</section>
+
+<style>
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes float-slower {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 8s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    animation: gradient 6s linear infinite;
+  }
+</style>

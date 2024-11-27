@@ -24,6 +24,13 @@ const projectsCollection = defineCollection({
     client: z.string(),
     tags: z.array(z.string()),
     results: z.array(z.string()),
+    gallery: z.array(
+      z.object({
+        url: z.string(),
+        alt: z.string().optional(),
+        caption: z.string().optional(),
+      })
+    ).optional(),
   }),
 });
 
@@ -39,8 +46,11 @@ const testimonialCollection = defineCollection({
   }),
 });
 
+
+
 export const collections = {
   posts: blogCollection, // Existing blog collection
   projects: projectsCollection, // New projects collection
   testimonials: testimonialCollection,
+  
 };

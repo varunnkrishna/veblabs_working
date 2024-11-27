@@ -1,11 +1,10 @@
 ---
-title: Healthcare Platform
-description: A comprehensive healthcare platform connecting patients with healthcare providers
-category: Healthcare
-date: 2023-06-15
-client: HealthCare Solutions Inc.
-image: /images/projects/healthcare.webp
-tags: ["Healthcare", "Web Application", "UX Design"]
+title: "Healthcare"
+description: "A mobile-first solution enabling customers to browse menus, place orders, and track deliveries seamlessly."
+category: "Mobile App Development"
+image: "/images/projects/ecommerce.webp"
+client: "Gourmet Bites"
+tags: ["Website design", "UI/UX Design", "Food Industry"]
 results: [
   "50% increase in patient engagement",
   "30% reduction in appointment no-shows",

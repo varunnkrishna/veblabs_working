@@ -1,0 +1,131 @@
+---
+interface Props {
+  images: {
+    url: string;
+    alt: string;
+    caption?: string;
+  }[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {images.map((image, index) => (
+      <div 
+        class="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl"
+        data-gallery-item={index}
+      >
+        <img
+          src={image.url}
+          alt={image.alt}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        {image.caption && (
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <p class="absolute bottom-4 left-4 right-4 text-white text-sm">
+              {image.caption}
+            </p>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* Lightbox */}
+<div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 p-4">
+  <button id="closeLightbox" class="absolute top-4 right-4 text-white hover:text-gray-300 z-50">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  
+  <button id="prevImage" class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  
+  <button id="nextImage" class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-50">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+  
+  <div class="h-full flex items-center justify-center">
+    <img id="lightboxImage" src="" alt="" class="max-h-full max-w-full object-contain" />
+  </div>
+  
+  <p id="imageCaption" class="absolute bottom-4 left-4 right-4 text-center text-white"></p>
+</div>
+
+<script>
+  let currentImageIndex = 0;
+  const images = document.querySelectorAll('[data-gallery-item]');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage') as HTMLImageElement;
+  const imageCaption = document.getElementById('imageCaption');
+  const closeLightbox = document.getElementById('closeLightbox');
+  const prevImage = document.getElementById('prevImage');
+  const nextImage = document.getElementById('nextImage');
+  
+  function showImage(index: number) {
+    const imageData = JSON.parse(images[index].getAttribute('data-image') || '{}');
+    if (lightboxImage) {
+      lightboxImage.src = imageData.url;
+      lightboxImage.alt = imageData.alt;
+    }
+    if (imageCaption) {
+      imageCaption.textContent = imageData.caption || '';
+    }
+    currentImageIndex = index;
+  }
+  
+  images.forEach((image, index) => {
+    const imgElement = image.querySelector('img') as HTMLImageElement;
+    const captionElement = image.querySelector('p');
+    
+    // Store image data as JSON in data attribute
+    const imageData = {
+      url: imgElement?.src || '',
+      alt: imgElement?.alt || '',
+      caption: captionElement?.textContent || ''
+    };
+    image.setAttribute('data-image', JSON.stringify(imageData));
+    
+    image.addEventListener('click', () => {
+      if (lightbox) {
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        showImage(index);
+      }
+    });
+  });
+  
+  closeLightbox?.addEventListener('click', () => {
+    if (lightbox) {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  });
+
+  prevImage?.addEventListener('click', () => {
+    const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+    showImage(newIndex);
+  });
+
+  nextImage?.addEventListener('click', () => {
+    const newIndex = (currentImageIndex + 1) % images.length;
+    showImage(newIndex);
+  });
+
+  // Close lightbox with escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox) {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  });
+</script>

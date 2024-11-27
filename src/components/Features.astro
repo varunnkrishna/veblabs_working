@@ -1,0 +1,73 @@
+---
+const features = [
+  {
+    title: "Built for developers",
+    description: "Built for engineers, developers, dreamers, thinkers and doers.",
+    icon: "/icons/terminal.svg", // SVG file path
+  },
+  {
+    title: "Ease of use",
+    description: "It's as easy as using an Apple, and as expensive as buying one.",
+    icon: "/icons/ease.svg",
+  },
+  {
+    title: "Pricing like no other",
+    description: "Our prices are best in the market. No cap, no lock, no credit card required.",
+    icon: "/icons/currency.svg",
+  },
+  {
+    title: "100% Uptime guarantee",
+    description: "We just cannot be taken down by anyone.",
+    icon: "/icons/cloud.svg",
+  },
+  {
+    title: "Multi-tenant Architecture",
+    description: "You can simply share passwords instead of buying new seats.",
+    icon: "/icons/route.svg",
+  },
+  {
+    title: "24/7 Customer Support",
+    description: "We are available a 100% of the time. At least our AI Agents are.",
+    icon: "/icons/help.svg",
+  },
+  {
+    title: "Money back guarantee",
+    description: "If you don’t like EveryAI, we will convince you to like us.",
+    icon: "/icons/adjustments.svg",
+  },
+  {
+    title: "And everything else",
+    description: "I just ran out of copy ideas. Accept my sincere apologies.",
+    icon: "/icons/heart.svg",
+  },
+];
+---
+
+<section class="py-16 bg-gray-100 dark:bg-gray-800">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map((feature, index) => (
+        <div
+          class={`relative group p-6 border dark:border-neutral-700 rounded-lg ${
+            index === 0 || index === 4 ? "lg:border-l" : ""
+          } ${
+            index < 4 ? "lg:border-b" : ""
+          }`}
+        >
+          <!-- Icon -->
+          <div class="mb-4 text-neutral-600 dark:text-neutral-400 text-3xl">
+            <img src={feature.icon} alt={feature.title} class="w-8 h-8" />
+          </div>
+          <!-- Title -->
+          <h3 class="text-lg font-bold mb-2 text-neutral-800 dark:text-neutral-100">
+            {feature.title}
+          </h3>
+          <!-- Description -->
+          <p class="text-sm text-neutral-600 dark:text-neutral-300">
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ProjectHeader from '../../components/ProjectHeader.astro';
 import type { CollectionEntry } from 'astro:content';
+import ProjectGallery from '../../components/ProjectGallery.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -18,6 +19,14 @@ interface Props {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
+
+// Extract and transform gallery images from project data
+const galleryImages = (project.data.gallery || []).map(image => ({
+  url: image.url,
+  alt: image.alt || project.data.title,
+  caption: image.caption || ''
+}));
+
 ---
 
 <Layout title={`${project.data.title} | Portfolio`}>
@@ -32,6 +41,10 @@ const { Content } = await project.render();
       results: project.data.results
     }} 
   />
+  
+  {galleryImages.length > 0 && (
+    <ProjectGallery images={galleryImages} />
+  )}
   
   <article class="container mx-auto px-4 py-16 max-w-4xl">
     <div class="prose dark:prose-invert dark:text-white prose-lg mx-auto">

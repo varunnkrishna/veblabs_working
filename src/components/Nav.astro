@@ -7,88 +7,124 @@ const navItems = [
   { href: '/contact', label: 'Contact' },
 ];
 ---
-<header class="fixed w-full bg-white/80 dark:bg-gray-900 backdrop-blur-lg  shadow-lg z-50">
-<div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="flex-1">
-        <a href="/" class="text-2xl font-bold text-blue-400">veb<span class="dark:text-white text-black">Labs</span></a>
+<header class="fixed w-full bg-light-background/90 dark:bg-dark-background/90 backdrop-blur-md border-b border-light-border dark:border-dark-border z-50 font-sans">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center">
+          <span class="text-xl font-bold text-light-primary dark:text-dark-primary">veb</span>
+          <span class="text-xl font-bold text-light-textPrimary dark:text-dark-textPrimary">Labs</span>
+        </a>
       </div>
-  
-      <!-- Hamburger Menu -->
-      <button id="menu-toggle" class="md:hidden text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5m-16.5 5.25h16.5m-16.5 5.25h16.5" />
-        </svg>
-      </button>
-  
-      <!-- Navigation Links -->
-      <nav id="menu" class="hidden md:flex flex-1 justify-center space-x-6">
-        <ul class="flex flex-col md:flex-row md:space-x-6">
-          {navItems.map(item => (
-            <li class="my-2 md:my-0">
-              <a href={item.href} class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        {navItems.map(item => (
+          <a 
+            href={item.href}
+            class="text-sm font-medium text-light-textSecondary dark:text-dark-textSecondary hover:text-light-primary dark:hover:text-dark-primary transition-colors"
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
-  
-      <div class="flex-1 flex justify-end space-x-4">
-        <label class="inline-flex items-center cursor-pointer">
-          <input
-            id="theme-toggle-checkbox"
-            type="checkbox"
-            value=""
-            class="sr-only peer"
-            aria-label="Toggle dark mode"
-          />
-          <div
-            class="relative w-9 h-5 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
-          ></div>
-        </label>
-  
-        <a href="/contact" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+
+      <!-- Right Section -->
+      <div class="flex items-center space-x-4">
+        <!-- Theme Toggle -->
+        <button
+          id="theme-toggle"
+          type="button"
+          class="p-2 text-light-textSecondary dark:text-dark-textSecondary hover:bg-light-border/50 dark:hover:bg-dark-border/50 rounded-md transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <!-- Sun icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <!-- CTA Button -->
+        <a 
+          href="/contact"
+          class="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-light-primary dark:bg-dark-primary hover:bg-light-primary/90 dark:hover:bg-dark-primary/90 rounded-lg transition-colors"
+        >
+          Get in Touch
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="md:hidden p-2 text-light-textSecondary dark:text-dark-textSecondary hover:bg-light-border/50 dark:hover:bg-dark-border/50 rounded-md transition-colors"
+          aria-label="Open menu"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-light-border dark:border-dark-border">
+    <div class="container mx-auto px-4 py-3 space-y-1">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class="block px-3 py-2 text-base font-medium text-light-textSecondary dark:text-dark-textSecondary hover:text-light-primary dark:hover:text-dark-primary hover:bg-light-border/50 dark:hover:bg-dark-border/50 rounded-md transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+      <div class="pt-2 pb-1">
+        <a
+          href="/contact"
+          class="block w-full px-4 py-2 text-center text-sm font-medium text-white bg-light-primary dark:bg-dark-primary hover:bg-light-primary/90 dark:hover:bg-dark-primary/90 rounded-lg transition-colors"
+        >
           Get in Touch
         </a>
       </div>
     </div>
-  </header>
-  
-  <script>
-    // Cast to HTMLInputElement to access the `checked` property
-    const themeToggleCheckbox = document.getElementById('theme-toggle-checkbox') as HTMLInputElement;
-    const menuToggle = document.getElementById('menu-toggle') as HTMLElement;
-    const menu = document.getElementById('menu') as HTMLElement;
-  
-    // Initialize theme
-    if (
-      localStorage.getItem('theme') === 'dark' ||
-      (!localStorage.getItem('theme') &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark');
-      themeToggleCheckbox.checked = true; // Ensure the toggle is checked for dark mode
-    } else {
-      document.documentElement.classList.remove('dark');
-      themeToggleCheckbox.checked = false; // Ensure the toggle is unchecked for light mode
+  </div>
+</header>
+
+<script>
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // Theme toggle functionality
+  if (
+    localStorage.getItem('theme') === 'dark' ||
+    (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    document.documentElement.classList.add('dark');
+  }
+
+  themeToggle?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem(
+      'theme',
+      document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+    );
+  });
+
+  // Mobile menu functionality
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu on window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu?.classList.add('hidden');
     }
-  
-    // Toggle theme
-    themeToggleCheckbox.addEventListener('change', () => {
-      if (themeToggleCheckbox.checked) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      }
-    });
-  
-    // Toggle menu visibility
-    menuToggle.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
-  </script>
-  
-  
-  
+  });
+</script>
