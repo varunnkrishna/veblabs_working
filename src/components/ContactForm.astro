@@ -1,61 +1,69 @@
 ---
-// Optional: Import Zod for additional validation if needed
-import { z } from 'zod';
 ---
 
 <form id="contactForm" class="space-y-6">
-  <div class="grid md:grid-cols-2 gap-6">
-    <div>
-      <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        minlength="2"
-        class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
-      />
-      <span id="nameError" class="text-red-500 text-sm hidden"></span>
-    </div>
-    <div>
-      <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
-      />
-      <span id="emailError" class="text-red-500 text-sm hidden"></span>
-    </div>
+  <div class="form-group">
+    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      minlength="2"
+      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+      placeholder="Your name"
+    />
+    <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
   </div>
-  <div class="grid md:grid-cols-2 gap-6">
-    <div>
-      <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+
+  <div class="form-group">
+    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+      placeholder="your.email@example.com"
+    />
+    <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+    <div class="flex space-x-2">
+      <select
+        id="countryCode"
+        name="countryCode"
+        required
+        class="w-32 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+      >
+        <option value="+971">+971 (UAE)</option>
+        <option value="+966">+966 (KSA)</option>
+        <option value="+974">+974 (QA)</option>
+        <option value="+973">+973 (BH)</option>
+        <option value="+968">+968 (OM)</option>
+        <option value="+965">+965 (KW)</option>
+        <option value="+91">+91 (IN)</option>
+        <option value="+44">+44 (UK)</option>
+        <option value="+1">+1 (US)</option>
+        <option value="+86">+86 (CN)</option>
+        <option value="+65">+65 (SG)</option>
+      </select>
       <input
         type="tel"
         id="phone"
         name="phone"
-        pattern="[0-9]{10}"
         required
-        placeholder="10-digit phone number"
-        class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
+        pattern="[0-9]{6,14}"
+        class="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+        placeholder="Phone number"
       />
-      <span id="phoneError" class="text-red-500 text-sm hidden"></span>
     </div>
-    <div>
-      <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
-      <input
-        type="text"
-        id="subject"
-        name="subject"
-        required
-        class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
-      />
-      <span id="subjectError" class="text-red-500 text-sm hidden"></span>
-    </div>
+    <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
   </div>
-  <div>
+
+  <div class="form-group">
     <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
     <textarea
       id="message"
@@ -63,73 +71,156 @@ import { z } from 'zod';
       rows="6"
       required
       minlength="10"
-      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
+      class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-y"
+      placeholder="Your message here..."
     ></textarea>
-    <span id="messageError" class="text-red-500 text-sm hidden"></span>
+    <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
   </div>
+
   <button
     type="submit"
-    class="w-full px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
+    class="w-full px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed relative group"
   >
-    Send Message
+    <span class="inline-flex items-center transition-opacity duration-200">
+      <span class="submit-text">Send Message</span>
+      <svg class="submit-spinner ml-3 h-5 w-5 animate-spin hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    </span>
   </button>
-  <div id="formStatus" class="text-center"></div>
+
+  <div id="formStatus" class="text-center opacity-0 transition-all duration-300 transform translate-y-2"></div>
 </form>
 
 <script>
+const validateField = (field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) => {
+  const formGroup = field.closest('.form-group');
+  const errorEl = formGroup?.querySelector('.error-message') as HTMLElement;
+  
+  if (!formGroup || !errorEl) return true;
+
+  let isValid = true;
+  let message = '';
+
+  if (!field.value.trim()) {
+    isValid = false;
+    message = 'This field is required';
+  } else if (field.minLength && field.value.length < field.minLength) {
+    isValid = false;
+    message = `Must be at least ${field.minLength} characters`;
+  } else if (field.type === 'email' && !field.value.includes('@')) {
+    isValid = false;
+    message = 'Please enter a valid email address';
+  } else if (field.type === 'tel' && !field.value.match(/^[0-9]{6,14}$/)) {
+    isValid = false;
+    message = 'Please enter a valid phone number (6-14 digits)';
+  }
+
+  if (!isValid) {
+    errorEl.textContent = message;
+    errorEl.classList.remove('hidden');
+    field.classList.add('border-red-500');
+  } else {
+    errorEl.classList.add('hidden');
+    field.classList.remove('border-red-500');
+  }
+
+  return isValid;
+};
+
 document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
+  
   const form = e.target as HTMLFormElement;
-  const formData = new FormData(form);
+  const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+  const submitText = submitButton.querySelector('.submit-text') as HTMLElement;
+  const submitSpinner = submitButton.querySelector('.submit-spinner') as HTMLElement;
   const statusEl = document.getElementById('formStatus');
+  const fields = form.querySelectorAll('input, textarea, select');
 
-  // Reset previous errors and status
-  ['name', 'email', 'phone', 'subject', 'message'].forEach(field => {
-    const errorEl = document.getElementById(`${field}Error`);
-    if (errorEl) {
-      errorEl.textContent = '';
-      errorEl.classList.add('hidden');
+  // Validate all fields
+  let isValid = true;
+  fields.forEach(field => {
+    if (!validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)) {
+      isValid = false;
     }
   });
 
-  statusEl!.textContent = '';
-  statusEl!.className = '';
-
-  // Custom validation
-  let isValid = true;
-  const phoneInput = document.getElementById('phone') as HTMLInputElement;
-  const phoneRegex = /^[0-9]{10}$/;
-
-  if (!phoneRegex.test(phoneInput.value)) {
-    const phoneError = document.getElementById('phoneError');
-    if (phoneError) {
-      phoneError.textContent = 'Please enter a valid 10-digit phone number';
-      phoneError.classList.remove('hidden');
-      isValid = false;
-    }
-  }
-
   if (!isValid) return;
 
+  // Clear previous status
+  if (statusEl) {
+    statusEl.textContent = '';
+    statusEl.className = 'text-center opacity-0 transform translate-y-2';
+  }
+
   try {
-    const response = await fetch('/api/send', {
+    // Show loading state
+    submitButton.disabled = true;
+    submitText.textContent = 'Sending...';
+    submitSpinner.classList.remove('hidden');
+
+    // Get form data
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: `${formData.get('countryCode')}${formData.get('phone')}`,
+      message: formData.get('message'),
+      form_type: 'main',
+      status: 'new'
+    };
+
+    const response = await fetch('/api/contact', {
       method: 'POST',
-      body: formData
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
     });
-
+    
     const result = await response.json();
-
+    
     if (response.ok) {
-      statusEl!.textContent = 'Message sent successfully!';
-      statusEl!.className = 'text-green-500';
+      if (statusEl) {
+        statusEl.textContent = '✓ ' + result.message;
+        statusEl.className = 'text-center text-green-500 mt-4 opacity-100 transform translate-y-0 transition-all duration-300';
+      }
       form.reset();
+      
+      // Reset validation styles
+      fields.forEach(field => {
+        const formGroup = field.closest('.form-group');
+        field.classList.remove('border-red-500');
+        const errorEl = formGroup?.querySelector('.error-message') as HTMLElement;
+        if (errorEl) errorEl.classList.add('hidden');
+      });
     } else {
-      statusEl!.textContent = result.error || 'Failed to send message';
-      statusEl!.className = 'text-red-500';
+      if (statusEl) {
+        statusEl.textContent = '✕ ' + (result.error || 'Failed to send message');
+        statusEl.className = 'text-center text-red-500 mt-4 opacity-100 transform translate-y-0 transition-all duration-300';
+      }
     }
   } catch (error) {
-    statusEl!.textContent = 'An error occurred. Please try again.';
-    statusEl!.className = 'text-red-500';
+    console.error('Error:', error);
+    if (statusEl) {
+      statusEl.textContent = '✕ Failed to send message. Please try again.';
+      statusEl.className = 'text-center text-red-500 mt-4 opacity-100 transform translate-y-0 transition-all duration-300';
+    }
+  } finally {
+    // Reset button state
+    submitButton.disabled = false;
+    submitText.textContent = 'Send Message';
+    submitSpinner.classList.add('hidden');
+  }
+});
+
+// Add live validation
+document.getElementById('contactForm')?.addEventListener('input', (e) => {
+  const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+  if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') {
+    validateField(target);
   }
 });
 </script>

@@ -3,8 +3,11 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   integrations: [tailwind()],
-  output: "static",
-
+  output: "server",
+  server: {
+    port: 4321,
+    host: true
+  },
   vite: {
     css: {
       preprocessorOptions: {
