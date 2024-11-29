@@ -1,5 +1,25 @@
 import { defineCollection, z } from "astro:content";
 
+// Define available categories
+const categories = [
+  "Web Design",
+  "AI Tools",
+  "SEO",
+  "Web Development",
+  "Digital Marketing",
+  "Tutorials"
+] as const;
+
+// Project categories
+const projectCategories = [
+  "Healthcare",
+  "E-commerce",
+  "Education",
+  "Real Estate",
+  "Technology",
+  "Finance"
+] as const;
+
 // Blog Posts Collection
 const blogCollection = defineCollection({
   type: "content",
@@ -8,7 +28,7 @@ const blogCollection = defineCollection({
     author: z.string(),
     date: z.string(),
     excerpt: z.string(),
-    tags: z.array(z.string()),
+    category: z.enum(categories),
     image: z.string(),
   }),
 });
@@ -19,10 +39,9 @@ const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.string(),
-    image: z.string(),
+    category: z.enum(projectCategories),
     client: z.string(),
-    tags: z.array(z.string()),
+    image: z.string(),
     results: z.array(z.string()),
     gallery: z.array(
       z.object({
@@ -46,11 +65,8 @@ const testimonialCollection = defineCollection({
   }),
 });
 
-
-
 export const collections = {
-  posts: blogCollection, // Existing blog collection
-  projects: projectsCollection, // New projects collection
+  posts: blogCollection,
+  projects: projectsCollection,
   testimonials: testimonialCollection,
-  
 };

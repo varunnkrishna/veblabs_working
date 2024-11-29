@@ -1,73 +1,63 @@
 ---
-title: "Realestate"
-description: "A mobile-first solution enabling customers to browse menus, place orders, and track deliveries seamlessly."
-category: "Mobile App Development"
-image: "/images/projects/ecommerce.webp"
-client: "Gourmet Bites"
-tags: ["Website design", "UI/UX Design", "Food Industry"]
+title: "Real Estate Platform"
+description: "A modern real estate platform for property listings and management"
+category: "Real Estate"
+client: "Premium Properties Ltd."
+image: "/images/projects/realestate.webp"
 results: [
-  "50% increase in patient engagement",
-  "30% reduction in appointment no-shows",
-  "95% patient satisfaction rate"
+  "150% increase in property inquiries",
+  "40% reduction in listing time",
+  "97% agent satisfaction rate"
 ]
 gallery:
-  - url: /images/projects/ecommerce.webp
-    alt: Patient Dashboard
-    caption: Intuitive dashboard for managing appointments and health records
-  - url: /images/projects/education.webp
-    alt: Appointment Booking
-    caption: Streamlined appointment booking interface
-  - url: /images/projects/ecommerce.webp
-    alt: Health Records
-    caption: Secure and organized health records management
-  - url: /images/projects/ecommerce.webp
-    alt: Provider Messaging
-    caption: HIPAA-compliant messaging system
-  - url: /images/projects/ecommerce.webp
-    alt: Mobile Experience
-    caption: Responsive design for seamless mobile access
-  - url: /images/projects/ecommerce.webp
-    alt: Analytics Dashboard
-    caption: Comprehensive analytics for healthcare providers
+  - url: "/images/projects/realestate-1.webp"
+    alt: "Property Listings"
+    caption: "Advanced property search and filtering"
+  - url: "/images/projects/realestate-2.webp"
+    alt: "Virtual Tours"
+    caption: "Interactive virtual property tours"
+  - url: "/images/projects/realestate-3.webp"
+    alt: "Agent Dashboard"
+    caption: "Comprehensive agent management system"
 ---
 
 # Client and Project Context
 
-Gourmet Bites, a premium restaurant chain, needed an app to enhance their customer experience and boost delivery orders. The goal was to create a user-friendly app that reflected their brand's elegance.
+Premium Properties Ltd., a leading real estate agency, needed a modern platform to enhance their property listings and management. The goal was to create a user-friendly platform that reflected their brand's professionalism.
 
 ## Problem Statement
 
-The client's current system relied on phone orders, leading to inefficiencies and lost opportunities. They needed a modern app to simplify the ordering process and retain customers.
+The client's current system relied on manual property listings, leading to inefficiencies and lost opportunities. They needed a modern platform to simplify the property management process and retain clients.
 
 ## Solution
 
-We developed a mobile-first app featuring:
+We developed a real estate platform featuring:
 
-- Clean, intuitive UI to browse menus effortlessly.
-- Real-time order tracking.
-- Payment integration for seamless transactions.
-- A loyalty program to reward returning customers.
+- Clean, intuitive UI to browse properties effortlessly.
+- Advanced property search and filtering.
+- Virtual property tours.
+- A comprehensive agent management system.
 
 ## Process
 
 1. **Discovery & Research**:
-   - Analyzed competitors' apps to identify best practices.
+   - Analyzed competitors' platforms to identify best practices.
    - Collaborated with the client to prioritize features.
 2. **Wireframing & Design**:
    - Created wireframes for user flows.
    - Delivered a sleek design aligning with the brand's identity.
 3. **Development**:
-   - Built the app using React Native for cross-platform compatibility.
-   - Integrated a backend with payment and order tracking APIs.
+   - Built the platform using modern web technologies for scalability.
+   - Integrated a backend with property listing and management APIs.
 4. **Testing & Launch**:
    - Conducted rigorous testing for performance and reliability.
 
 ## Results
 
-- 60% increase in delivery orders within 3 months.
-- 4.8/5 average rating on app stores.
-- Significant boost in customer retention through the loyalty program.
+- 150% increase in property inquiries within 6 months.
+- 40% reduction in listing time.
+- 97% agent satisfaction rate.
 
 ## Key Takeaways
 
-This project demonstrated the power of user-centric design and advanced technology in transforming customer experiences.
+This project demonstrated the power of user-centric design and advanced technology in transforming the real estate industry.

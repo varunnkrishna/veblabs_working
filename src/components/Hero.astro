@@ -1,5 +1,6 @@
 ---
 import Verticletab from "./Verticletab.astro";
+import Button from "./Button.astro";
 const features = [
   {
     title: "SEO-Optimized Designs",
@@ -69,24 +70,9 @@ const features = [
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a
-            href="/contact"
-            class="group inline-flex items-center justify-center px-8 py-3 text-lg font-medium light-textPrimary dark:text-white bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-          >
-            Get Your Free Quote
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-          </a>
-          <a
-            href="/works"
-            class="group inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-          >
-            View Our Work
-            <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </a>
+          <Button href="/contact" variant="primary" text="Get Your Free Quote" />
+
+          <Button href="/works" variant="secondary" text="View Our Work" />
         </div>
 
         <div class="flex justify-center items-center pt-8">

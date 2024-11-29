@@ -5,7 +5,6 @@ export interface ProjectData {
   category: string;
   image: string;
   client: string;
-  tags: string[];
   results: string[];
 }
 
@@ -17,7 +16,7 @@ const { project } = Astro.props;
 ---
 
 <header class="relative">
-  <div class="h-[20vh]  w-full relative">
+  <div class="h-[20vh] w-full relative">
     <img
       src={project.image}
       alt={project.title}
@@ -28,13 +27,9 @@ const { project } = Astro.props;
   
   <div class="container mx-auto px-4">
     <div class="max-w-4xl mx-auto -mt-20 relative bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
-      <div class="flex flex-wrap gap-4 mb-6">
-        {project.tags.map(tag => (
-          <span class="px-4 py-1 bg-primary/10 text-primary rounded-full text-sm">
-            {tag}
-          </span>
-        ))}
-      </div>
+      <span class="inline-block px-4 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
+        {project.category}
+      </span>
       
       <h1 class="text-4xl font-bold mb-4">{project.title}</h1>
       <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
@@ -51,6 +46,20 @@ const { project } = Astro.props;
           <p class="text-gray-600 dark:text-gray-400">{project.category}</p>
         </div>
       </div>
+      
+      {project.results && project.results.length > 0 && (
+        <div class="mt-8">
+          <h3 class="font-semibold mb-4">Key Results</h3>
+          <ul class="space-y-2">
+            {project.results.map(result => (
+              <li class="flex items-start gap-2">
+                <span class="text-blue-500">•</span>
+                <span class="text-gray-600 dark:text-gray-400">{result}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   </div>
 </header>

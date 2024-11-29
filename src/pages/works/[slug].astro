@@ -5,6 +5,8 @@ import ProjectHeader from '../../components/ProjectHeader.astro';
 import type { CollectionEntry } from 'astro:content';
 import ProjectGallery from '../../components/ProjectGallery.astro';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map(project => ({
@@ -37,7 +39,6 @@ const galleryImages = (project.data.gallery || []).map(image => ({
       category: project.data.category,
       image: project.data.image,
       client: project.data.client,
-      tags: project.data.tags,
       results: project.data.results
     }} 
   />

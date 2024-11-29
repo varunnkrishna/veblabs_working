@@ -4,7 +4,7 @@ import BlogGrid from '../../components/BlogGrid.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts');
-const categories = [...new Set(posts.flatMap(post => post.data.tags))];
+const categories = [...new Set(posts.map(post => post.data.category))].sort();
 ---
 
 <Layout title="Blog - Veblabs">
@@ -48,11 +48,17 @@ const categories = [...new Set(posts.flatMap(post => post.data.tags))];
   <div class="bg-white dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="flex flex-wrap justify-center gap-4">
-        <button class="px-6 py-2 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-300">
+        <button
+          class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-200 dark:hover:bg-blue-800/50 transition-colors active"
+          data-category="all"
+        >
           All Posts
         </button>
-        {categories.map(category => (
-          <button class="px-6 py-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white transition-all duration-300">
+        {categories.map((category) => (
+          <button
+            class="category-filter px-4 py-2 rounded-full text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            data-category={category}
+          >
             {category}
           </button>
         ))}
@@ -60,12 +66,38 @@ const categories = [...new Set(posts.flatMap(post => post.data.tags))];
     </div>
   </div>
 
-  {/* Blog Grid */}
-  <div class="bg-gray-50 dark:bg-gray-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <BlogGrid />
-    </div>
-  </div>
+  <BlogGrid posts={posts} />
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll<HTMLButtonElement>('.category-filter');
+      const blogPosts = document.querySelectorAll<HTMLElement>('.blog-post');
+      
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          // Update active button styles
+          filterButtons.forEach((btn) => {
+            btn.classList.remove('active', 'bg-blue-100', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+            btn.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+          });
+          button.classList.add('active', 'bg-blue-100', 'dark:bg-blue-900/30', 'text-blue-600', 'dark:text-blue-400');
+          button.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-400');
+
+          const selectedCategory = button.dataset.category;
+          
+          blogPosts.forEach((post) => {
+            if (selectedCategory === 'all') {
+              post.style.display = '';
+              return;
+            }
+            
+            const postCategory = post.dataset.category;
+            post.style.display = postCategory === selectedCategory ? '' : 'none';
+          });
+        });
+      });
+    });
+  </script>
 
   {/* Newsletter Section */}
   <div class="relative bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500">

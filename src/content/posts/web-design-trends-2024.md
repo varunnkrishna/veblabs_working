@@ -1,10 +1,10 @@
 ---
-title: "Web Design Trends to Watch in 2024"
+title: "Web Design Trends for 2024"
 author: "Jane Smith"
-date: "2024-03-18"
-excerpt: "Discover the latest web design trends that are shaping the digital landscape in 2024."
-tags: ["Web Design", "Trends", "UI/UX"]
-image: "/images/webedesign.webp"
+date: "2024-03-15"
+excerpt: "Discover the latest web design trends that will dominate 2024."
+category: "Web Design"
+image: "/images/web-design.webp"
 ---
 
 # Web Design Trends to Watch in 2024

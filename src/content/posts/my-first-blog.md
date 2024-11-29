@@ -1,9 +1,9 @@
 ---
-title: "My First Blog"
-author: "Varun krishna"
-date: "2025-03-17"
-excerpt: "Learn how to build a blog system in Astro using Markdown files."
-tags: ["Astro", "Web Development", "Tutorial"]
+title: "Getting Started with AI Tools"
+author: "Varun Krishna"
+date: "2024-03-10"
+excerpt: "Learn about the essential AI tools that can transform your workflow."
+category: "AI Tools"
 image: "/images/seo.webp"
 ---
 

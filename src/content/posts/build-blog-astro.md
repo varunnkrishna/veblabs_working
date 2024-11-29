@@ -3,7 +3,7 @@ title: "How to Build a Blog with Astro"
 author: "John Doe"
 date: "2024-03-17"
 excerpt: "Learn how to build a blog system in Astro using Markdown files."
-tags: ["Astro", "Web Development", "Tutorial"]
+category: "Web Development"
 image: "/images/ai.webp"
 ---
 

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import Ctaone from '../../components/Ctaone.astro';
+import TestimonialMarquee from '../../components/TestimonialMarquee.astro';
 const projects = await getCollection('projects');
 const categories = [...new Set(projects.map(project => project.data.category))];
 ---
@@ -23,8 +24,17 @@ const categories = [...new Set(projects.map(project => project.data.category))];
           Explore our diverse collection of successful projects that showcase our expertise in creating impactful digital solutions.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
+          <button 
+            class="category-filter px-6 py-2 rounded-full bg-blue-500 text-white dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap active"
+            data-category="all"
+          >
+            All Projects
+          </button>
           {categories.map(category => (
-            <button class="px-6 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap">
+            <button 
+              class="category-filter px-6 py-2 rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg whitespace-nowrap"
+              data-category={category}
+            >
               {category}
             </button>
           ))}
@@ -37,7 +47,7 @@ const categories = [...new Set(projects.map(project => project.data.category))];
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {projects.map(project => (
-        <a href={`/works/${project.slug}`} class="group">
+        <a href={`/works/${project.slug}`} class="project-item group" data-category={project.data.category}>
           <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <div class="aspect-[16/10] relative overflow-hidden">
               <img
@@ -51,16 +61,9 @@ const categories = [...new Set(projects.map(project => project.data.category))];
                     {project.data.category}
                   </span>
                   <h2 class="text-3xl font-bold text-white mb-3">{project.data.title}</h2>
-                  <p class="text-gray-200 text-base line-clamp-3 mb-4">
+                  <p class="text-gray-200 text-base line-clamp-3">
                     {project.data.description}
                   </p>
-                  <div class="flex flex-wrap gap-2">
-                    {project.data.tags.slice(0, 3).map(tag => (
-                      <span class="px-4 py-2 bg-white/20 rounded-full text-sm text-white backdrop-blur-sm">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
@@ -70,6 +73,41 @@ const categories = [...new Set(projects.map(project => project.data.category))];
     </div>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.category-filter');
+      const projectItems = document.querySelectorAll('.project-item');
+      
+      filterButtons.forEach((button: Element) => {
+        button.addEventListener('click', () => {
+          // Update active button styles
+          filterButtons.forEach((btn: Element) => {
+            btn.classList.remove('active', 'bg-blue-500', 'text-white');
+            if (!btn.classList.contains('active')) {
+              btn.classList.add('bg-white', 'text-gray-700');
+            }
+          });
+          button.classList.add('active', 'bg-blue-500', 'text-white');
+          button.classList.remove('bg-white', 'text-gray-700');
+
+          const selectedCategory = (button as HTMLElement).dataset.category;
+          
+          projectItems.forEach((item: Element) => {
+            const htmlItem = item as HTMLElement;
+            if (selectedCategory === 'all') {
+              htmlItem.style.display = '';
+              return;
+            }
+            
+            const projectCategory = htmlItem.dataset.category;
+            htmlItem.style.display = projectCategory === selectedCategory ? '' : 'none';
+          });
+        });
+      });
+    });
+  </script>
+
+  <TestimonialMarquee :visible/>
   {/* CTA Banner */}
-<Ctaone></Ctaone>
+  <Ctaone/>
 </Layout>

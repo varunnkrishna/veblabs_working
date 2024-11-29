@@ -1,35 +1,26 @@
 ---
-title: Healthcare Platform
-description: A comprehensive healthcare platform connecting patients with healthcare providers
-category: Healthcare
+title: "E-commerce Platform"
+description: "A modern e-commerce platform with advanced features and seamless user experience"
+category: "E-commerce"
 date: 2023-06-15
-client: HealthCare Solutions Inc.
-image: /images/projects/healthcare.webp
-tags: ["Healthcare", "Web Application", "UX Design"]
+client: "Fashion Retail Co."
+image: "/images/projects/ecommerce.webp"
+tags: ["E-commerce", "Web Application", "UX Design"]
 results: [
-  "50% increase in patient engagement",
-  "30% reduction in appointment no-shows",
-  "95% patient satisfaction rate"
+  "200% increase in online sales",
+  "45% improvement in conversion rate",
+  "98% customer satisfaction score"
 ]
 gallery:
-  - url: /images/projects/ecommerce.webp
-    alt: Patient Dashboard
-    caption: Intuitive dashboard for managing appointments and health records
-  - url: /images/projects/education.webp
-    alt: Appointment Booking
-    caption: Streamlined appointment booking interface
-  - url: /images/projects/ecommerce.webp
-    alt: Health Records
-    caption: Secure and organized health records management
-  - url: /images/projects/ecommerce.webp
-    alt: Provider Messaging
-    caption: HIPAA-compliant messaging system
-  - url: /images/projects/ecommerce.webp
-    alt: Mobile Experience
-    caption: Responsive design for seamless mobile access
-  - url: /images/projects/ecommerce.webp
-    alt: Analytics Dashboard
-    caption: Comprehensive analytics for healthcare providers
+  - url: "/images/projects/ecommerce-1.webp"
+    alt: "Product Catalog"
+    caption: "Dynamic product catalog with advanced filtering"
+  - url: "/images/projects/ecommerce-2.webp"
+    alt: "Shopping Cart"
+    caption: "Streamlined checkout process"
+  - url: "/images/projects/ecommerce-3.webp"
+    alt: "Mobile View"
+    caption: "Responsive mobile experience"
 ---
 
 # Client and Project Context
