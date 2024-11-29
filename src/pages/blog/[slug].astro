@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import type { CollectionEntry } from 'astro:content';
 
 export const prerender = true;
@@ -19,9 +20,16 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+// Get the full URL for sharing
+const canonicalURL = new URL(Astro.url.pathname, import.meta.env.SITE ?? 'https://veblabs.com').toString();
 ---
 
-<Layout title={`${post.data.title} | Blog`}>
+<Layout 
+  title={`${post.data.title} | Blog`}
+  description={post.data.excerpt}
+  image={post.data.image}
+>
   <div class="container mx-auto px-4 py-16">
     <article class="max-w-4xl mx-auto">
       <header class="mb-8">
@@ -48,6 +56,12 @@ const { Content } = await post.render();
       <div class="prose dark:prose-invert prose-lg mx-auto">
         <Content />
       </div>
+
+      <ShareButtons 
+        url={canonicalURL}
+        title={post.data.title}
+        description={post.data.excerpt || `Read ${post.data.title} on Veblabs`}
+      />
     </article>
   </div>
 </Layout>

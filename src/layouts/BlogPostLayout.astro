@@ -1,13 +1,21 @@
 ---
 import Layout from './Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ShareButtons from '../components/ShareButtons.astro';
 import { formatDistance } from 'date-fns';
 
 const { frontmatter, readingTime } = Astro.props;
 const formattedDate = formatDistance(new Date(frontmatter.date), new Date(), { addSuffix: true });
+
+// Get the full URL for sharing
+const canonicalURL = new URL(Astro.url.pathname, import.meta.env.SITE ?? 'https://veblabs.com').toString();
 ---
 
-<Layout title={frontmatter.title}>
+<Layout 
+  title={frontmatter.title}
+  description={frontmatter.description || frontmatter.excerpt || `Read ${frontmatter.title} on Veblabs`}
+  image={frontmatter.image || frontmatter.cover || '/blog-default.webp'}
+>
   <article class="max-w-4xl mx-auto px-4 py-8">
     <Breadcrumbs
       items={[
@@ -35,40 +43,14 @@ const formattedDate = formatDistance(new Date(frontmatter.date), new Date(), { a
       </div>
     </header>
 
-    <div class="prose prose-lg dark:prose-inverse dark:text-gray-300 max-w-none">
+    <div class="prose dark:prose-invert max-w-none">
       <slot />
     </div>
 
-    <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-      <div class="flex items-center justify-between">
-        <div class="flex gap-2">
-          {frontmatter.tags.map(tag => (
-            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div class="flex gap-4">
-          <a
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(frontmatter.title)}&url=${encodeURIComponent(Astro.url.toString())}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-600 hover:text-primary dark:text-gray-400"
-          >
-            Share on Twitter
-          </a>
-          <a
-            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(Astro.url.toString())}&title=${encodeURIComponent(frontmatter.title)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-gray-600 hover:text-primary dark:text-gray-400"
-          >
-            Share on LinkedIn
-          </a>
-        </div>
-        
-      </div>
-    </footer>
+    <ShareButtons 
+      url={canonicalURL}
+      title={frontmatter.title}
+      description={frontmatter.description || frontmatter.excerpt || `Read ${frontmatter.title} on Veblabs`}
+    />
   </article>
 </Layout>

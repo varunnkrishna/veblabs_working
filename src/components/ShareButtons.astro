@@ -1,0 +1,52 @@
+---
+interface Props {
+  url: string;
+  title: string;
+  description: string;
+}
+
+const { url, title, description } = Astro.props;
+
+// Encode the sharing parameters
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+const encodedDescription = encodeURIComponent(description);
+
+// Social sharing URLs
+const twitterUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
+const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+---
+
+<div class="flex gap-4 items-center mt-8 border-t border-gray-200 dark:border-gray-700 pt-8">
+  <span class="text-gray-600 dark:text-gray-400">Share this post:</span>
+  <div class="flex gap-2">
+    <a
+      href={twitterUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-gray-500 hover:text-blue-400 transition-colors"
+      aria-label="Share on Twitter"
+    >
+      <i class="fab fa-twitter text-lg"></i>
+    </a>
+    <a
+      href={linkedinUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-gray-500 hover:text-blue-700 transition-colors"
+      aria-label="Share on LinkedIn"
+    >
+      <i class="fab fa-linkedin text-lg"></i>
+    </a>
+    <a
+      href={facebookUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-gray-500 hover:text-blue-600 transition-colors"
+      aria-label="Share on Facebook"
+    >
+      <i class="fab fa-facebook text-lg"></i>
+    </a>
+  </div>
+</div>

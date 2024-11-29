@@ -1,8 +1,10 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
+import icon from "astro-icon";
 
 export default defineConfig({
-  integrations: [tailwind()],
+  site: 'https://veblabs.com', 
+  integrations: [tailwind(), icon()],
   output: "server",
   server: {
     port: 4321,
