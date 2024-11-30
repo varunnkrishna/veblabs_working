@@ -106,7 +106,7 @@ const validateField = (field: HTMLInputElement | HTMLTextAreaElement | HTMLSelec
   if (!field.value.trim()) {
     isValid = false;
     message = 'This field is required';
-  } else if (field.minLength && field.value.length < field.minLength) {
+  } else if ('minLength' in field && field.minLength && field.value.length < field.minLength) {
     isValid = false;
     message = `Must be at least ${field.minLength} characters`;
   } else if (field.type === 'email' && !field.value.includes('@')) {

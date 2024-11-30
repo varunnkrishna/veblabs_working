@@ -43,6 +43,7 @@ const projectsCollection = defineCollection({
     client: z.string(),
     image: z.string(),
     results: z.array(z.string()),
+    tags: z.array(z.string()).optional(),
     gallery: z.array(
       z.object({
         url: z.string(),
