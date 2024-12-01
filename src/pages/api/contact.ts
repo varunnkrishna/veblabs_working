@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '../../lib/supabase';
 
+export const prerender = false;
+
 interface ContactForm {
   name: string;
   email: string;
@@ -12,19 +14,28 @@ interface ContactForm {
 
 export const POST: APIRoute = async ({ request }) => {
   console.log('API: Received request');
+  console.log('API: Request headers:', Object.fromEntries(request.headers.entries()));
   
   try {
     // Verify content type
     const contentType = request.headers.get('content-type');
+    console.log('API: Content-Type header:', contentType);
+    
     if (!contentType || !contentType.includes('application/json')) {
       console.log('API: Invalid content type:', contentType);
       return new Response(
         JSON.stringify({
-          error: 'Content-Type must be application/json'
+          error: 'Content-Type must be application/json',
+          receivedContentType: contentType
         }),
         {
           status: 400,
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type'
+          }
         }
       );
     }

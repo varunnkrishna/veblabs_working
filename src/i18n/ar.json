@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "خدماتنا",
+    "contact": "اتصل بنا"
+  },
+  "common": {
+    "readMore": "اقرأ المزيد",
+    "contactUs": "اتصل بنا",
+    "learnMore": "اعرف المزيد"
+  }
+}

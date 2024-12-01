@@ -163,56 +163,75 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
 
     // Get form data
     const formData = new FormData(form);
+    const countryCode = formData.get('countryCode');
+    const phoneNumber = formData.get('phone');
+    
     const payload = {
       name: formData.get('name'),
       email: formData.get('email'),
-      phone: `${formData.get('countryCode')}${formData.get('phone')}`,
+      phone: `${countryCode}${phoneNumber}`, // Combine country code and phone
       message: formData.get('message'),
       form_type: 'main',
       status: 'new'
     };
 
-    const response = await fetch('/api/contact', {
+    // Use local endpoint for development
+    const apiUrl = import.meta.env.DEV 
+      ? '/api/contact' 
+      : 'https://veblabs-api.veblabs90.workers.dev/contact';
+
+    const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     });
-    
+
+    console.log('Request sent with payload:', payload);
     const result = await response.json();
-    
-    if (response.ok) {
-      if (statusEl) {
-        statusEl.textContent = '✓ ' + result.message;
-        statusEl.className = 'text-center text-green-500 mt-4 opacity-100 transform translate-y-0 transition-all duration-300';
-      }
-      form.reset();
-      
-      // Reset validation styles
-      fields.forEach(field => {
-        const formGroup = field.closest('.form-group');
-        field.classList.remove('border-red-500');
-        const errorEl = formGroup?.querySelector('.error-message') as HTMLElement;
-        if (errorEl) errorEl.classList.add('hidden');
+    console.log('Server response:', result);
+
+    if (!response.ok) {
+      console.error('Server error details:', {
+        status: response.status,
+        statusText: response.statusText,
+        result
       });
-    } else {
-      if (statusEl) {
-        statusEl.textContent = '✕ ' + (result.error || 'Failed to send message');
-        statusEl.className = 'text-center text-red-500 mt-4 opacity-100 transform translate-y-0 transition-all duration-300';
-      }
+      throw new Error(result.error || result.details || 'Failed to send message');
     }
+
+    // Reset form
+    form.reset();
+    
+    // Show success message
+    submitText.textContent = 'Message Sent!';
+    submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+    submitButton.classList.add('bg-green-600', 'hover:bg-green-700');
+    
+    // Reset button after 3 seconds
+    setTimeout(() => {
+      submitText.textContent = 'Send Message';
+      submitButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+      submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+    }, 3000);
+
   } catch (error) {
     console.error('Error:', error);
-    if (statusEl) {
-      statusEl.textContent = '✕ Failed to send message. Please try again.';
-      statusEl.className = 'text-center text-red-500 mt-4 opacity-100 transform translate-y-0 transition-all duration-300';
-    }
+    submitText.textContent = error.message || 'Failed to send message. Please try again.';
+    submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+    submitButton.classList.add('bg-red-600', 'hover:bg-red-700');
+    
+    // Reset button after 3 seconds
+    setTimeout(() => {
+      submitText.textContent = 'Send Message';
+      submitButton.classList.remove('bg-red-600', 'hover:bg-red-700');
+      submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+    }, 3000);
   } finally {
-    // Reset button state
-    submitButton.disabled = false;
-    submitText.textContent = 'Send Message';
     submitSpinner.classList.add('hidden');
+    submitButton.disabled = false;
   }
 });
 

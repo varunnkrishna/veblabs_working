@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
-import readingTime from 'reading-time';
+import { calculateReadingTime } from '../../utils/readingTime';
 import type { CollectionEntry } from 'astro:content';
 
 
@@ -19,10 +19,9 @@ interface Props {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
-const stats = readingTime(post.body);
+const stats = calculateReadingTime(post.body);
 ---
 
 <BlogPostLayout frontmatter={post.data} readingTime={stats.text}>
   <Content />
 </BlogPostLayout>
-

@@ -1,0 +1,20 @@
+name = "veblabs-api"
+main = "./functions/contact.js"
+compatibility_date = "2024-01-01"
+
+workers_dev = true
+
+[vars]
+PUBLIC_SUPABASE_URL = "https://ucznehgalryyrjhucavz.supabase.co"
+SITE = "https://veblabs.com"
+
+# Secrets are set using 'wrangler secret put':
+# - PUBLIC_SUPABASE_ANON_KEY
+# - RESEND_API_KEY
+# - RECIPIENT_EMAIL
+
+[build]
+command = ""
+
+[site]
+bucket = "./dist"

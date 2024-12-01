@@ -1,15 +1,15 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   site: 'https://veblabs.com', 
   integrations: [tailwind(), icon()],
-  output: "server",
-  server: {
-    port: 4321,
-    host: true
-  },
+  output: "hybrid",
+  adapter: cloudflare({
+    mode: "directory"
+  }),
   vite: {
     css: {
       preprocessorOptions: {
@@ -18,5 +18,8 @@ export default defineConfig({
         },
       },
     },
+    ssr: {
+      noExternal: ['reading-time']
+    }
   },
 });
