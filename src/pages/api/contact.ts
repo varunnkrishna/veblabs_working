@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { supabase } from '../../lib/supabase';
+import { Resend } from 'resend';
 
 export const prerender = false;
 
@@ -116,6 +117,27 @@ export const POST: APIRoute = async ({ request }) => {
           headers: { 'Content-Type': 'application/json' }
         }
       );
+    }
+
+    // Send email notification using Resend
+    const resend = new Resend(import.meta.env.RESEND_API_KEY);
+    try {
+      await resend.emails.send({
+        from: 'VebLabs <onboarding@resend.dev>',
+        to: import.meta.env.RECIPIENT_EMAIL,
+        subject: `New Contact Form Submission from ${formData.name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${formData.name}</p>
+          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Phone:</strong> ${formData.phone}</p>
+          <p><strong>Message:</strong></p>
+          <p>${formData.message}</p>
+        `
+      });
+    } catch (emailError) {
+      console.error('API: Email sending error:', emailError);
+      // Don't return an error to the user since the data was saved successfully
     }
 
     console.log('API: Successfully inserted data:', result);

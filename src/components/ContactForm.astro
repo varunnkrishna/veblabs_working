@@ -175,12 +175,8 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
       status: 'new'
     };
 
-    // Use local endpoint for development
-    const apiUrl = import.meta.env.DEV 
-      ? '/api/contact' 
-      : 'https://veblabs-api.veblabs90.workers.dev/contact';
-
-    const response = await fetch(apiUrl, {
+    // Always use the relative API endpoint
+    const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

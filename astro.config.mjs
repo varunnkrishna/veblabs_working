@@ -4,7 +4,7 @@ import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  site: 'https://veblabs.com', 
+  site: 'https://veblabs.com',  // Make sure this matches your domain
   integrations: [tailwind(), icon()],
   output: "hybrid",
   adapter: cloudflare({
