@@ -1,0 +1,20 @@
+---
+import { supportedLanguages } from '../../i18n/config';
+import { useTranslations } from '../../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return Object.keys(supportedLanguages).map(lang => ({
+    params: { lang }
+  }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as keyof typeof supportedLanguages);
+---
+<Layout title="About | VebLabs">
+  <main>
+    <h1>About Us</h1>
+    <!-- Your about page content here -->
+  </main>
+</Layout>

@@ -1,0 +1,44 @@
+---
+import { getLanguageFromURL, useTranslations } from '../../i18n/utils';
+import { supportedLanguages } from '../../i18n/config';
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import TestimonialMarquee from '../../components/TestimonialMarquee.astro';
+import ProblemSection from '../../components/ProblemSection.astro';
+import Verticletab from '../../components/Verticletab.astro';
+import OurWork from '../../components/OurWork.astro';
+import Multilanguage from "../../components/Multilanguage.astro"
+import Features from '../../components/Features.astro';
+import Comparision from '../../components/Comparision.astro';
+import Faq from '../../components/Faq.astro';
+import Hero from '../../components/Hero.astro';
+import Ctaone from '../../components/Ctaone.astro';
+
+export function getStaticPaths() {
+  return Object.keys(supportedLanguages).map(lang => ({
+    params: { lang }
+  }));
+}
+
+const { pathname } = Astro.url;
+const lang = getLanguageFromURL(pathname);
+
+// Redirect from root to language-specific home page
+if (pathname === '/') {
+  return Astro.redirect('/en');
+}
+
+const t = useTranslations(lang as keyof typeof supportedLanguages);
+---
+<Layout 
+  title="Professional Web Design Services | SEO-Optimized Websites | Veblabs"
+  description="Transform your online presence with Veblabs' professional web design services. We create SEO-optimized, high-converting websites that drive real business results."
+>
+  <Hero />
+  <Multilanguage />
+  <TestimonialMarquee :visible />
+  <Ctaone />
+  <OurWork />
+  <Comparision />
+  <Faq />
+</Layout>

@@ -1,13 +1,44 @@
 {
   "nav": {
-    "home": "Home",
-    "about": "About",
+    "works": "Works",
+    "blog": "Blog",
     "services": "Services",
-    "contact": "Contact"
+    "about": "About Us",
+    "contact": "",
+    "cta": "Get in Touch"
   },
   "common": {
-    "readMore": "Read More",
-    "contactUs": "Contact Us",
-    "learnMore": "Learn More"
+    "languageName": "English",
+    "switchToArabic": "عربي"
+  },
+  "hero": {
+    "mainHeading": {
+      "part1": "Transform Your Online Presence with",
+      "part2": "High-Converting Websites"
+    },
+    "subtitle": "We craft SEO-optimized, lightning-fast websites that don't just look stunning—they drive real business results and fuel your growth",
+    "cta": {
+      "primary": "Get Your Free Quote",
+      "secondary": "View Our Work"
+    },
+    "features": {
+      "seo": {
+        "title": "SEO-Optimized Designs",
+        "description": "Boost your online visibility with our SEO-friendly solutions"
+      },
+      "speed": {
+        "title": "Lightning Fast",
+        "description": "Experience blazing-fast performance and loading times"
+      },
+      "customization": {
+        "title": "Fully Customizable",
+        "description": "Tailor every aspect to match your brand perfectly"
+      },
+      "multilingual": {
+        "title": "Multi-Language Support",
+        "description": "Reach global audiences with multi-language capabilities"
+      }
+    },
+    "trust": "Trusted by Visionary Founders and Entrepreneurs Worldwide"
   }
 }

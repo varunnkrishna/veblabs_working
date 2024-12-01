@@ -1,31 +1,80 @@
-import en from './en.json';
-import ar from './ar.json';
+import { ui, defaultLang, supportedLanguages } from './config';
+import type { SupportedLanguage } from './config';
+import type { Translations, HeroTranslations, NavTranslations, CommonTranslations } from './types';
 
-export const languages = {
-  en: 'English',
-  ar: 'العربية'
+type TranslationModule = {
+  default: unknown;
 };
 
-export const defaultLang = 'en';
+type TranslationImports = {
+  [L in SupportedLanguage]: {
+    [K in keyof Translations]: () => Promise<TranslationModule>;
+  };
+};
 
-export const ui = {
-  en,
-  ar
-} as const;
+// Import all translation files
+const translations: TranslationImports = {
+  en: {
+    common: () => import('./translations/en/common.json'),
+    nav: () => import('./translations/en/nav.json'),
+    hero: () => import('./translations/en/hero.json')
+  },
+  ar: {
+    common: () => import('./translations/ar/common.json'),
+    nav: () => import('./translations/ar/nav.json'),
+    hero: () => import('./translations/ar/hero.json')
+  }
+};
 
-export function getLangFromUrl(url: URL) {
-  const [, lang] = url.pathname.split('/');
-  if (lang in ui) return lang as keyof typeof ui;
+export function getLanguageFromURL(pathname: string): SupportedLanguage {
+  const [, lang] = pathname.split('/');
+  if (lang && Object.keys(supportedLanguages).includes(lang)) {
+    return lang as SupportedLanguage;
+  }
   return defaultLang;
 }
 
-export function useTranslations(lang: keyof typeof ui) {
-  return function t(key: string) {
-    const keys = key.split('.');
-    let value = ui[lang];
-    for (const k of keys) {
-      value = value?.[k];
+export async function loadTranslations<K extends keyof Translations>(
+  lang: SupportedLanguage,
+  namespace: K
+): Promise<Translations[K]> {
+  try {
+    const module = await translations[lang][namespace]();
+    return module.default as Translations[K];
+  } catch (error) {
+    console.error(`Failed to load translations for ${lang}.${namespace}:`, error);
+    return {} as Translations[K];
+  }
+}
+
+export function useTranslations(lang: SupportedLanguage) {
+  const cache: Partial<Record<keyof Translations, unknown>> = {};
+
+  return async function t<K extends keyof Translations>(namespace: K): Promise<Translations[K]> {
+    if (!cache[namespace]) {
+      cache[namespace] = await loadTranslations(lang, namespace);
     }
-    return value || key;
+    return cache[namespace] as Translations[K];
   };
+}
+
+export function getLanguageDirection(lang: SupportedLanguage): 'ltr' | 'rtl' {
+  return lang === 'ar' ? 'rtl' : 'ltr';
+}
+
+export function getRelativeURL(pathname: string, lang: SupportedLanguage): string {
+  const segments = pathname.split('/').filter(Boolean);
+  const currentLang = getLanguageFromURL(pathname);
+  
+  // If we're already on a language route, remove the language segment
+  if (currentLang === segments[0]) {
+    segments.shift();
+  }
+  
+  // If no path segments remain, return just the language
+  if (segments.length === 0) {
+    return `/${lang}`;
+  }
+  
+  return `/${lang}/${segments.join('/')}`;
 }

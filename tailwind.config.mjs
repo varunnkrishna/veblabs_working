@@ -76,6 +76,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        arabic: ['Noto Sans Arabic', 'sans-serif'],
       },
       // Typography improvements
       fontSize: {
