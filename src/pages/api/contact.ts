@@ -18,11 +18,12 @@ export const POST: APIRoute = async ({ request }) => {
   
   try {
     // Log environment variables (without exposing sensitive data)
-    console.log('API: Checking environment variables');
-    console.log('RESEND_API_KEY exists:', !!import.meta.env.RESEND_API_KEY);
-    console.log('RECIPIENT_EMAIL exists:', !!import.meta.env.RECIPIENT_EMAIL);
-    console.log('PUBLIC_SUPABASE_URL exists:', !!import.meta.env.PUBLIC_SUPABASE_URL);
-    console.log('PUBLIC_SUPABASE_ANON_KEY exists:', !!import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+    console.log('API: Environment variables check:');
+    console.log('- RESEND_API_KEY type:', typeof import.meta.env.RESEND_API_KEY);
+    console.log('- RESEND_API_KEY length:', import.meta.env.RESEND_API_KEY?.length || 0);
+    console.log('- RECIPIENT_EMAIL:', import.meta.env.RECIPIENT_EMAIL);
+    console.log('- Process env keys:', Object.keys(process.env).join(', '));
+    console.log('- Import.meta.env keys:', Object.keys(import.meta.env).join(', '));
 
     // Verify content type
     const contentType = request.headers.get('content-type');
@@ -161,6 +162,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const resend = new Resend(import.meta.env.RESEND_API_KEY);
+    let emailError = null;
     try {
       const emailResult = await resend.emails.send({
         from: 'VebLabs <onboarding@resend.dev>',
@@ -176,16 +178,17 @@ export const POST: APIRoute = async ({ request }) => {
         `
       });
       console.log('API: Email sent successfully:', emailResult);
-    } catch (emailError) {
-      console.error('API: Email sending error:', emailError);
-      // Continue since data was saved successfully
+    } catch (err) {
+      emailError = err;
+      console.error('API: Email sending error:', err);
     }
 
     return new Response(
       JSON.stringify({
         success: true,
         message: 'Thank you for your message! We will get back to you soon.',
-        data: result
+        data: result,
+        warnings: emailError ? ['Email notification delayed but your message was saved'] : undefined
       }),
       {
         status: 200,

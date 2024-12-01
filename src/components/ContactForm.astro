@@ -202,28 +202,32 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
     form.reset();
     
     // Show success message
-    submitText.textContent = 'Message Sent!';
-    submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-    submitButton.classList.add('bg-green-600', 'hover:bg-green-700');
+    submitText.textContent = result.warnings ? 'Message Received!' : 'Message Sent!';
+    submitButton.classList.remove('bg-primary');
+    submitButton.classList.add('bg-green-600');
+    
+    if (result.warnings?.length) {
+      console.log('Warnings:', result.warnings);
+    }
     
     // Reset button after 3 seconds
     setTimeout(() => {
       submitText.textContent = 'Send Message';
-      submitButton.classList.remove('bg-green-600', 'hover:bg-green-700');
-      submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      submitButton.classList.remove('bg-green-600');
+      submitButton.classList.add('bg-primary');
     }, 3000);
 
   } catch (error) {
     console.error('Error:', error);
     submitText.textContent = error.message || 'Failed to send message. Please try again.';
-    submitButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-    submitButton.classList.add('bg-red-600', 'hover:bg-red-700');
+    submitButton.classList.remove('bg-primary');
+    submitButton.classList.add('bg-red-600');
     
     // Reset button after 3 seconds
     setTimeout(() => {
       submitText.textContent = 'Send Message';
-      submitButton.classList.remove('bg-red-600', 'hover:bg-red-700');
-      submitButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      submitButton.classList.remove('bg-red-600');
+      submitButton.classList.add('bg-primary');
     }, 3000);
   } finally {
     submitSpinner.classList.add('hidden');
