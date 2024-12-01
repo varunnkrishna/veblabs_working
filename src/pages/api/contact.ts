@@ -15,9 +15,15 @@ interface ContactForm {
 
 export const POST: APIRoute = async ({ request }) => {
   console.log('API: Received request');
-  console.log('API: Request headers:', Object.fromEntries(request.headers.entries()));
   
   try {
+    // Log environment variables (without exposing sensitive data)
+    console.log('API: Checking environment variables');
+    console.log('RESEND_API_KEY exists:', !!import.meta.env.RESEND_API_KEY);
+    console.log('RECIPIENT_EMAIL exists:', !!import.meta.env.RECIPIENT_EMAIL);
+    console.log('PUBLIC_SUPABASE_URL exists:', !!import.meta.env.PUBLIC_SUPABASE_URL);
+    console.log('PUBLIC_SUPABASE_ANON_KEY exists:', !!import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+
     // Verify content type
     const contentType = request.headers.get('content-type');
     console.log('API: Content-Type header:', contentType);
@@ -50,7 +56,8 @@ export const POST: APIRoute = async ({ request }) => {
       console.error('API: JSON parse error:', parseError);
       return new Response(
         JSON.stringify({
-          error: 'Invalid JSON format'
+          error: 'Invalid JSON format',
+          details: parseError instanceof Error ? parseError.message : 'Unknown parse error'
         }),
         {
           status: 400,
@@ -63,6 +70,7 @@ export const POST: APIRoute = async ({ request }) => {
     const requiredFields = ['name', 'email', 'phone', 'message'];
     for (const field of requiredFields) {
       if (!data[field]) {
+        console.error(`API: Missing required field: ${field}`);
         return new Response(
           JSON.stringify({ error: `Missing required field: ${field}` }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -72,6 +80,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Validate email format
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      console.error('API: Invalid email format:', data.email);
       return new Response(
         JSON.stringify({ error: 'Invalid email format' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -80,6 +89,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Validate phone number format (including country code)
     if (!/^\+[0-9]{1,4}[0-9]{6,14}$/.test(data.phone)) {
+      console.error('API: Invalid phone number format:', data.phone);
       return new Response(
         JSON.stringify({ error: 'Invalid phone number format' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -96,7 +106,7 @@ export const POST: APIRoute = async ({ request }) => {
       status: 'new'
     };
 
-    console.log('API: Inserting data:', formData);
+    console.log('API: Inserting data into Supabase');
 
     // Insert into Supabase
     const { data: result, error: insertError } = await supabase
@@ -119,10 +129,40 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    console.log('API: Successfully inserted data, sending email');
+
     // Send email notification using Resend
+    if (!import.meta.env.RESEND_API_KEY) {
+      console.error('API: Missing RESEND_API_KEY');
+      return new Response(
+        JSON.stringify({
+          error: 'Configuration error',
+          details: 'Email service not configured properly. RESEND_API_KEY is missing.'
+        }),
+        {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    if (!import.meta.env.RECIPIENT_EMAIL) {
+      console.error('API: Missing RECIPIENT_EMAIL');
+      return new Response(
+        JSON.stringify({
+          error: 'Configuration error',
+          details: 'Email service not configured properly. RECIPIENT_EMAIL is missing.'
+        }),
+        {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
     const resend = new Resend(import.meta.env.RESEND_API_KEY);
     try {
-      await resend.emails.send({
+      const emailResult = await resend.emails.send({
         from: 'VebLabs <onboarding@resend.dev>',
         to: import.meta.env.RECIPIENT_EMAIL,
         subject: `New Contact Form Submission from ${formData.name}`,
@@ -135,12 +175,11 @@ export const POST: APIRoute = async ({ request }) => {
           <p>${formData.message}</p>
         `
       });
+      console.log('API: Email sent successfully:', emailResult);
     } catch (emailError) {
       console.error('API: Email sending error:', emailError);
-      // Don't return an error to the user since the data was saved successfully
+      // Continue since data was saved successfully
     }
-
-    console.log('API: Successfully inserted data:', result);
 
     return new Response(
       JSON.stringify({
@@ -156,10 +195,18 @@ export const POST: APIRoute = async ({ request }) => {
 
   } catch (error) {
     console.error('API: Unexpected error:', error);
+    console.error('API: Error stack:', error instanceof Error ? error.stack : 'No stack trace available');
+    console.error('API: Environment check on error:');
+    console.error('- RESEND_API_KEY exists:', !!import.meta.env.RESEND_API_KEY);
+    console.error('- RECIPIENT_EMAIL exists:', !!import.meta.env.RECIPIENT_EMAIL);
+    console.error('- PUBLIC_SUPABASE_URL exists:', !!import.meta.env.PUBLIC_SUPABASE_URL);
+    console.error('- PUBLIC_SUPABASE_ANON_KEY exists:', !!import.meta.env.PUBLIC_SUPABASE_ANON_KEY);
+    
     return new Response(
       JSON.stringify({
         error: 'Internal server error',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error occurred',
+        type: error instanceof Error ? error.constructor.name : typeof error
       }),
       {
         status: 500,
