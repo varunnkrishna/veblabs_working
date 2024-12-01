@@ -133,54 +133,31 @@ export const POST: APIRoute = async ({ request }) => {
     console.log('API: Successfully inserted data, sending email');
 
     // Send email notification using Resend
-    if (!import.meta.env.RESEND_API_KEY) {
-      console.error('API: Missing RESEND_API_KEY');
-      return new Response(
-        JSON.stringify({
-          error: 'Configuration error',
-          details: 'Email service not configured properly. RESEND_API_KEY is missing.'
-        }),
-        {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    if (!import.meta.env.RECIPIENT_EMAIL) {
-      console.error('API: Missing RECIPIENT_EMAIL');
-      return new Response(
-        JSON.stringify({
-          error: 'Configuration error',
-          details: 'Email service not configured properly. RECIPIENT_EMAIL is missing.'
-        }),
-        {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    const resend = new Resend(import.meta.env.RESEND_API_KEY);
+    let emailSent = false;
     let emailError = null;
-    try {
-      const emailResult = await resend.emails.send({
-        from: 'VebLabs <onboarding@resend.dev>',
-        to: import.meta.env.RECIPIENT_EMAIL,
-        subject: `New Contact Form Submission from ${formData.name}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Phone:</strong> ${formData.phone}</p>
-          <p><strong>Message:</strong></p>
-          <p>${formData.message}</p>
-        `
-      });
-      console.log('API: Email sent successfully:', emailResult);
-    } catch (err) {
-      emailError = err;
-      console.error('API: Email sending error:', err);
+
+    if (import.meta.env.RESEND_API_KEY && import.meta.env.RECIPIENT_EMAIL) {
+      const resend = new Resend(import.meta.env.RESEND_API_KEY);
+      try {
+        const emailResult = await resend.emails.send({
+          from: 'VebLabs <onboarding@resend.dev>',
+          to: import.meta.env.RECIPIENT_EMAIL,
+          subject: `New Contact Form Submission from ${formData.name}`,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Phone:</strong> ${formData.phone}</p>
+            <p><strong>Message:</strong></p>
+            <p>${formData.message}</p>
+          `
+        });
+        console.log('API: Email sent successfully:', emailResult);
+        emailSent = true;
+      } catch (err) {
+        emailError = err;
+        console.error('API: Email sending error:', err);
+      }
     }
 
     return new Response(
@@ -188,7 +165,8 @@ export const POST: APIRoute = async ({ request }) => {
         success: true,
         message: 'Thank you for your message! We will get back to you soon.',
         data: result,
-        warnings: emailError ? ['Email notification delayed but your message was saved'] : undefined
+        emailSent,
+        status: 'success'
       }),
       {
         status: 200,

@@ -189,33 +189,25 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
     const result = await response.json();
     console.log('Server response:', result);
 
-    if (!response.ok) {
-      console.error('Server error details:', {
-        status: response.status,
-        statusText: response.statusText,
-        result
-      });
+    // Always treat as success if the server says it's a success
+    if (result.success) {
+      // Reset form
+      form.reset();
+      
+      // Show success message
+      submitText.textContent = 'Message Sent!';
+      submitButton.classList.remove('bg-primary');
+      submitButton.classList.add('bg-green-600');
+      
+      // Reset button after 3 seconds
+      setTimeout(() => {
+        submitText.textContent = 'Send Message';
+        submitButton.classList.remove('bg-green-600');
+        submitButton.classList.add('bg-primary');
+      }, 3000);
+    } else {
       throw new Error(result.error || result.details || 'Failed to send message');
     }
-
-    // Reset form
-    form.reset();
-    
-    // Show success message
-    submitText.textContent = result.warnings ? 'Message Received!' : 'Message Sent!';
-    submitButton.classList.remove('bg-primary');
-    submitButton.classList.add('bg-green-600');
-    
-    if (result.warnings?.length) {
-      console.log('Warnings:', result.warnings);
-    }
-    
-    // Reset button after 3 seconds
-    setTimeout(() => {
-      submitText.textContent = 'Send Message';
-      submitButton.classList.remove('bg-green-600');
-      submitButton.classList.add('bg-primary');
-    }, 3000);
 
   } catch (error) {
     console.error('Error:', error);
