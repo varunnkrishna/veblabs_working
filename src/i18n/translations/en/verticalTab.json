@@ -1,0 +1,21 @@
+{
+  "title": "What Makes Us Stand Out",
+  "description": "At vebLabs, we don't just build websites — we deliver solutions designed to help your business thrive. Here's what sets us apart.",
+  "tabs": {
+    "datadriven": "Data-Driven Design",
+    "seamless": "Seamless Experience",
+    "custom": "Custom Solutions",
+    "multilanguage": "Multi-Language Support"
+  },
+  "tabContent": {
+    "datadriven": "We blend creativity with analytics to create websites that not only look stunning but perform exceptionally well. Every design decision is backed by user behavior data and industry best practices.",
+    "datadrivenWhy": "Data-driven design ensures your website not only captures attention but converts visitors into customers effectively.",
+    "seamless": "We prioritize intuitive navigation, fast loading times, and responsive designs to deliver an exceptional experience across devices. Visitors stay longer, explore deeper, and trust your brand.",
+    "seamlessWhy": "A seamless UX builds trust and credibility, reducing bounce rates and increasing conversions for your business.",
+    "custom": "We take the time to understand your unique business goals, industry, and target audience. Every website we create is tailored to reflect your brand and drive measurable growth.",
+    "customWhy": "Custom solutions ensure that your website aligns perfectly with your brand identity and helps achieve your business objectives.",
+    "multilanguage": "Reach a global audience with ease through websites that support multiple languages. We implement seamless language switching, ensuring every visitor feels at home.",
+    "multilanguageWhy": "Multi-language support helps you expand your reach and connect with customers worldwide in their preferred language."
+  },
+  "whyItMatters": "Why It Matters"
+}

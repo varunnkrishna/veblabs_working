@@ -1,6 +1,7 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { getLanguageFromURL } from '../i18n/utils';
 
 interface Props {
   title: string;
@@ -13,6 +14,9 @@ const {
   description = "Veblabs - Web Design & Development Services",
   image = "/og-image.webp" // Updated to .webp
 } = Astro.props;
+
+const { pathname } = Astro.url;
+const lang = getLanguageFromURL(pathname);
 
 // Get the canonical URL safely
 const siteUrl = import.meta.env.SITE ?? 'https://veblabs.com';
@@ -68,7 +72,7 @@ const imageUrl = new URL(image.startsWith('http') ? image : image, siteUrl).toSt
     <main class="pt-16">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>
 

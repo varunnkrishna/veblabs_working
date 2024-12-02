@@ -1,0 +1,27 @@
+{
+  "badge": "FAQ",
+  "title": "Frequently Asked Questions",
+  "description": "Find answers to common questions about our services and process",
+  "faqs": [
+    {
+      "question": "What services does VebLabs offer?",
+      "answer": "VebLabs offers comprehensive web development services including custom website design, e-commerce solutions, SEO optimization, multilingual website development, and digital marketing strategies tailored to your business needs."
+    },
+    {
+      "question": "How long does it take to complete a website project?",
+      "answer": "Project timelines vary depending on complexity and requirements. Typically, a standard website takes 4-8 weeks from concept to launch. We'll provide you with a detailed timeline during our initial consultation."
+    },
+    {
+      "question": "Do you provide ongoing support after the website launch?",
+      "answer": "Yes, we offer comprehensive post-launch support and maintenance packages. This includes regular updates, security monitoring, performance optimization, and technical support to ensure your website runs smoothly."
+    },
+    {
+      "question": "How do you ensure websites are SEO-friendly?",
+      "answer": "We implement SEO best practices throughout development, including optimized code structure, fast loading times, mobile responsiveness, and proper meta tags. We also provide guidance on content optimization and keyword strategy."
+    },
+    {
+      "question": "Can you help with multilingual website development?",
+      "answer": "Absolutely! We specialize in creating multilingual websites that effectively reach global audiences. We implement proper language switching, content translation, and cultural adaptation to ensure your website resonates with users worldwide."
+    }
+  ]
+}

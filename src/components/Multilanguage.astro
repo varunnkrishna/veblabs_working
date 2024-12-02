@@ -1,5 +1,10 @@
 ---
 import Badge from '../components/Badge.astro';
+import { getLanguageFromURL, useTranslations } from '../i18n/utils';
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+const t = useTranslations(lang);
+const translations = await t('multilanguage');
 
 const englishContent = {
   title: "Welcome to Our Website",
@@ -32,15 +37,14 @@ const arabicContent = {
     <!-- Main Title Section -->
     <div class="text-center mb-16 max-w-4xl mx-auto">
       <div>
-        <Badge text="Multilingual Support" />
+        <Badge text={translations?.badge || 'Multilingual Support'} />
       </div>
 
       <h1 class="text-5xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 leading-tight tracking-tight animate-gradient">
-        Creating Multilingual Websites for a <br>Global Audience
+        {translations?.title || 'Creating Multilingual Websites for a Global Audience'}
       </h1>
       <p class="text-xl md:text-xl text-gray-600 dark:text-gray-300 font-medium leading-relaxed max-w-3xl mx-auto tracking-normal">
-        We specialize in designing <span class="text-light-secondary dark:text-purple-500">Arabic and English websites</span> to help businesses 
-        in the Middle East connect with global customers
+        {translations?.description || 'We specialize in designing websites that speak your customers\' language, literally. With our multilingual support, reach audiences across different cultures and regions.'}
       </p>
     </div>
 
@@ -117,23 +121,28 @@ const arabicContent = {
 </style>
 
 <script>
-  const section = document.getElementById('localized-section');
-  const button = document.getElementById('toggle-language');
-  const content = document.getElementById('content');
-  const title = document.getElementById('title');
-  const description = document.getElementById('description');
+  const section = document.getElementById('localized-section') as HTMLElement;
+  const button = document.getElementById('toggle-language') as HTMLButtonElement;
+  const content = document.getElementById('content') as HTMLDivElement;
+  const title = document.getElementById('title') as HTMLHeadingElement;
+  const description = document.getElementById('description') as HTMLParagraphElement;
+
+  if (!section || !button || !content || !title || !description) {
+    console.error('Required DOM elements not found');
+    throw new Error('Required DOM elements not found');
+  }
 
   const englishContent = {
     title: "Welcome to Our Website",
     description: "Explore the best services we have to offer.",
     alignment: "text-left",
-  };
+  } as const;
 
   const arabicContent = {
     title: "مرحبًا بكم في موقعنا",
     description: "اكتشف أفضل الخدمات التي نقدمها.",
     alignment: "text-right",
-  };
+  } as const;
 
   let isEnglish = true;
 

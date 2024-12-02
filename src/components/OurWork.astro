@@ -2,11 +2,29 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Badge from './Badge.astro';
+import { useTranslations, getLanguageDirection } from "../i18n/utils";
+
+const { lang = "en" } = Astro.props;
+const t = await useTranslations(lang);
+const translations = await t('ourwork');
+const projectTranslations = await t('projects');
+const isRTL = getLanguageDirection(lang) === 'rtl';
 
 const projects = await getCollection('projects');
+
+interface Props {
+  lang?: "en" | "ar";
+}
+
+// Helper function to get project translations
+function getProjectTranslations(project: CollectionEntry<'projects'>) {
+  // Remove .md extension and use the filename as the key
+  const key = project.id.replace(/\.md$/, '');
+  return projectTranslations.projects[key] || project.data;
+}
 ---
 
-<section class="relative py-24 font-inter overflow-hidden">
+<section class="relative py-24 font-inter overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
   {/* Background Pattern and Gradient */}
   <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
     <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-10"></div>
@@ -22,17 +40,20 @@ const projects = await getCollection('projects');
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <Badge text="Our Portfolio" />
+      <Badge text={translations.badge} />
       <h2 class="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-        Featured Projects
+        {translations.title}
       </h2>
       <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
-        Explore our diverse portfolio of successful projects that showcase our expertise in creating impactful digital solutions.
+        {translations.description}
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects?.map((project, index) => {
+        // Get translated project content
+        const projectContent = getProjectTranslations(project);
+        
         // Determine if this project item should be featured (larger)
         const isFeatured = index === 0 || index === 3;
         const gridClass = isFeatured ? 'md:col-span-2 md:row-span-2' : '';
@@ -42,25 +63,25 @@ const projects = await getCollection('projects');
             <div class="relative aspect-[16/9] overflow-hidden">
               <img
                 src={project.data.image}
-                alt={project.data.title}
+                alt={projectContent.title}
                 class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
               {/* Category Badge */}
-              <div class="absolute top-4 left-4">
+              <div class={`absolute top-4 ${isRTL ? 'right-4' : 'left-4'}`}>
                 <span class="px-4 py-2 rounded-full text-sm font-medium bg-white/90 dark:bg-gray-800/90 text-gray-800 dark:text-white backdrop-blur-sm">
-                  {project.data.category}
+                  {projectContent.category}
                 </span>
               </div>
 
               {/* Project Info Overlay */}
               <div class="absolute inset-0 flex flex-col justify-end p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                 <h3 class="text-2xl font-bold text-white mb-2">
-                  {project.data.title}
+                  {projectContent.title}
                 </h3>
                 <p class="text-gray-200 text-sm mb-4 line-clamp-2">
-                  {project.data.description}
+                  {projectContent.description}
                 </p>
                 <div class="flex flex-wrap gap-2">
                   {project.data.tags?.map((tag: string) => (
@@ -73,10 +94,10 @@ const projects = await getCollection('projects');
 
               {/* View Project Button */}
               <a
-                href={`/works/${project.slug}`}
-                class="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"
+                href={`/${lang}/works/${project.id.replace(/\.md$/, '')}`}
+                class={`absolute bottom-6 ${isRTL ? 'left-6' : 'right-6'} px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500`}
               >
-                View Project
+                {translations.viewProject}
               </a>
             </div>
           </div>

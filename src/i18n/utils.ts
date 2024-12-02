@@ -17,12 +17,30 @@ const translations: TranslationImports = {
   en: {
     common: () => import('./translations/en/common.json'),
     nav: () => import('./translations/en/nav.json'),
-    hero: () => import('./translations/en/hero.json')
+    hero: () => import('./translations/en/hero.json'),
+    multilanguage: () => import('./translations/en/multilanguage.json'),
+    testimonial: () => import('./translations/en/testimonial.json'),
+    verticalTab: () => import('./translations/en/verticalTab.json'),
+    cta: () => import('./translations/en/cta.json'),
+    comparison: () => import('./translations/en/comparison.json'),
+    faq: () => import('./translations/en/faq.json'),
+    footer: () => import('./translations/en/footer.json'),
+    projects: () => import('./translations/en/projects.json'),
+    ourwork: () => import('./translations/en/ourwork.json')
   },
   ar: {
     common: () => import('./translations/ar/common.json'),
     nav: () => import('./translations/ar/nav.json'),
-    hero: () => import('./translations/ar/hero.json')
+    hero: () => import('./translations/ar/hero.json'),
+    multilanguage: () => import('./translations/ar/multilanguage.json'),
+    testimonial: () => import('./translations/ar/testimonial.json'),
+    verticalTab: () => import('./translations/ar/verticalTab.json'),
+    cta: () => import('./translations/ar/cta.json'),
+    comparison: () => import('./translations/ar/comparison.json'),
+    faq: () => import('./translations/ar/faq.json'),
+    footer: () => import('./translations/ar/footer.json'),
+    projects: () => import('./translations/ar/projects.json'),
+    ourwork: () => import('./translations/ar/ourwork.json')
   }
 };
 

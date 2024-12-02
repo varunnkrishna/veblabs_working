@@ -1,7 +1,15 @@
 ---
-author: "Fatima Khalid"
-role: "Product Manager"
-company: "Zayed Ventures"
-testimonial: "Thanks to their multilingual approach, we’ve seen a significant increase in traffic from Arabic-speaking users. Highly recommend their services!"
+author:
+  en: "Fatima Al-Sayed"
+  ar: "فاطمة السيد"
+role:
+  en: "Digital Director"
+  ar: "مديرة التحول الرقمي"
+company:
+  en: "Future Tech"
+  ar: "تقنية المستقبل"
+testimonial:
+  en: "The multilingual support and cultural sensitivity in their design approach helped us connect with our diverse customer base effectively."
+  ar: "ساعدنا الدعم متعدد اللغات والحساسية الثقافية في نهجهم التصميمي على التواصل بفعالية مع قاعدة عملائنا المتنوعة."
 avatar: "/avatars/fatima.jpg"
 ---

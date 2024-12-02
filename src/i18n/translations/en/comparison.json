@@ -1,0 +1,20 @@
+{
+  "badge": "Our Advantage",
+  "title": "Why Choose VebLabs?",
+  "description": "Compare our comprehensive solutions with other options and see why we're the perfect choice for your business",
+  "columnHeaders": {
+    "feature": "Feature",
+    "vebLabs": "VebLabs",
+    "inHouse": "In-House Team",
+    "typicalAgency": "Typical Agency"
+  },
+  "features": {
+    "multilingualExpertise": "Multilingual Expertise",
+    "revenueDrivenDesign": "Revenue-Driven Design",
+    "tailoredSolutions": "Tailored Solutions",
+    "dedicatedSupport": "Dedicated Support",
+    "cuttingEdgeTools": "Cutting-Edge Tools",
+    "scalableServices": "Scalable Services",
+    "regionalKnowledge": "Regional Knowledge"
+  }
+}

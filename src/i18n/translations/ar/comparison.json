@@ -1,0 +1,20 @@
+{
+  "badge": "ميزتنا",
+  "title": "لماذا تختار فيب لابز؟",
+  "description": "قارن حلولنا الشاملة مع الخيارات الأخرى واكتشف لماذا نحن الخيار الأمثل لعملك",
+  "columnHeaders": {
+    "feature": "الميزة",
+    "vebLabs": "فيب لابز",
+    "inHouse": "فريق داخلي",
+    "typicalAgency": "وكالة نموذجية"
+  },
+  "features": {
+    "multilingualExpertise": "خبرة متعددة اللغات",
+    "revenueDrivenDesign": "تصميم موجه للإيرادات",
+    "tailoredSolutions": "حلول مخصصة",
+    "dedicatedSupport": "دعم مخصص",
+    "cuttingEdgeTools": "أدوات متطورة",
+    "scalableServices": "خدمات قابلة للتطوير",
+    "regionalKnowledge": "معرفة إقليمية"
+  }
+}

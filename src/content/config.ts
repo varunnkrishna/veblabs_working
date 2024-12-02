@@ -58,10 +58,22 @@ const projectsCollection = defineCollection({
 const testimonialCollection = defineCollection({
   type: "content",
   schema: z.object({
-    author: z.string(),
-    role: z.string(),
-    company: z.string(),
-    testimonial: z.string(),
+    author: z.object({
+      en: z.string(),
+      ar: z.string()
+    }),
+    role: z.object({
+      en: z.string(),
+      ar: z.string()
+    }),
+    company: z.object({
+      en: z.string(),
+      ar: z.string()
+    }),
+    testimonial: z.object({
+      en: z.string(),
+      ar: z.string()
+    }),
     avatar: z.string(),
   }),
 });

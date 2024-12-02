@@ -1,0 +1,39 @@
+{
+  "viewProject": "View Project",
+  "keyResults": "Key Results",
+  "projects": {
+    "healthcare-platform": {
+      "title": "Healthcare Platform",
+      "description": "A comprehensive healthcare platform connecting patients with healthcare providers",
+      "category": "Healthcare",
+      "client": "HealthCare Solutions Inc.",
+      "results": [
+        "50% increase in patient engagement",
+        "30% reduction in appointment no-shows",
+        "95% patient satisfaction rate"
+      ]
+    },
+    "ecommerce-platform": {
+      "title": "E-commerce Platform",
+      "description": "A modern e-commerce platform with advanced features and seamless user experience",
+      "category": "E-commerce",
+      "client": "Global Retail Solutions",
+      "results": [
+        "200% increase in online sales",
+        "45% improvement in conversion rate",
+        "99.9% uptime achieved"
+      ]
+    },
+    "real-estate-portal": {
+      "title": "Real Estate Portal",
+      "description": "A cutting-edge real estate platform for property listing and management",
+      "category": "Real Estate",
+      "client": "Property Management Inc.",
+      "results": [
+        "75% faster property listing process",
+        "40% increase in lead generation",
+        "85% customer satisfaction rate"
+      ]
+    }
+  }
+}

@@ -1,26 +1,9 @@
 ---
-const faqs = [
-  {
-    question: "What services does VebLabs offer?",
-    answer: "VebLabs offers comprehensive web development services including custom website design, e-commerce solutions, SEO optimization, multilingual website development, and digital marketing strategies tailored to your business needs."
-  },
-  {
-    question: "How long does it take to complete a website project?",
-    answer: "Project timelines vary depending on complexity and requirements. Typically, a standard website takes 4-8 weeks from concept to launch. We'll provide you with a detailed timeline during our initial consultation."
-  },
-  {
-    question: "Do you provide ongoing support after the website launch?",
-    answer: "Yes, we offer comprehensive post-launch support and maintenance packages. This includes regular updates, security monitoring, performance optimization, and technical support to ensure your website runs smoothly."
-  },
-  {
-    question: "How do you ensure websites are SEO-friendly?",
-    answer: "We implement SEO best practices throughout development, including optimized code structure, fast loading times, mobile responsiveness, and proper meta tags. We also provide guidance on content optimization and keyword strategy."
-  },
-  {
-    question: "Can you help with multilingual website development?",
-    answer: "Absolutely! We specialize in creating multilingual websites that effectively reach global audiences. We implement proper language switching, content translation, and cultural adaptations to ensure a seamless experience for all users."
-  }
-];
+import { useTranslations, getLanguageDirection } from "../i18n/utils";
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const translations = await t('faq');
+const isRTL = getLanguageDirection(lang) === 'rtl';
 ---
 
 <section class="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-24 overflow-hidden">
@@ -32,16 +15,21 @@ const faqs = [
 
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative">
     <div class="text-center space-y-4 mb-16 reveal-on-scroll">
+      <div class="flex justify-center">
+        <span class="inline-flex items-center px-3 py-1 text-sm font-medium rounded-full bg-gradient-to-r from-blue-600/10 to-purple-600/10 text-blue-600 dark:text-blue-400 ring-1 ring-inset ring-blue-600/20">
+          {translations?.badge || "FAQ"}
+        </span>
+      </div>
       <h2 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-        Frequently Asked Questions
+        {translations?.title || "Frequently Asked Questions"}
       </h2>
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Find answers to common questions about our services and process
+        {translations?.description || "Find answers to common questions about our services and process"}
       </p>
     </div>
 
-    <div class="space-y-6 reveal-on-scroll">
-      {faqs.map((faq, index) => (
+    <div class="space-y-6 reveal-on-scroll" dir={isRTL ? "rtl" : "ltr"}>
+      {(translations?.faqs || []).map((faq, index) => (
         <div 
           class="faq-item group"
           style={`animation-delay: ${index * 150}ms`}
@@ -50,7 +38,7 @@ const faqs = [
             <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
             <summary class="relative flex items-center justify-between p-6 cursor-pointer list-none">
               <h3 class="text-lg font-semibold text-gray-800 dark:text-white pr-8">{faq.question}</h3>
-              <span class="relative flex-shrink-0 ml-4 transform group-open:rotate-180 transition-transform duration-300">
+              <span class={`relative flex-shrink-0 ml-4 transform group-open:rotate-180 transition-transform duration-300 ${isRTL ? "rotate-180 group-open:rotate-0" : ""}`}>
                 <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>

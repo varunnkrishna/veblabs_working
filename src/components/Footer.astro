@@ -1,13 +1,26 @@
 ---
+import { useTranslations, getLanguageDirection } from "../i18n/utils";
+
+const { lang } = Astro.props;
+const t = await useTranslations(lang);
+const translations = await t('footer');
+const isRTL = getLanguageDirection(lang) === 'rtl';
+
 const currentYear = new Date().getFullYear();
 
 // Social Media Links with Icons
 const socialLinks = [
-  { name: 'Twitter', url: '#', icon: 'i-fab-twitter' },
-  { name: 'LinkedIn', url: '#', icon: 'i-fab-linkedin-in' },
-  { name: 'GitHub', url: '#', icon: 'i-fab-github' },
-  { name: 'Instagram', url: '#', icon: 'i-fab-instagram' }
+  { name: 'Twitter', url: '#', icon: 'fab fa-twitter' },
+  { name: 'LinkedIn', url: '#', icon: 'fab fa-linkedin-in' },
+  { name: 'GitHub', url: '#', icon: 'fab fa-github' },
+  { name: 'Instagram', url: '#', icon: 'fab fa-instagram' }
 ];
+
+// Contact Info
+const contactInfo = {
+  phone: '+971 12 345 6789',
+  email: 'hi@veblabs.com'
+};
 
 // Quick Links
 const quickLinks = [
@@ -27,37 +40,42 @@ const services = [
 
 // Business Hours
 const businessHours = [
-  { day: 'Monday - Friday', hours: '9:00 AM - 6:00 PM' },
-  { day: 'Saturday', hours: '10:00 AM - 4:00 PM' },
-  { day: 'Sunday', hours: 'Closed' }
+  { day: 'Mon-Thursday', hours: '9:00 AM - 9:00 PM' },
+  { day: 'Fri-Sunday', hours: '9:00 AM - 5:00 PM' },
+];
+
+// Support Options
+const supportOptions = [
+  { name: 'Technical Support', description: '24/7 expert assistance' },
+  { name: 'Project Inquiries', description: 'Start your project with us' },
+  { name: 'Client Portal', description: 'Access your project dashboard' }
 ];
 ---
 
 <footer class="relative bg-white dark:bg-gray-900 pt-20 pb-12 overflow-hidden">
-  <!-- Background Decoration -->
   <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-gray-800/50 dark:to-gray-900/50">
     <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-5"></div>
   </div>
 
-  <!-- Main Content -->
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Top Section with Logo and Contact Info -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-6" dir={isRTL ? "rtl" : "ltr"}>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      <!-- Logo and Company Info Section -->
       <div class="space-y-8">
         <div class="flex items-center space-x-3">
           <img src="/images/veblabslogoblue.png" alt="Veblabs Logo" class="h-8 w-auto" />
           <span class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Veblabs</span>
         </div>
         <p class="text-gray-600 dark:text-gray-400 text-lg max-w-md">
-          Transforming ideas into exceptional digital experiences. We craft innovative solutions that drive business growth.
+          {translations.companyDescription}
         </p>
-        <div class="flex space-x-4">
+        <div class={`flex ${isRTL ? 'space-x-reverse' : ''} space-x-4`}>
           {socialLinks.map(social => (
             <a
               href={social.url}
               class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-500 transition-all duration-300"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Follow us on ${social.name}`}
             >
               <i class={social.icon}></i>
             </a>
@@ -65,30 +83,86 @@ const businessHours = [
         </div>
       </div>
       
-      <div class="lg:pl-12">
-        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Contact & Support</h3>
-        <div class="space-y-6">
-          <!-- Quick Contact -->
+      <!-- Contact & Support Section -->
+      <div class="lg:pl-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Contact Information -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">{translations.contact.title}</h3>
           <div class="space-y-4">
-            <a href="tel:+971123456789" class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-              <i class="fas fa-phone-alt"></i>
-              <span>+971 12 345 6789</span>
+            <a href={`tel:${contactInfo.phone}`} class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group">
+              <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center group-hover:bg-blue-500">
+                <i class="fas fa-phone-alt text-blue-600 dark:text-blue-400 group-hover:text-white"></i>
+              </span>
+              <span>{contactInfo.phone}</span>
             </a>
-            <a href="mailto:hi@veblabs.com" class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-              <i class="fas fa-envelope"></i>
-              <span>hi@veblabs.com</span>
+            <a href={`mailto:${contactInfo.email}`} class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group">
+              <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center group-hover:bg-blue-500">
+                <i class="fas fa-envelope text-blue-600 dark:text-blue-400 group-hover:text-white"></i>
+              </span>
+              <span>{contactInfo.email}</span>
             </a>
+            <div class="flex items-start space-x-3 text-gray-600 dark:text-gray-400">
+              <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center mt-1">
+                <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400"></i>
+              </span>
+              <div class="flex flex-col">
+                <span>{translations.address.line1}</span>
+                <span class="text-sm text-gray-500 dark:text-gray-500">{translations.address.line2}</span>
+              </div>
+            </div>
           </div>
           
-          <!-- Business Hours -->
-          <div class="space-y-2">
-            <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300">Business Hours</h4>
-            {businessHours.map(schedule => (
-              <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
-                <span>{schedule.day}</span>
-                <span>{schedule.hours}</span>
+          <!-- Added Contact Description -->
+          <div class="mt-6 space-y-3">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              {translations.contact.readyToStart}
+            </p>
+            <div class="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400">
+              <i class="fas fa-check-circle"></i>
+              <span>{translations.contact.benefits.consultation}</span>
+            </div>
+            <div class="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400">
+              <i class="fas fa-check-circle"></i>
+              <span>{translations.contact.benefits.response}</span>
+            </div>
+            <div class="flex items-center space-x-2 text-sm text-blue-600 dark:text-blue-400">
+              <i class="fas fa-check-circle"></i>
+              <span>{translations.contact.benefits.manager}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Support & Hours -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">{translations.support.title}</h3>
+          <div class="space-y-6">
+            <div class="space-y-3">
+              {translations.support.options.map(option => (
+                <div class="flex items-start space-x-3">
+                  <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center mt-1">
+                    <i class="fas fa-headset text-blue-600 dark:text-blue-400"></i>
+                  </span>
+                  <div class="flex flex-col">
+                    <span class="text-gray-900 dark:text-white font-medium">{option.name}</span>
+                    <span class="text-sm text-gray-500 dark:text-gray-500">{option.description}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Business Hours -->
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2 text-gray-900 dark:text-white font-medium">
+                <i class="fas fa-clock text-blue-600 dark:text-blue-400"></i>
+                <span>{translations.support.businessHours.title}</span>
               </div>
-            ))}
+              <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 ml-6">
+                <span class="font-medium">{translations.support.businessHours.weekdays}</span>
+              </div>
+              <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 ml-6">
+                <span class="font-medium">{translations.support.businessHours.weekend}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -97,14 +171,11 @@ const businessHours = [
     <!-- Links Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-12 border-t border-gray-200 dark:border-gray-800">
       <div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Quick Links</h3>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">{translations.quickLinks.title}</h3>
         <ul class="space-y-4">
-          {quickLinks.map(link => (
+          {translations.quickLinks.links.map(link => (
             <li>
-              <a
-                href={link.url}
-                class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
-              >
+              <a href={`/${lang}${link.url}`} class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
                 {link.name}
               </a>
             </li>
@@ -113,42 +184,38 @@ const businessHours = [
       </div>
 
       <div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Services</h3>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">{translations.services.title}</h3>
         <ul class="space-y-4">
-          {services.map(service => (
-            <li class="text-gray-600 dark:text-gray-400">{service}</li>
+          {translations.services.list.map(service => (
+            <li>
+              <span class="text-gray-600 dark:text-gray-400">{service}</span>
+            </li>
           ))}
         </ul>
       </div>
 
       <div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Location</h3>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">{translations.address.title}</h3>
         <address class="text-gray-600 dark:text-gray-400 not-italic">
-          Office #304, Building 4<br />
-          Dubai Internet City<br />
-          Dubai, UAE
+          {translations.address.line1}<br />
+          {translations.address.line2}
         </address>
       </div>
 
       <div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Legal</h3>
-        <ul class="space-y-4">
-          <li>
-            <a href="/privacy" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-              Privacy Policy
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">{translations.contact.title}</h3>
+        <div class="space-y-4 text-gray-600 dark:text-gray-400">
+          <p>
+            <a href={`tel:${contactInfo.phone}`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+              {contactInfo.phone}
             </a>
-          </li>
-          <li>
-            <a href="/terms" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-              Terms of Service
+          </p>
+          <p>
+            <a href={`mailto:${contactInfo.email}`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+              {contactInfo.email}
             </a>
-          </li>
-          <li>
-            <a href="/cookies" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-              Cookie Policy
-            </a>
-          </li>
-        </ul>
+          </p>
+        </div>
       </div>
     </div>
 
@@ -156,7 +223,7 @@ const businessHours = [
     <div class="pt-8 mt-12 border-t border-gray-200 dark:border-gray-800">
       <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         <p class="text-gray-600 dark:text-gray-400">
-          {currentYear} Veblabs. All rights reserved.
+          {currentYear} Veblabs. {translations.copyright}
         </p>
         <div class="flex items-center space-x-4">
           <a href="/sitemap" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">

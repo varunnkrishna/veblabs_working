@@ -38,7 +38,7 @@ const t = useTranslations(lang as keyof typeof supportedLanguages);
   <Multilanguage />
   <TestimonialMarquee :visible />
   <Ctaone />
-  <OurWork />
-  <Comparision />
-  <Faq />
+  <OurWork lang={lang} />
+  <Comparision lang={lang} />
+  <Faq lang={lang} />
 </Layout>

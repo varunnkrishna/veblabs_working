@@ -1,0 +1,58 @@
+{
+  "companyDescription": "Transforming ideas into exceptional digital experiences. We craft innovative solutions that drive business growth.",
+  "contact": {
+    "title": "Contact Us",
+    "readyToStart": "Ready to start your next project?",
+    "benefits": {
+      "consultation": "Free initial consultation",
+      "response": "Quick response time",
+      "manager": "Dedicated project manager"
+    }
+  },
+  "support": {
+    "title": "Support",
+    "options": [
+      {
+        "name": "Technical Support",
+        "description": "24/7 expert assistance"
+      },
+      {
+        "name": "Project Inquiries",
+        "description": "Start your project with us"
+      },
+      {
+        "name": "Client Portal",
+        "description": "Access your project dashboard"
+      }
+    ],
+    "businessHours": {
+      "title": "Business Hours",
+      "weekdays": "Mon-Thursday: 9:00 AM - 9:00 PM",
+      "weekend": "Fri-Sunday: 9:00 AM - 5:00 PM"
+    }
+  },
+  "quickLinks": {
+    "title": "Quick Links",
+    "links": [
+      { "name": "Our Works", "url": "/works" },
+      { "name": "Services", "url": "/services" },
+      { "name": "Blog", "url": "/blog" },
+      { "name": "About Us", "url": "/about" }
+    ]
+  },
+  "services": {
+    "title": "Services",
+    "list": [
+      "Web Development",
+      "Mobile Apps",
+      "UI/UX Design",
+      "Digital Marketing"
+    ]
+  },
+  "address": {
+    "title": "Location",
+    "line1": "Dubai Digital Park, Dubai Silicon Oasis",
+    "line2": "Dubai, United Arab Emirates"
+  },
+  "copyright": "All rights reserved."
+}

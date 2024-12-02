@@ -211,7 +211,15 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
 
   } catch (error) {
     console.error('Error:', error);
-    submitText.textContent = error.message || 'Failed to send message. Please try again.';
+    
+    // Get error message while maintaining functionality
+    const message = error instanceof Error 
+      ? error.message 
+      : typeof error === 'object' && error && 'message' in error
+      ? String(error.message)
+      : 'Failed to send message. Please try again.';
+    
+    submitText.textContent = message;
     submitButton.classList.remove('bg-primary');
     submitButton.classList.add('bg-red-600');
     
