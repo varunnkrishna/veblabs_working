@@ -211,6 +211,32 @@ export interface OurWorkTranslations {
   viewProject: string;
 }
 
+// Translation types for Contact
+export interface ContactTranslations {
+  meta: {
+    title: string;
+    description: string;
+  };
+  hero: {
+    title: string;
+    description: string;
+  };
+  benefits: {
+    support: {
+      title: string;
+      description: string;
+    };
+    response: {
+      title: string;
+      description: string;
+    };
+    team: {
+      title: string;
+      description: string;
+    };
+  };
+}
+
 // All translation namespaces
 export interface Translations {
   hero: HeroTranslations;
@@ -225,4 +251,5 @@ export interface Translations {
   footer: FooterTranslations;
   projects: ProjectTranslations;
   ourwork: OurWorkTranslations;
+  contact: ContactTranslations;
 }

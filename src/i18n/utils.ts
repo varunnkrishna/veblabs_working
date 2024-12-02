@@ -26,7 +26,8 @@ const translations: TranslationImports = {
     faq: () => import('./translations/en/faq.json'),
     footer: () => import('./translations/en/footer.json'),
     projects: () => import('./translations/en/projects.json'),
-    ourwork: () => import('./translations/en/ourwork.json')
+    ourwork: () => import('./translations/en/ourwork.json'),
+    contact: () => import('./translations/en/contact.json')
   },
   ar: {
     common: () => import('./translations/ar/common.json'),
@@ -40,7 +41,8 @@ const translations: TranslationImports = {
     faq: () => import('./translations/ar/faq.json'),
     footer: () => import('./translations/ar/footer.json'),
     projects: () => import('./translations/ar/projects.json'),
-    ourwork: () => import('./translations/ar/ourwork.json')
+    ourwork: () => import('./translations/ar/ourwork.json'),
+    contact: () => import('./translations/ar/contact.json')
   }
 };
 

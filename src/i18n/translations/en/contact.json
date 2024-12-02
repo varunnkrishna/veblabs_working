@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "Get in Touch - Veblabs",
+    "description": "Contact Veblabs for professional web design and development services. Let's discuss your project and create something amazing together."
+  },
+  "hero": {
+    "title": "Get in Touch",
+    "description": "Have a project in mind? Let's discuss how we can help bring your vision to life."
+  },
+  "benefits": {
+    "support": {
+      "title": "24/7 Support",
+      "description": "Our dedicated team is always ready to assist you."
+    },
+    "response": {
+      "title": "Quick Response",
+      "description": "Get responses within 24 hours on business days."
+    },
+    "team": {
+      "title": "Expert Team",
+      "description": "Work with our experienced professionals."
+    }
+  }
+}

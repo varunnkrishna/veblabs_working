@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { getLanguageFromURL, useTranslations } from '../../i18n/utils';
+
+const lang = getLanguageFromURL(Astro.url.pathname);
+const t = useTranslations(lang);
+const contact = await t('contact');
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'ar' } },
+  ];
+}
+---
+
+<Layout 
+  title={contact.meta.title}
+  description={contact.meta.description}
+>
+  <ContactForm lang={lang} />
+</Layout>
