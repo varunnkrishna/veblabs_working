@@ -1,5 +1,9 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { getLanguageFromURL } from '../i18n/utils';
+
+const { pathname } = Astro.url;
+const lang = getLanguageFromURL(pathname);
 
 const navLinks = [
   { href: '/works', text: 'Works' },
@@ -8,6 +12,7 @@ const navLinks = [
   { href: '/about', text: 'About Us' },
   { href: '/contact', text: 'Contact' },
 ];
+
 ---
 
 <nav class="fixed w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-50">
