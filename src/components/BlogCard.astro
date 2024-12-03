@@ -2,25 +2,30 @@
 import { format } from 'date-fns';
 
 interface Props {
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  image: string;
-  tags: string[];
-  url: string;
+  post: {
+    slug: string;
+    data: {
+      title: string;
+      excerpt: string;
+      author: string;
+      date: string;
+      image: string;
+      category: string;
+    };
+  };
+  lang: string;
 }
 
-const { title, excerpt, author, date, image, tags, url } = Astro.props;
-const formattedDate = format(new Date(date), 'MMM dd, yyyy');
+const { post, lang } = Astro.props;
+const formattedDate = format(new Date(post.data.date), 'MMM dd, yyyy');
 ---
 
-<a href={url} class="group">
+<a href={`/${lang}/blog/${post.slug}`} class="group">
   <article class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
     <div class="aspect-[16/10] relative overflow-hidden">
       <img
-        src={image}
-        alt={title}
+        src={post.data.image}
+        alt={post.data.title}
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
@@ -30,23 +35,21 @@ const formattedDate = format(new Date(date), 'MMM dd, yyyy');
       <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
         <span>{formattedDate}</span>
         <span class="w-1 h-1 rounded-full bg-blue-500"></span>
-        <span>{author}</span>
+        <span>{post.data.author}</span>
       </div>
       
       <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-        {title}
+        {post.data.title}
       </h2>
       
       <p class="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 flex-grow">
-        {excerpt}
+        {post.data.excerpt}
       </p>
       
       <div class="flex flex-wrap gap-2">
-        {tags.map(tag => (
-          <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm">
-            {tag}
-          </span>
-        ))}
+        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm">
+          {post.data.category}
+        </span>
       </div>
     </div>
   </article>

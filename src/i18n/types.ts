@@ -65,6 +65,14 @@ export interface CommonTranslations {
   languageName: string;
   switchToArabic?: string;
   switchToEnglish?: string;
+  languageNotice: {
+    title: string;
+    message: string;
+  };
+  ctaBanner: {
+    title: string;
+    description: string;
+  };
 }
 
 // Translation types for Vertical Tabs
@@ -209,6 +217,7 @@ export interface OurWorkTranslations {
   title: string;
   description: string;
   viewProject: string;
+  all_projects: string;
 }
 
 // Translation types for Contact
@@ -220,6 +229,16 @@ export interface ContactTranslations {
   hero: {
     title: string;
     description: string;
+  };
+  form: {
+    title: string;
+    description: string;
+    name: string;
+    email: string;
+    message: string;
+    submit: string;
+    success: string;
+    error: string;
   };
   benefits: {
     support: {
@@ -234,6 +253,80 @@ export interface ContactTranslations {
       title: string;
       description: string;
     };
+  };
+}
+
+// Translation types for Blog
+export interface BlogTranslations {
+  badge: string;
+  title: string;
+  description: string;
+  search_placeholder: string;
+  all_posts: string;
+  newsletter: {
+    title: string;
+    description: string;
+    email_placeholder: string;
+    subscribe: string;
+  };
+}
+
+// Translation types for Service
+export interface ServiceItem {
+  title: string;
+  description: string;
+  features: string[];
+}
+
+export interface ServiceTranslations {
+  title: string;
+  hero: {
+    heading: string;
+    description: string;
+    startProject: string;
+    viewWork: string;
+  };
+  services: {
+    webDev: ServiceItem;
+    uiux: ServiceItem;
+    ecommerce: ServiceItem;
+    marketing: ServiceItem;
+    cloud: ServiceItem;
+    support: ServiceItem;
+  };
+  whyChooseUs: {
+    title: string;
+  };
+}
+
+// Translation types for About
+export interface AboutTranslations {
+  title: string;
+  hero: {
+    subtitle: string;
+    title: string;
+    description: string;
+  };
+  founder: {
+    name: string;
+    role: string;
+    bio: string;
+  };
+  vision: {
+    title: string;
+    description: string;
+  };
+  approach: {
+    title: string;
+    description: string;
+  };
+  values: {
+    title: string;
+    items: Array<{
+      title: string;
+      description: string;
+      gradient?: string;
+    }>;
   };
 }
 
@@ -252,4 +345,7 @@ export interface Translations {
   projects: ProjectTranslations;
   ourwork: OurWorkTranslations;
   contact: ContactTranslations;
+  blog: BlogTranslations;
+  services: ServiceTranslations;
+  about: AboutTranslations;
 }

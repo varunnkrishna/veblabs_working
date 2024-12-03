@@ -1,24 +1,35 @@
 {
   "meta": {
-    "title": "Get in Touch - Veblabs",
-    "description": "Contact Veblabs for professional web design and development services. Let's discuss your project and create something amazing together."
+    "title": "Get in Touch | Veblabs",
+    "description": "Contact Veblabs for expert web development, design, and digital solutions. We're here to help bring your vision to life."
   },
   "hero": {
-    "title": "Get in Touch",
-    "description": "Have a project in mind? Let's discuss how we can help bring your vision to life."
+    "title": "Let's Build Something Amazing Together",
+    "description": "Have a project in mind? We'd love to hear about it. Tell us what you're looking for and we'll help you achieve it."
   },
   "benefits": {
-    "support": {
-      "title": "24/7 Support",
-      "description": "Our dedicated team is always ready to assist you."
-    },
     "response": {
-      "title": "Quick Response",
-      "description": "Get responses within 24 hours on business days."
+      "title": "Quick Response Time",
+      "description": "We respond to all inquiries within 24 hours. Your time is valuable, and we respect that."
+    },
+    "support": {
+      "title": "Dedicated Support",
+      "description": "Get personalized attention from our expert team throughout your project journey."
     },
     "team": {
       "title": "Expert Team",
-      "description": "Work with our experienced professionals."
+      "description": "Work with skilled professionals who bring years of experience to your project."
     }
+  },
+  "form": {
+    "title": "Start Your Project",
+    "description": "Fill out the form below and we'll get back to you within 24 hours.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send Message",
+    "success": "Thank you for your message! We'll get back to you soon.",
+    "error": "There was an error sending your message. Please try again.",
+    "thankYou": "Thank you for your message!"
   }
 }

@@ -1,4 +1,12 @@
 {
   "languageName": "English",
-  "switchToArabic": "عربي"
+  "switchToArabic": "العربية",
+  "languageNotice": {
+    "title": "Note",
+    "message": "This content is available in English only for better explanation of project details and services"
+  },
+  "ctaBanner": {
+    "title": "Ready to Build Your Website?",
+    "description": "Get your professional website built by our expert team. Let's turn your vision into reality"
+  }
 }

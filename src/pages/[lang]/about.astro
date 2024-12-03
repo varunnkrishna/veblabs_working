@@ -2,6 +2,7 @@
 import { supportedLanguages } from '../../i18n/config';
 import { useTranslations } from '../../i18n/utils';
 import Layout from '../../layouts/Layout.astro';
+import type { AboutTranslations } from '../../i18n/types';
 
 export function getStaticPaths() {
   return Object.keys(supportedLanguages).map(lang => ({
@@ -11,10 +12,131 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as keyof typeof supportedLanguages);
+const translations = await t('about') as AboutTranslations;
+
+const founderInfo = {
+  name: translations?.founder?.name ?? "Varun",
+  role: translations?.founder?.role ?? "Founder & CEO",
+  image: "/images/team/john.jpg",
+  bio: translations?.founder?.bio ?? "15+ years of experience in web development and digital strategy"
+};
+
+const values = translations?.values?.items ?? [
+  {
+    title: "Innovation",
+    description: "Pushing boundaries with cutting-edge solutions",
+    gradient: "from-primary to-purple-600"
+  },
+  {
+    title: "Excellence",
+    description: "Delivering exceptional quality in everything we do",
+    gradient: "from-purple-600 to-blue-500"
+  },
+  {
+    title: "Integrity",
+    description: "Building trust through transparency and honesty",
+    gradient: "from-blue-500 to-primary"
+  }
+].map((value, index) => ({
+  ...value,
+  gradient: [
+    "from-primary to-purple-600",
+    "from-purple-600 to-blue-500",
+    "from-blue-500 to-primary"
+  ][index]
+}));
 ---
-<Layout title="About | VebLabs">
-  <main>
-    <h1>About Us</h1>
-    <!-- Your about page content here -->
-  </main>
+
+<Layout title={translations?.title ?? "About Veblabs - Innovation Meets Excellence"}>
+  {/* Hero Section */}
+  <div class="relative bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-purple-500/10 dark:from-blue-500/20 dark:to-purple-500/20"></div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-blue-600 dark:text-blue-400 font-semibold tracking-wide uppercase">
+          {translations?.hero?.subtitle ?? "About Us"}
+        </span>
+        <h1 class="mt-3 text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-6">
+          {translations?.hero?.title ?? "Crafting Digital Excellence"}
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+          {translations?.hero?.description ?? "Where innovation meets execution, creating exceptional digital experiences that drive business growth."}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Founder Section -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="relative group">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
+        <div class="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl transform hover:-translate-y-1 transition duration-300">
+          <div class="w-32 h-32 mx-auto mb-6 overflow-hidden rounded-full ring-4 ring-primary/30">
+            <img src={founderInfo.image} alt={founderInfo.name} class="w-full h-full object-cover" />
+          </div>
+          <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-2">{founderInfo.name}</h2>
+          <p class="text-primary text-center mb-4">{founderInfo.role}</p>
+          <p class="text-gray-600 dark:text-gray-400 text-center">{founderInfo.bio}</p>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="transform hover:scale-105 transition duration-300">
+          <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            {translations?.vision?.title ?? "Our Vision"}
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            {translations?.vision?.description ?? "To revolutionize the digital landscape by creating innovative solutions that empower businesses to thrive in the modern era."}
+          </p>
+        </div>
+
+        <div class="transform hover:scale-105 transition duration-300">
+          <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            {translations?.approach?.title ?? "Our Approach"}
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            {translations?.approach?.description ?? "We combine cutting-edge technology with creative design thinking to deliver solutions that not only meet but exceed expectations."}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Values Section with Gradient Cards -->
+  <div class="max-w-7xl mx-auto px-4 py-16">
+    <h2 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
+      {translations?.values?.title ?? "Our Core Values"}
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      {values.map(value => (
+        <div class="group relative p-1 rounded-2xl transition-all duration-300 hover:-translate-y-2">
+          <div class={`absolute inset-0 bg-gradient-to-r ${value.gradient} rounded-2xl opacity-75 blur-sm group-hover:opacity-100 transition duration-300`}></div>
+          <div class="relative bg-white dark:bg-gray-800 p-6 rounded-2xl h-full">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{value.title}</h3>
+            <p class="text-gray-600 dark:text-gray-400">{value.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .animate-gradient-xy {
+    animation: gradient-xy 15s ease infinite;
+  }
+
+  @keyframes gradient-xy {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+</style>

@@ -30,6 +30,7 @@ const blogCollection = defineCollection({
     excerpt: z.string(),
     category: z.enum(categories),
     image: z.string(),
+    language: z.string(),
   }),
 });
 

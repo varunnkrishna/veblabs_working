@@ -1,4 +1,12 @@
 {
   "languageName": "العربية",
-  "switchToEnglish": "English"
+  "switchToEnglish": "English",
+  "languageNotice": {
+    "title": "ملاحظة",
+    "message": "هذا المحتوى متوفر باللغة الإنجليزية فقط لشرح أفضل لتفاصيل المشروع والخدمات"
+  },
+  "ctaBanner": {
+    "title": "هل أنت مستعد لبناء موقعك الإلكتروني؟",
+    "description": "احصل على موقع احترافي من فريقنا المتخصص. دعنا نحول رؤيتك إلى واقع"
+  }
 }

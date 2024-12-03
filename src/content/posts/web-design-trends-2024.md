@@ -5,6 +5,7 @@ date: "2024-03-15"
 excerpt: "Discover the latest web design trends that will dominate 2024."
 category: "Web Design"
 image: "/images/web-design.webp"
+language: "en"
 ---
 
 # Web Design Trends to Watch in 2024

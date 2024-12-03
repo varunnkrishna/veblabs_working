@@ -6,6 +6,7 @@ import { getLanguageFromURL, useTranslations } from '../../i18n/utils';
 const lang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslations(lang);
 const contact = await t('contact');
+const isRtl = lang === 'ar';
 
 export function getStaticPaths() {
   return [
@@ -19,5 +20,110 @@ export function getStaticPaths() {
   title={contact.meta.title}
   description={contact.meta.description}
 >
-  <ContactForm lang={lang} />
+  <div class="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      {/* Hero Section */}
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <span class="inline-block bg-gradient-to-r from-light-primary via-light-secondary to-light-primary dark:from-dark-primary dark:via-dark-secondary dark:to-dark-primary bg-[length:200%_auto] animate-gradient text-transparent bg-clip-text">
+            {contact.hero.title}
+          </span>
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          {contact.hero.description}
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        {/* Form Section */}
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 order-2 lg:order-1">
+          <div class="max-w-lg mx-auto">
+            <div class="mb-8">
+              <h2 class={`text-2xl font-semibold text-gray-900 dark:text-white mb-2 ${isRtl ? 'text-right' : ''}`}>{contact.form.title}</h2>
+              <p class={`text-gray-600 dark:text-gray-300 ${isRtl ? 'text-right' : ''}`}>{contact.form.description}</p>
+            </div>
+            <ContactForm lang={lang} />
+          </div>
+        </div>
+
+        {/* Benefits Section */}
+        <div class="lg:sticky lg:top-8 space-y-8 order-1 lg:order-2">
+          {/* Trust Indicators */}
+          <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Why Choose Veblabs?</h3>
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0">
+                  <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 dark:text-white">{contact.benefits.response.title}</h4>
+                  <p class="text-gray-600 dark:text-gray-300">{contact.benefits.response.description}</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0">
+                  <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 dark:text-white">{contact.benefits.support.title}</h4>
+                  <p class="text-gray-600 dark:text-gray-300">{contact.benefits.support.description}</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0">
+                  <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 dark:text-white">{contact.benefits.team.title}</h4>
+                  <p class="text-gray-600 dark:text-gray-300">{contact.benefits.team.description}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Proof */}
+          <div class="bg-gray-50 dark:bg-gray-700/20 rounded-2xl p-8">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Trusted by Companies</h3>
+            <div class="grid grid-cols-3 gap-6">
+              <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+              <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+              <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .order-1 {
+    order: 1;
+  }
+  .order-2 {
+    order: 2;
+  }
+  @media (min-width: 1024px) {
+    .lg\:order-1 {
+      order: 1;
+    }
+    .lg\:order-2 {
+      order: 2;
+    }
+  }
+</style>

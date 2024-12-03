@@ -1,9 +1,77 @@
 ---
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const isRtl = lang === 'ar';
+
+type Translation = {
+  name: string;
+  namePlaceholder: string;
+  email: string;
+  emailPlaceholder: string;
+  phone: string;
+  phonePlaceholder: string;
+  message: string;
+  messagePlaceholder: string;
+  sendMessage: string;
+  sending: string;
+  messageSent: string;
+  required: string;
+  minLength: string;
+  invalidEmail: string;
+  invalidPhone: string;
+}
+
+type Translations = {
+  en: Translation;
+  ar: Translation;
+}
+
+const translations: Translations = {
+  en: {
+    name: "Name",
+    namePlaceholder: "Your name",
+    email: "Email",
+    emailPlaceholder: "your.email@example.com",
+    phone: "Phone Number",
+    phonePlaceholder: "Phone number",
+    message: "Message",
+    messagePlaceholder: "Your message here...",
+    sendMessage: "Send Message",
+    sending: "Sending...",
+    messageSent: "Message Sent!",
+    required: "This field is required",
+    minLength: "Must be at least {0} characters",
+    invalidEmail: "Please enter a valid email address",
+    invalidPhone: "Please enter a valid phone number (6-14 digits)"
+  },
+  ar: {
+    name: "الاسم",
+    namePlaceholder: "اسمك",
+    email: "البريد الإلكتروني",
+    emailPlaceholder: "example@email.com",
+    phone: "رقم الهاتف",
+    phonePlaceholder: "رقم الهاتف",
+    message: "الرسالة",
+    messagePlaceholder: "اكتب رسالتك هنا...",
+    sendMessage: "إرسال الرسالة",
+    sending: "جاري الإرسال...",
+    messageSent: "تم الإرسال!",
+    required: "هذا الحقل مطلوب",
+    minLength: "يجب أن يكون {0} أحرف على الأقل",
+    invalidEmail: "يرجى إدخال بريد إلكتروني صحيح",
+    invalidPhone: "يرجى إدخال رقم هاتف صحيح (6-14 رقم)"
+  }
+};
+
+const t = translations[lang as keyof typeof translations] || translations.en;
 ---
 
-<form id="contactForm" class="space-y-6">
+<form id="contactForm" class:list={["space-y-6", { "text-right": isRtl }]} dir={isRtl ? "rtl" : "ltr"}>
   <div class="form-group">
-    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.name}</label>
     <input
       type="text"
       id="name"
@@ -11,27 +79,27 @@
       required
       minlength="2"
       class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-      placeholder="Your name"
+      placeholder={t.namePlaceholder}
     />
     <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
   </div>
 
   <div class="form-group">
-    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.email}</label>
     <input
       type="email"
       id="email"
       name="email"
       required
       class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-      placeholder="your.email@example.com"
+      placeholder={t.emailPlaceholder}
     />
     <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
   </div>
 
   <div class="form-group">
-    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
-    <div class="flex space-x-2">
+    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.phone}</label>
+    <div class:list={["flex", { "space-x-2": !isRtl, "space-x-reverse space-x-2": isRtl }]}>
       <select
         id="countryCode"
         name="countryCode"
@@ -57,14 +125,14 @@
         required
         pattern="[0-9]{6,14}"
         class="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-        placeholder="Phone number"
+        placeholder={t.phonePlaceholder}
       />
     </div>
     <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
   </div>
 
   <div class="form-group">
-    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t.message}</label>
     <textarea
       id="message"
       name="message"
@@ -72,18 +140,18 @@
       required
       minlength="10"
       class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary transition-colors resize-y"
-      placeholder="Your message here..."
+      placeholder={t.messagePlaceholder}
     ></textarea>
     <span class="error-message text-sm text-red-500 mt-1 hidden"></span>
   </div>
 
   <button
     type="submit"
-    class="w-full px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed relative group"
+    class="w-full px-6 py-3 text-white font-medium rounded-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed relative group bg-gradient-to-r from-light-primary via-light-secondary to-light-primary dark:from-dark-primary dark:via-dark-secondary dark:to-dark-primary bg-[length:200%_auto] hover:bg-right-bottom"
   >
-    <span class="inline-flex items-center transition-opacity duration-200">
-      <span class="submit-text">Send Message</span>
-      <svg class="submit-spinner ml-3 h-5 w-5 animate-spin hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <span class:list={["inline-flex items-center transition-opacity duration-200", { "flex-row-reverse": isRtl }]}>
+      <span class="submit-text">{t.sendMessage}</span>
+      <svg class:list={["submit-spinner h-5 w-5 animate-spin hidden", { "mr-3": isRtl, "ml-3": !isRtl }]} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
       </svg>
@@ -94,7 +162,62 @@
 </form>
 
 <script>
-const validateField = (field: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) => {
+interface FormField extends HTMLElement {
+  value: string;
+  type?: string;
+  minLength?: number;
+}
+
+interface FormResponse {
+  success: boolean;
+  message?: string;
+  error?: string;
+  details?: string;
+}
+
+// Define translations in script
+const formTranslations = {
+  en: {
+    name: "Name",
+    namePlaceholder: "Your name",
+    email: "Email",
+    emailPlaceholder: "your.email@example.com",
+    phone: "Phone Number",
+    phonePlaceholder: "Phone number",
+    message: "Message",
+    messagePlaceholder: "Your message here...",
+    sendMessage: "Send Message",
+    sending: "Sending...",
+    messageSent: "Message Sent!",
+    required: "This field is required",
+    minLength: "Must be at least {0} characters",
+    invalidEmail: "Please enter a valid email address",
+    invalidPhone: "Please enter a valid phone number (6-14 digits)"
+  },
+  ar: {
+    name: "الاسم",
+    namePlaceholder: "اسمك",
+    email: "البريد الإلكتروني",
+    emailPlaceholder: "example@email.com",
+    phone: "رقم الهاتف",
+    phonePlaceholder: "رقم الهاتف",
+    message: "الرسالة",
+    messagePlaceholder: "اكتب رسالتك هنا...",
+    sendMessage: "إرسال الرسالة",
+    sending: "جاري الإرسال...",
+    messageSent: "تم الإرسال!",
+    required: "هذا الحقل مطلوب",
+    minLength: "يجب أن يكون {0} أحرف على الأقل",
+    invalidEmail: "يرجى إدخال بريد إلكتروني صحيح",
+    invalidPhone: "يرجى إدخال رقم هاتف صحيح (6-14 رقم)"
+  }
+};
+
+// Get current language from HTML attribute
+const currentLang = document.documentElement.lang || 'en';
+const t = formTranslations[currentLang as keyof typeof formTranslations] || formTranslations.en;
+
+const validateField = (field: FormField): boolean => {
   const formGroup = field.closest('.form-group');
   const errorEl = formGroup?.querySelector('.error-message') as HTMLElement;
   
@@ -105,16 +228,16 @@ const validateField = (field: HTMLInputElement | HTMLTextAreaElement | HTMLSelec
 
   if (!field.value.trim()) {
     isValid = false;
-    message = 'This field is required';
+    message = t.required;
   } else if ('minLength' in field && field.minLength && field.value.length < field.minLength) {
     isValid = false;
-    message = `Must be at least ${field.minLength} characters`;
+    message = t.minLength.replace('{0}', field.minLength?.toString() || '');
   } else if (field.type === 'email' && !field.value.includes('@')) {
     isValid = false;
-    message = 'Please enter a valid email address';
+    message = t.invalidEmail;
   } else if (field.type === 'tel' && !field.value.match(/^[0-9]{6,14}$/)) {
     isValid = false;
-    message = 'Please enter a valid phone number (6-14 digits)';
+    message = t.invalidPhone;
   }
 
   if (!isValid) {
@@ -142,7 +265,7 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
   // Validate all fields
   let isValid = true;
   fields.forEach(field => {
-    if (!validateField(field as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement)) {
+    if (!validateField(field as FormField)) {
       isValid = false;
     }
   });
@@ -158,7 +281,7 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
   try {
     // Show loading state
     submitButton.disabled = true;
-    submitText.textContent = 'Sending...';
+    submitText.textContent = t.sending;
     submitSpinner.classList.remove('hidden');
 
     // Get form data
@@ -169,13 +292,12 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
     const payload = {
       name: formData.get('name'),
       email: formData.get('email'),
-      phone: `${countryCode}${phoneNumber}`, // Combine country code and phone
+      phone: `${countryCode}${phoneNumber}`,
       message: formData.get('message'),
       form_type: 'main',
       status: 'new'
     };
 
-    // Always use the relative API endpoint
     const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
@@ -185,59 +307,40 @@ document.getElementById('contactForm')?.addEventListener('submit', async (e) => 
       body: JSON.stringify(payload)
     });
 
-    console.log('Request sent with payload:', payload);
-    const result = await response.json();
-    console.log('Server response:', result);
+    const result = await response.json() as FormResponse;
 
-    // Always treat as success if the server says it's a success
     if (result.success) {
-      // Reset form
       form.reset();
-      
-      // Show success message
-      submitText.textContent = 'Message Sent!';
+      submitText.textContent = t.messageSent;
       submitButton.classList.remove('bg-primary');
       submitButton.classList.add('bg-green-600');
       
-      // Reset button after 3 seconds
-      setTimeout(() => {
-        submitText.textContent = 'Send Message';
-        submitButton.classList.remove('bg-green-600');
-        submitButton.classList.add('bg-primary');
-      }, 3000);
+      if (statusEl) {
+        statusEl.textContent = result.message || 'Thank you for your message!';
+        statusEl.classList.remove('opacity-0', 'translate-y-2', 'text-red-500');
+        statusEl.classList.add('text-green-500', 'opacity-100', 'translate-y-0');
+      }
     } else {
-      throw new Error(result.error || result.details || 'Failed to send message');
+      throw new Error(result.message || 'Something went wrong');
     }
-
   } catch (error) {
     console.error('Error:', error);
+    submitText.textContent = t.sendMessage;
     
-    // Get error message while maintaining functionality
-    const message = error instanceof Error 
-      ? error.message 
-      : typeof error === 'object' && error && 'message' in error
-      ? String(error.message)
-      : 'Failed to send message. Please try again.';
-    
-    submitText.textContent = message;
-    submitButton.classList.remove('bg-primary');
-    submitButton.classList.add('bg-red-600');
-    
-    // Reset button after 3 seconds
-    setTimeout(() => {
-      submitText.textContent = 'Send Message';
-      submitButton.classList.remove('bg-red-600');
-      submitButton.classList.add('bg-primary');
-    }, 3000);
+    if (statusEl) {
+      statusEl.textContent = error instanceof Error ? error.message : 'Failed to send message. Please try again.';
+      statusEl.classList.remove('opacity-0', 'translate-y-2', 'text-green-500');
+      statusEl.classList.add('text-red-500', 'opacity-100', 'translate-y-0');
+    }
   } finally {
-    submitSpinner.classList.add('hidden');
     submitButton.disabled = false;
+    submitSpinner.classList.add('hidden');
   }
 });
 
 // Add live validation
 document.getElementById('contactForm')?.addEventListener('input', (e) => {
-  const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+  const target = e.target as FormField;
   if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') {
     validateField(target);
   }

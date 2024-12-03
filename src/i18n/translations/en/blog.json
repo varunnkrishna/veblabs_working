@@ -1,0 +1,13 @@
+{
+  "badge": "Our Blog",
+  "title": "Latest Insights & Updates",
+  "description": "Discover the latest trends, insights, and updates from our team of experts.",
+  "search_placeholder": "Search articles...",
+  "all_posts": "All Posts",
+  "newsletter": {
+    "title": "Stay Updated with Our Newsletter",
+    "description": "Get the latest articles, insights, and updates delivered directly to your inbox.",
+    "email_placeholder": "Enter your email",
+    "subscribe": "Subscribe"
+  }
+}

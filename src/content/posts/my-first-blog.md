@@ -5,6 +5,7 @@ date: "2024-03-10"
 excerpt: "Learn about the essential AI tools that can transform your workflow."
 category: "AI Tools"
 image: "/images/seo.webp"
+language: "en"
 ---
 
 # How to Build a Blog with Astro

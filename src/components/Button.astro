@@ -18,7 +18,7 @@ const baseClass =
 
 const variantClasses = {
   primary:
-    'text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl hover:scale-[1.02]',
+    'text-white bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 dark:from-blue-900 dark:via-blue-700 dark:to-purple-900 hover:scale-[1.02] shadow-md hover:shadow-lg hover:shadow-blue-500/25 dark:hover:shadow-blue-700/40 relative overflow-hidden',
   secondary:
     'text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:scale-105 hover:shadow-lg',
 }[variant];
@@ -26,35 +26,52 @@ const variantClasses = {
 const fontClass = isRtl ? 'font-arabic' : 'font-sans';
 ---
 <a href={href} class:list={[baseClass, variantClasses, fontClass, "group"]}>
-  {isRtl && (
-    <svg
-      class="w-5 h-5 ml-0 mr-2 transform rotate-180 group-hover:-translate-x-1 transition-transform"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M17 8l4 4m0 0l-4 4m4-4H3"
-      />
-    </svg>
-  )}
-  {text}
-  {!isRtl && (
-    <svg
-      class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M17 8l4 4m0 0l-4 4m4-4H3"
-      />
-    </svg>
+  <span class="relative z-10 flex items-center">
+    {isRtl && (
+      <svg
+        class="w-5 h-5 ml-0 mr-2 transform rotate-180 group-hover:-translate-x-1 transition-transform"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17 8l4 4m0 0l-4 4m4-4H3"
+        />
+      </svg>
+    )}
+    {text}
+    {!isRtl && (
+      <svg
+        class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17 8l4 4m0 0l-4 4m4-4H3"
+        />
+      </svg>
+    )}
+  </span>
+  {variant === 'primary' && (
+    <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 dark:from-white/0 dark:via-white/15 dark:to-white/0 transform translate-x-[-100%] animate-shimmer"></div>
   )}
 </a>
+
+<style>
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+</style>

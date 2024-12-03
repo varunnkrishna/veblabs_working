@@ -5,6 +5,7 @@ date: "2024-03-17"
 excerpt: "Learn how to build a blog system in Astro using Markdown files."
 category: "Web Development"
 image: "/images/ai.webp"
+language: "en"
 ---
 
 # How to Build a Blog with Astro

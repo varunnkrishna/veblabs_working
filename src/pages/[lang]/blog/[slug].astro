@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import ShareButtons from '../../../components/ShareButtons.astro';
+import LanguageNotice from '../../../components/LanguageNotice.astro';
+import Button from '../../../components/Button.astro';
+import type { CollectionEntry } from 'astro:content';
+import { supportedLanguages } from '../../../i18n/config';
+import { useTranslations } from '../../../i18n/utils';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const englishPosts = posts.filter(post => post.data.language === 'en');
+  
+  return Object.keys(supportedLanguages).flatMap(lang => {
+    return englishPosts.map(post => ({
+      params: { lang, slug: post.slug },
+      props: { post },
+    }));
+  });
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { lang } = Astro.params;
+const t = useTranslations(lang as keyof typeof supportedLanguages);
+const navT = await t('nav');
+const commonT = await t('common');
+const footerT = await t('footer');
+const { Content } = await post.render();
+---
+
+<Layout title={`${post.data.title} | ${navT.blog} | Veblabs`}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    {/* Language Notice for Arabic Users */}
+    {lang === 'ar' && (
+      <LanguageNotice 
+        title={commonT.languageNotice.title}
+        message={commonT.languageNotice.message}
+      />
+    )}
+
+    {/* Blog Header */}
+    <header class="text-center mb-16">
+      <div class="text-blue-600 dark:text-blue-400 mb-4">
+        <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">
+          {post.data.category}
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+        {post.data.title}
+      </h1>
+      <div class="flex items-center justify-center space-x-4 text-gray-600 dark:text-gray-400">
+        <span>{post.data.author}</span>
+        <span>•</span>
+        <time datetime={post.data.date}>{new Date(post.data.date).toLocaleDateString()}</time>
+      </div>
+    </header>
+
+    {post.data.image && (
+      <img
+        src={post.data.image}
+        alt={post.data.title}
+        class="w-full h-96 object-cover rounded-xl shadow-lg mb-16"
+      />
+    )}
+
+    {/* Main Content */}
+    <div class="prose prose-lg dark:prose-invert max-w-none mb-16">
+      <Content />
+    </div>
+
+    {/* CTA Section - Appears after reading some content */}
+    <div class="my-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-8 shadow-lg border border-blue-100 dark:border-blue-800">
+      <div class="max-w-3xl mx-auto text-center">
+        <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Ready to Build Your Own Success Story?</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-8">Get your professional website built by our expert team. Let's turn your vision into reality, just like the project you've read about.</p>
+        <Button
+          href={`/${lang}/contact`}
+          variant="primary"
+          text={footerT.contact.title}
+        />
+      </div>
+    </div>
+
+    {/* Share Section */}
+    <div class="border-t border-gray-200 dark:border-gray-800 pt-8">
+      <ShareButtons 
+        title={post.data.title} 
+        url={`/${lang}/blog/${post.slug}`}
+        description={post.data.excerpt}
+      />
+    </div>
+  </article>
+</Layout>

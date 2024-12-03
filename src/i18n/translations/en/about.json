@@ -1,0 +1,38 @@
+{
+  "title": "About Veblabs - Innovation Meets Excellence",
+  "hero": {
+    "subtitle": "About Us",
+    "title": "Crafting Digital Excellence",
+    "description": "Where innovation meets execution, creating exceptional digital experiences that drive business growth."
+  },
+  "founder": {
+    "name": "Varun",
+    "role": "Founder & CEO",
+    "bio": "15+ years of experience in web development and digital strategy"
+  },
+  "vision": {
+    "title": "Our Vision",
+    "description": "To revolutionize the digital landscape by creating innovative solutions that empower businesses to thrive in the modern era."
+  },
+  "approach": {
+    "title": "Our Approach",
+    "description": "We combine cutting-edge technology with creative design thinking to deliver solutions that not only meet but exceed expectations."
+  },
+  "values": {
+    "title": "Our Core Values",
+    "items": [
+      {
+        "title": "Innovation",
+        "description": "Pushing boundaries with cutting-edge solutions"
+      },
+      {
+        "title": "Excellence",
+        "description": "Delivering exceptional quality in everything we do"
+      },
+      {
+        "title": "Integrity",
+        "description": "Building trust through transparency and honesty"
+      }
+    ]
+  }
+}

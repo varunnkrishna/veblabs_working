@@ -31,7 +31,7 @@ const isRTL = getLanguageDirection(lang) === 'rtl';
           {translations?.getStarted || "Get Started"}
         </a>
         <a
-          href="/services"
+          href={`/${lang}/services`}
           class="font-inter px-8 py-4 bg-blue-700 text-white hover:bg-blue-800 font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-center whitespace-nowrap"
         >
           {translations?.viewServices || "View Services"}

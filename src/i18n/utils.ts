@@ -27,7 +27,10 @@ const translations: TranslationImports = {
     footer: () => import('./translations/en/footer.json'),
     projects: () => import('./translations/en/projects.json'),
     ourwork: () => import('./translations/en/ourwork.json'),
-    contact: () => import('./translations/en/contact.json')
+    contact: () => import('./translations/en/contact.json'),
+    blog: () => import('./translations/en/blog.json'),
+    services: () => import('./translations/en/services.json'),
+    about: () => import('./translations/en/about.json')
   },
   ar: {
     common: () => import('./translations/ar/common.json'),
@@ -42,7 +45,10 @@ const translations: TranslationImports = {
     footer: () => import('./translations/ar/footer.json'),
     projects: () => import('./translations/ar/projects.json'),
     ourwork: () => import('./translations/ar/ourwork.json'),
-    contact: () => import('./translations/ar/contact.json')
+    contact: () => import('./translations/ar/contact.json'),
+    blog: () => import('./translations/ar/blog.json'),
+    services: () => import('./translations/ar/services.json'),
+    about: () => import('./translations/ar/about.json')
   }
 };
 

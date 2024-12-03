@@ -1,0 +1,44 @@
+{
+  "title": "Services - Veblabs",
+  "hero": {
+    "heading": "Empowering Your Digital Success",
+    "description": "We combine cutting-edge technology with creative innovation to deliver exceptional digital solutions that drive growth and transform businesses.",
+    "startProject": "Start a Project",
+    "viewWork": "View Our Work"
+  },
+  "services": {
+    "webDev": {
+      "title": "Web Development",
+      "description": "Building modern, scalable, and performant web applications using cutting-edge technologies and best practices.",
+      "features": ["Full-stack Development", "Progressive Web Apps", "API Integration", "Cloud Deployment"]
+    },
+    "uiux": {
+      "title": "UI/UX Design",
+      "description": "Creating intuitive and engaging user experiences through research-driven design solutions.",
+      "features": ["User Research", "Interface Design", "Design Systems", "Interactive Prototypes"]
+    },
+    "ecommerce": {
+      "title": "E-Commerce Solutions",
+      "description": "Building secure and scalable online stores that drive conversions and enhance customer experience.",
+      "features": ["Custom E-commerce", "Payment Integration", "Inventory Management", "Analytics Dashboard"]
+    },
+    "marketing": {
+      "title": "Digital Marketing",
+      "description": "Data-driven digital marketing strategies to boost your online presence and drive growth.",
+      "features": ["SEO Optimization", "Content Strategy", "Social Media", "Performance Analytics"]
+    },
+    "cloud": {
+      "title": "Cloud Solutions",
+      "description": "Scalable cloud infrastructure and services to power your digital transformation.",
+      "features": ["Cloud Architecture", "DevOps", "Serverless", "Microservices"]
+    },
+    "support": {
+      "title": "Maintenance & Support",
+      "description": "Comprehensive maintenance and support services to keep your systems running smoothly.",
+      "features": ["24/7 Support", "Security Updates", "Performance Monitoring", "Backup Solutions"]
+    }
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Veblabs?"
+  }
+}
