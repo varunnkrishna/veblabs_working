@@ -1,63 +1,74 @@
 ---
-title: "Real Estate Platform"
-description: "A modern real estate platform for property listings and management"
+title: "SSP Engineering Website"
+description: "A professional engineering consultancy website showcasing structural and civil engineering services"
 category: "Real Estate"
-client: "Premium Properties Ltd."
-image: "/images/projects/realestate.webp"
+client: "SSP Engineering"
+image: "/images/projects/sspengg-mockup.png"
 results: [
-  "150% increase in property inquiries",
-  "40% reduction in listing time",
-  "97% agent satisfaction rate"
+  "Established strong online presence for engineering services",
+  "Improved client engagement through portfolio showcase",
+  "Enhanced service visibility and client reach"
 ]
 gallery:
-  - url: "/images/projects/realestate-1.webp"
-    alt: "Property Listings"
-    caption: "Advanced property search and filtering"
-  - url: "/images/projects/realestate-2.webp"
-    alt: "Virtual Tours"
-    caption: "Interactive virtual property tours"
-  - url: "/images/projects/realestate-3.webp"
-    alt: "Agent Dashboard"
-    caption: "Comprehensive agent management system"
+  - url: "/images/projects/realestate/sspengg-mockup2.webp"
+    alt: "Engineering Services"
+    caption: "Comprehensive engineering service offerings"
+  - url: "/images/projects/realestate/sspengg-mockup1.webp"
+    alt: "Project Portfolio"
+    caption: "Showcase of completed engineering projects"
+  - url: "/images/projects/realestate/sspengg-mockup3.webp"
+    alt: "Contact Interface"
+    caption: "Professional client contact system"
+  - url: "/images/projects/realestate/sspengg-mockup4.webp"
+    alt: "Contact Interface"
+    caption: "Professional client contact system"
+  - url: "/images/projects/realestate/sspengg-mockup5.webp"
+    alt: "Contact Interface"
+    caption: "Professional client contact system"
+  - url: "/images/projects/realestate/sspengg-mockup6.webp"
+    alt: "Contact Interface"
+    caption: "Professional client contact system"
 ---
 
-# Client and Project Context
+# Project Context
 
-Premium Properties Ltd., a leading real estate agency, needed a modern platform to enhance their property listings and management. The goal was to create a user-friendly platform that reflected their brand's professionalism.
+SSP Engineering required a professional website to showcase their structural and civil engineering expertise. The goal was to create a modern, professional platform that effectively communicates their services and expertise to potential clients.
 
 ## Problem Statement
 
-The client's current system relied on manual property listings, leading to inefficiencies and lost opportunities. They needed a modern platform to simplify the property management process and retain clients.
+The client needed a strong online presence to showcase their engineering capabilities, completed projects, and professional services. They required a platform that would effectively communicate their expertise and make it easy for potential clients to learn about their services and get in touch.
 
 ## Solution
 
-We developed a real estate platform featuring:
+I developed a comprehensive website featuring:
 
-- Clean, intuitive UI to browse properties effortlessly.
-- Advanced property search and filtering.
-- Virtual property tours.
-- A comprehensive agent management system.
+- Professional presentation of engineering services and capabilities
+- Portfolio section showcasing completed projects
+- Detailed service descriptions for structural and civil engineering
+- Easy-to-use contact system for client inquiries
+- Mobile-responsive design for accessibility across all devices
 
-## Process
+## Development Process
 
-1. **Discovery & Research**:
-   - Analyzed competitors' platforms to identify best practices.
-   - Collaborated with the client to prioritize features.
-2. **Wireframing & Design**:
-   - Created wireframes for user flows.
-   - Delivered a sleek design aligning with the brand's identity.
-3. **Development**:
-   - Built the platform using modern web technologies for scalability.
-   - Integrated a backend with property listing and management APIs.
-4. **Testing & Launch**:
-   - Conducted rigorous testing for performance and reliability.
+1. **Planning & Analysis**:
+   - Gathered requirements specific to engineering consultancy needs
+   - Researched best practices in engineering firm websites
+   - Planned content structure for optimal service presentation
+
+2. **Design & Development**:
+   - Created a clean, professional design reflecting engineering precision
+   - Implemented responsive layouts for all devices
+   - Developed an intuitive navigation structure
+
+3. **Implementation**:
+   - Built using modern web technologies for optimal performance
+   - Integrated contact forms and inquiry systems
+   - Optimized for search engines to improve visibility
 
 ## Results
 
-- 150% increase in property inquiries within 6 months.
-- 40% reduction in listing time.
-- 97% agent satisfaction rate.
-
-## Key Takeaways
-
-This project demonstrated the power of user-centric design and advanced technology in transforming the real estate industry.
+The website successfully:
+- Established a strong professional online presence for SSP Engineering
+- Created an effective platform for showcasing engineering expertise
+- Improved client engagement through easy access to service information
+- Enhanced the company's digital marketing capabilities
