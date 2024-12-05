@@ -14,7 +14,6 @@ const navItems = [
   { href: `/${lang}/works`, label: navTranslations.works },
   { href: `/${lang}/blog`, label: navTranslations.blog },
   { href: `/${lang}/services`, label: navTranslations.services },
-  { href: `/${lang}/about`, label: navTranslations.about }
 ];
 
 const getLanguageUrl = (newLang: string) => {
@@ -31,8 +30,17 @@ const isRTL = lang === 'ar';
       <div class="flex items-center space-x-2">
         <a href={`/${lang}`} class="flex items-center">
           <img src="/images/veblabslogoblue.png" alt="VebLabs Logo" class="w-6 h-6 p-1" />
-          <span class="text-xl font-bold text-light-textPrimary dark:text-dark-textPrimary">veb</span>
-          <span class="text-xl font-bold text-light-primary dark:text-dark-primary">Labs</span>
+          {isRTL ? (
+            <span class="text-xl font-bold">
+              <span class="text-light-textPrimary dark:text-dark-textPrimary">فيب</span>
+              <span class="text-light-primary dark:text-dark-primary">لابز</span>
+            </span>
+          ) : (
+            <span class="text-xl font-bold">
+              <span class="text-light-textPrimary dark:text-dark-textPrimary">veb</span>
+              <span class="text-light-primary dark:text-dark-primary">Labs</span>
+            </span>
+          )}
         </a>
         
         <!-- Theme Toggle -->

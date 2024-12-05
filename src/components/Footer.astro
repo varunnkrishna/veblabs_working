@@ -10,25 +10,21 @@ const currentYear = new Date().getFullYear();
 
 // Social Media Links with Icons
 const socialLinks = [
-  { name: 'Twitter', url: '#', icon: 'fab fa-twitter' },
-  { name: 'LinkedIn', url: '#', icon: 'fab fa-linkedin-in' },
-  { name: 'GitHub', url: '#', icon: 'fab fa-github' },
-  { name: 'Instagram', url: '#', icon: 'fab fa-instagram' }
+  { name: 'Twitter', url: 'https://x.com/veblabs', icon: 'fab fa-twitter' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/veblabs/', icon: 'fab fa-linkedin-in' },
+  { name: 'GitHub', url: 'https://github.com/veblabs-tech', icon: 'fab fa-github' },
+  { name: 'Instagram', url: 'https://www.instagram.com/veblabs', icon: 'fab fa-instagram' },
+  { name: 'WhatsApp', url: 'https://wa.me/919908174097', icon: 'fab fa-whatsapp' }
 ];
 
 // Contact Info
 const contactInfo = {
-  phone: '+971 12 345 6789',
+  phone: '+91 9908174097',
   email: 'hi@veblabs.com'
 };
 
 // Quick Links
-const quickLinks = [
-  { name: 'Our Works', url: '/works' },
-  { name: 'Services', url: `/${lang}/services` },
-  { name: 'Blog', url: '/blog' },
-  { name: 'About Us', url: '/about' }
-];
+const quickLinks = translations.quickLinks.links;
 
 // Services
 const services = [
@@ -50,6 +46,7 @@ const supportOptions = [
   { name: 'Project Inquiries', description: 'Start your project with us' },
   { name: 'Client Portal', description: 'Access your project dashboard' }
 ];
+
 ---
 
 <footer class="relative bg-white dark:bg-gray-900 pt-20 pb-12 overflow-hidden">
@@ -63,7 +60,17 @@ const supportOptions = [
       <div class="space-y-8">
         <div class="flex items-center space-x-3">
           <img src="/images/veblabslogoblue.png" alt="Veblabs Logo" class="h-8 w-auto" />
-          <span class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Veblabs</span>
+          {isRTL ? (
+            <span class="text-4xl font-bold">
+              <span class="text-gray-900 dark:text-white">فيب</span>
+              <span class="text-blue-600 dark:text-blue-400">لابز</span>
+            </span>
+          ) : (
+            <span class="text-4xl font-bold">
+              <span class="text-gray-900 dark:text-white">veb</span>
+              <span class="text-blue-600 dark:text-blue-400">Labs</span>
+            </span>
+          )}
         </div>
         <p class="text-gray-600 dark:text-gray-400 text-lg max-w-md">
           {translations.companyDescription}
@@ -93,7 +100,7 @@ const supportOptions = [
               <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center group-hover:bg-blue-500">
                 <i class="fas fa-phone-alt text-blue-600 dark:text-blue-400 group-hover:text-white"></i>
               </span>
-              <span>{contactInfo.phone}</span>
+              <span dir="ltr" class={`${isRTL ? 'text-right' : 'text-left'}`}>{contactInfo.phone}</span>
             </a>
             <a href={`mailto:${contactInfo.email}`} class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group">
               <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center group-hover:bg-blue-500">
@@ -101,15 +108,12 @@ const supportOptions = [
               </span>
               <span>{contactInfo.email}</span>
             </a>
-            <div class="flex items-start space-x-3 text-gray-600 dark:text-gray-400">
-              <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center mt-1">
-                <i class="fas fa-map-marker-alt text-blue-600 dark:text-blue-400"></i>
+            <a href="https://wa.me/919908174097" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group">
+              <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center group-hover:bg-blue-500">
+                <i class="fab fa-whatsapp text-blue-600 dark:text-blue-400 group-hover:text-white"></i>
               </span>
-              <div class="flex flex-col">
-                <span>{translations.address.line1}</span>
-                <span class="text-sm text-gray-500 dark:text-gray-500">{translations.address.line2}</span>
-              </div>
-            </div>
+              <span>WhatsApp</span>
+            </a>
           </div>
           
           <!-- Added Contact Description -->
@@ -173,13 +177,19 @@ const supportOptions = [
       <div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">{translations.quickLinks.title}</h3>
         <ul class="space-y-4">
-          {quickLinks.map(link => (
-            <li>
-              <a href={link.url} class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-                {link.name}
-              </a>
-            </li>
-          ))}
+          {translations.quickLinks.links.map(link => {
+            // Add language prefix to the URL if it doesn't start with http or #
+            const url = link.url.startsWith('http') || link.url.startsWith('#') 
+              ? link.url 
+              : `/${lang}${link.url.startsWith('/') ? '' : '/'}${link.url}`;
+            return (
+              <li>
+                <a href={url} class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+                  {link.name}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
@@ -195,19 +205,11 @@ const supportOptions = [
       </div>
 
       <div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">{translations.address.title}</h3>
-        <address class="text-gray-600 dark:text-gray-400 not-italic">
-          {translations.address.line1}<br />
-          {translations.address.line2}
-        </address>
-      </div>
-
-      <div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">{translations.contact.title}</h3>
         <div class="space-y-4 text-gray-600 dark:text-gray-400">
           <p>
             <a href={`tel:${contactInfo.phone}`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
-              {contactInfo.phone}
+              <span dir="ltr" class={`inline-block ${isRTL ? 'text-right' : 'text-left'}`}>{contactInfo.phone}</span>
             </a>
           </p>
           <p>

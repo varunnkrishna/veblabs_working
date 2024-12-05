@@ -4,6 +4,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const translations = await t('faq');
 const isRTL = getLanguageDirection(lang) === 'rtl';
+import Button from "./Button.astro";
 ---
 
 <section class="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-24 overflow-hidden">
@@ -65,6 +66,8 @@ const isRTL = getLanguageDirection(lang) === 'rtl';
         </svg>
       </a>
     </div>
+
+
   </div>
 </section>
 

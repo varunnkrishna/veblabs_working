@@ -47,5 +47,59 @@
       "multilanguageWhy": "Expanding your website's reach with multi-language support enhances user engagement and builds trust across diverse markets."
     },
     "whyItMatters": "Why It Matters: "
+  },
+  "services": {
+    "heading": "Modern Websites That Work While You Sleep",
+    "description": "We build lightning-fast, SEO-optimized websites that Google loves. Unlike traditional agencies stuck with outdated tech, our mobile-first designs are built to perform and generate revenue 24/7. Your success is on autopilot.",
+    "startProject": "Start a Project",
+    "viewWork": "View Our Work"
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the perfect plan for your business needs",
+    "basic": {
+      "name": "Basic",
+      "price": "4,999 AED",
+      "usdPrice": "$1,360",
+      "description": "Perfect for small businesses starting their digital journey",
+      "features": [
+        "Modern Responsive Website",
+        "SEO Optimization",
+        "5 Pages",
+        "Contact Form",
+        "Social Media Integration",
+        "3 Months Support"
+      ]
+    },
+    "professional": {
+      "name": "Professional",
+      "price": "9,999 AED",
+      "usdPrice": "$2,720",
+      "description": "Ideal for growing businesses needing more features",
+      "features": [
+        "Everything in Basic",
+        "Custom Design",
+        "10 Pages",
+        "Blog Integration",
+        "Analytics Setup",
+        "6 Months Support",
+        "Performance Optimization"
+      ]
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "Contact Us",
+      "description": "Custom solutions for large organizations",
+      "features": [
+        "Everything in Professional",
+        "Custom Features",
+        "Unlimited Pages",
+        "Advanced Security",
+        "Priority Support",
+        "Custom Integrations",
+        "Training Sessions"
+      ]
+    },
+    "cta": "Get Started"
   }
 }

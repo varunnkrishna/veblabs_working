@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import TestimonialMarquee from '../../components/TestimonialMarquee.astro';
 import ProblemSection from '../../components/ProblemSection.astro';
 import Verticletab from '../../components/Verticletab.astro';
-import OurWork from '../../components/OurWork.astro';
+import FeaturedWork from '../../components/FeaturedWork.astro';
 import Multilanguage from "../../components/Multilanguage.astro"
 import Features from '../../components/Features.astro';
 import Comparision from '../../components/Comparision.astro';
@@ -38,7 +38,7 @@ const t = useTranslations(lang as keyof typeof supportedLanguages);
   <Multilanguage />
   <TestimonialMarquee :visible />
   <Ctaone />
-  <OurWork lang={lang} />
+  <FeaturedWork lang={lang} />
   <Comparision lang={lang} />
   <Faq lang={lang} />
 </Layout>

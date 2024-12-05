@@ -1,5 +1,6 @@
 ---
 import Badge from "./Badge.astro";
+import Button from "./Button.astro"; // Import the Button component
 import { getLanguageFromURL, useTranslations, getLanguageDirection } from '../i18n/utils';
 
 const lang = getLanguageFromURL(Astro.url.pathname);
@@ -148,6 +149,13 @@ const getStatusIcon = (status: string) => {
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="mt-12 text-center reveal-on-scroll">
+      <Button
+        href={`/${lang}/contact`}
+        variant="primary"
+        text={translations.cta}
+      />
     </div>
   </div>
 </section>

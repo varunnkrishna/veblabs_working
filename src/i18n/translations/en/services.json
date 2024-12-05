@@ -1,42 +1,100 @@
 {
   "title": "Services - Veblabs",
   "hero": {
-    "heading": "Empowering Your Digital Success",
-    "description": "We combine cutting-edge technology with creative innovation to deliver exceptional digital solutions that drive growth and transform businesses.",
+    "heading": "Transform Your Digital Presence",
+    "description": "We build lightning-fast, SEO-optimized websites that Google loves. Unlike traditional agencies stuck with outdated tech, our mobile-first designs are built to perform and generate revenue 24/7.",
     "startProject": "Start a Project",
     "viewWork": "View Our Work"
   },
   "services": {
     "webDev": {
       "title": "Web Development",
-      "description": "Building modern, scalable, and performant web applications using cutting-edge technologies and best practices.",
-      "features": ["Full-stack Development", "Progressive Web Apps", "API Integration", "Cloud Deployment"]
+      "description": "Building modern, scalable web applications using the latest technologies and best practices.",
+      "features": [
+        "Full Stack Development",
+        "Progressive Web Apps",
+        "API Integration",
+        "Cloud Deployment"
+      ]
     },
     "uiux": {
       "title": "UI/UX Design",
       "description": "Creating intuitive and engaging user experiences through research-driven design solutions.",
-      "features": ["User Research", "Interface Design", "Design Systems", "Interactive Prototypes"]
-    },
-    "ecommerce": {
-      "title": "E-Commerce Solutions",
-      "description": "Building secure and scalable online stores that drive conversions and enhance customer experience.",
-      "features": ["Custom E-commerce", "Payment Integration", "Inventory Management", "Analytics Dashboard"]
+      "features": [
+        "User Research",
+        "Interface Design",
+        "Design Systems",
+        "Interactive Prototypes"
+      ]
     },
     "marketing": {
       "title": "Digital Marketing",
       "description": "Data-driven digital marketing strategies to boost your online presence and drive growth.",
-      "features": ["SEO Optimization", "Content Strategy", "Social Media", "Performance Analytics"]
-    },
-    "cloud": {
-      "title": "Cloud Solutions",
-      "description": "Scalable cloud infrastructure and services to power your digital transformation.",
-      "features": ["Cloud Architecture", "DevOps", "Serverless", "Microservices"]
+      "features": [
+        "SEO Optimization",
+        "Content Strategy",
+        "Social Media",
+        "Performance Analytics"
+      ]
     },
     "support": {
       "title": "Maintenance & Support",
-      "description": "Comprehensive maintenance and support services to keep your systems running smoothly.",
-      "features": ["24/7 Support", "Security Updates", "Performance Monitoring", "Backup Solutions"]
+      "description": "Comprehensive maintenance services to keep your digital assets performing at their best.",
+      "features": [
+        "24/7 Support",
+        "Performance Monitoring",
+        "Security Updates",
+        "Regular Backups"
+      ]
     }
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the perfect plan for your business needs",
+    "basic": {
+      "name": "Basic",
+      "price": "4,999 AED",
+      "usdPrice": "$1,360",
+      "description": "Perfect for small businesses starting their digital journey",
+      "features": [
+        "Modern Responsive Website",
+        "SEO Optimization",
+        "5 Pages",
+        "Contact Form",
+        "Social Media Integration",
+        "3 Months Support"
+      ]
+    },
+    "professional": {
+      "name": "Professional",
+      "price": "9,999 AED",
+      "usdPrice": "$2,720",
+      "description": "Ideal for growing businesses needing more features",
+      "features": [
+        "Everything in Basic",
+        "Custom Design",
+        "10 Pages",
+        "Blog Integration",
+        "Analytics Setup",
+        "6 Months Support",
+        "Performance Optimization"
+      ]
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "Contact Us",
+      "description": "Custom solutions for large organizations",
+      "features": [
+        "Everything in Professional",
+        "Custom Features",
+        "Unlimited Pages",
+        "Advanced Security",
+        "Priority Support",
+        "Custom Integrations",
+        "Training Sessions"
+      ]
+    },
+    "cta": "Get Started"
   },
   "whyChooseUs": {
     "title": "Why Choose Veblabs?"

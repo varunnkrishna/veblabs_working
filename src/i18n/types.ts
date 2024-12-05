@@ -49,6 +49,12 @@ export interface HeroTranslations {
     };
     whyItMatters: string;
   };
+  services: {
+    heading: string;
+    description: string;
+    startProject: string;
+    viewWork: string;
+  };
 }
 
 // Translation types for Navigation
@@ -56,7 +62,6 @@ export interface NavTranslations {
   works: string;
   blog: string;
   services: string;
-  about: string;
   cta: string;
 }
 
@@ -110,6 +115,7 @@ export interface TestimonialTranslations {
   badge: string;
   title: string;
   description: string;
+  cta: string;
 }
 
 // Translation types for CTA
@@ -140,6 +146,7 @@ export interface ComparisonTranslations {
     scalableServices: string;
     regionalKnowledge: string;
   };
+  cta: string;
 }
 
 // Translation types for FAQ Section
@@ -289,44 +296,36 @@ export interface ServiceTranslations {
   services: {
     webDev: ServiceItem;
     uiux: ServiceItem;
-    ecommerce: ServiceItem;
     marketing: ServiceItem;
-    cloud: ServiceItem;
     support: ServiceItem;
+  };
+  pricing: {
+    title: string;
+    subtitle: string;
+    basic: {
+      name: string;
+      price: string;
+      usdPrice: string;
+      description: string;
+      features: string[];
+    };
+    professional: {
+      name: string;
+      price: string;
+      usdPrice: string;
+      description: string;
+      features: string[];
+    };
+    enterprise: {
+      name: string;
+      price: string;
+      description: string;
+      features: string[];
+    };
+    cta: string;
   };
   whyChooseUs: {
     title: string;
-  };
-}
-
-// Translation types for About
-export interface AboutTranslations {
-  title: string;
-  hero: {
-    subtitle: string;
-    title: string;
-    description: string;
-  };
-  founder: {
-    name: string;
-    role: string;
-    bio: string;
-  };
-  vision: {
-    title: string;
-    description: string;
-  };
-  approach: {
-    title: string;
-    description: string;
-  };
-  values: {
-    title: string;
-    items: Array<{
-      title: string;
-      description: string;
-      gradient?: string;
-    }>;
   };
 }
 
@@ -347,5 +346,4 @@ export interface Translations {
   contact: ContactTranslations;
   blog: BlogTranslations;
   services: ServiceTranslations;
-  about: AboutTranslations;
 }

@@ -49,8 +49,10 @@ export function getStaticPaths() {
         {/* Benefits Section */}
         <div class="lg:sticky lg:top-8 space-y-8 order-1 lg:order-2">
           {/* Trust Indicators */}
-          <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Why Choose Veblabs?</h3>
+          <div class="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8" dir={isRtl ? "rtl" : "ltr"}>
+            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+              {isRtl ? "لماذا تختار فيب لابز؟" : "Why Choose Veblabs?"}
+            </h3>
             <div class="space-y-6">
               <div class="flex items-start gap-4">
                 <div class="flex-shrink-0">
@@ -97,12 +99,20 @@ export function getStaticPaths() {
           </div>
 
           {/* Social Proof */}
-          <div class="bg-gray-50 dark:bg-gray-700/20 rounded-2xl p-8">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Trusted by Companies</h3>
-            <div class="grid grid-cols-3 gap-6">
-              <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
-              <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
-              <div class="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"></div>
+          <div class="bg-gray-50 dark:bg-gray-700/20 rounded-2xl p-8" dir={isRtl ? "rtl" : "ltr"}>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              {isRtl ? "موثوق به من قبل الشركات" : "Trusted by Companies"}
+            </h3>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="flex items-center justify-center ">
+                <img src="/images/brands/etisalat.png" alt="e&" class="h-32 rounded-lg opacity-75 hover:opacity-100 transition-opacity" />
+              </div>
+              <div class="flex items-center justify-center ">
+                <img src="/images/brands/emirates.png" alt="Emirates" class="h-32 rounded-lg opacity-75 hover:opacity-100 transition-opacity" />
+              </div>
+              <div class="flex items-center justify-center ">
+                <img src="/images/brands/meta.png" alt="Meta" class="h-32 rounded-lg opacity-75 hover:opacity-100 transition-opacity" />
+              </div>
             </div>
           </div>
         </div>

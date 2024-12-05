@@ -14,7 +14,7 @@ export const prerender = true;
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return Object.keys(supportedLanguages).flatMap(lang => 
-    projects.map(project => ({
+    projects.map((project: CollectionEntry<'projects'>) => ({
       params: { lang, slug: project.slug },
       props: { project },
     }))
@@ -76,7 +76,7 @@ const { Content } = await project.render();
               <div>
                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Technologies</dt>
                 <dd class="flex flex-wrap gap-2">
-                  {project.data.tags.map(tag => (
+                  {project.data.tags.map((tag: string) => (
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                       {tag}
                     </span>
@@ -86,22 +86,6 @@ const { Content } = await project.render();
             )}
           </dl>
         </div>
-
-        {project.data.results && project.data.results.length > 0 && (
-          <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Key Results</h3>
-            <ul class="space-y-3">
-              {project.data.results.map(result => (
-                <li class="flex items-start">
-                  <svg class="h-5 w-5 text-green-500 dark:text-green-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{result}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
 
         {/* Sticky CTA Section */}
         <div class="sticky top-24 mt-8">
@@ -123,12 +107,26 @@ const { Content } = await project.render();
       <div class="border-t border-gray-200 dark:border-gray-700 pt-16">
         <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Project Gallery</h2>
         <ProjectGallery 
-          images={project.data.gallery.map(img => ({
+          images={project.data.gallery.map((img: { url: string; alt?: string; caption?: string }) => ({
             url: img.url,
             alt: img.alt || img.caption || project.data.title,
             caption: img.caption
           }))}
         />
+      </div>
+    )}
+
+    {/* Project Tags Section */}
+    {project.data.tags && project.data.tags.length > 0 && (
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-16">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Technologies Used</h2>
+        <div class="flex flex-wrap gap-4">
+          {project.data.tags.map((tag: string) => (
+            <span class="px-4 py-2 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     )}
 

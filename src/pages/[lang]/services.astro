@@ -5,7 +5,9 @@ import Layout from '../../layouts/Layout.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import CtaOne from '../../components/Ctaone.astro';
 import Button from '../../components/Button.astro';
+import Badge from '../../components/Badge.astro';
 import type { ServiceTranslations } from '../../i18n/types';
+import Verticletab from '@/components/Verticletab.astro';
 
 export function getStaticPaths() {
   return Object.keys(supportedLanguages).map(lang => ({
@@ -16,6 +18,7 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const t = useTranslations(lang as keyof typeof supportedLanguages);
 const translations = await t('services') as ServiceTranslations;
+const heroT = await t('hero');
 
 const services = [
   {
@@ -31,22 +34,10 @@ const services = [
     features: translations?.services?.uiux?.features ?? []
   },
   {
-    title: translations?.services?.ecommerce?.title ?? "E-Commerce Solutions",
-    description: translations?.services?.ecommerce?.description ?? "Building secure online stores",
-    icon: "shopping-cart",
-    features: translations?.services?.ecommerce?.features ?? []
-  },
-  {
     title: translations?.services?.marketing?.title ?? "Digital Marketing",
     description: translations?.services?.marketing?.description ?? "Data-driven marketing strategies",
     icon: "chart-line",
     features: translations?.services?.marketing?.features ?? []
-  },
-  {
-    title: translations?.services?.cloud?.title ?? "Cloud Solutions",
-    description: translations?.services?.cloud?.description ?? "Scalable cloud infrastructure",
-    icon: "cloud",
-    features: translations?.services?.cloud?.features ?? []
   },
   {
     title: translations?.services?.support?.title ?? "Maintenance & Support",
@@ -55,6 +46,58 @@ const services = [
     features: translations?.services?.support?.features ?? []
   }
 ];
+
+// Default pricing data in case translations fail
+const defaultPricing = {
+  title: "Simple, Transparent Pricing",
+  subtitle: "Choose the perfect plan for your business needs",
+  basic: {
+    name: "Basic",
+    price: "4,999 AED",
+    usdPrice: "$1,360",
+    description: "Perfect for small businesses starting their digital journey",
+    features: [
+      "Modern Responsive Website",
+      "SEO Optimization",
+      "5 Pages",
+      "Contact Form",
+      "Social Media Integration",
+      "3 Months Support"
+    ]
+  },
+  professional: {
+    name: "Professional",
+    price: "9,999 AED",
+    usdPrice: "$2,720",
+    description: "Ideal for growing businesses needing more features",
+    features: [
+      "Everything in Basic",
+      "Custom Design",
+      "10 Pages",
+      "Blog Integration",
+      "Analytics Setup",
+      "6 Months Support",
+      "Performance Optimization"
+    ]
+  },
+  enterprise: {
+    name: "Enterprise",
+    price: "Contact Us",
+    description: "Custom solutions for large organizations",
+    features: [
+      "Everything in Professional",
+      "Custom Features",
+      "Unlimited Pages",
+      "Advanced Security",
+      "Priority Support",
+      "Custom Integrations",
+      "Training Sessions"
+    ]
+  },
+  cta: "Get Started"
+};
+
+const pricing = translations?.pricing ?? defaultPricing;
 ---
 
 <Layout title={translations?.title ?? "Services - Veblabs"}>
@@ -65,40 +108,20 @@ const services = [
     </div>
     
     <div class="relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32 pb-20">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-          {/* Left Content */}
-          <div class="flex-1 text-center lg:text-left">
-            <h1 class="font-inter text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400">
-                {translations?.hero?.heading ?? "Empowering Your Digital Success"}
-              </span>
-            </h1>
-            <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
-              {translations?.hero?.description ?? "We combine cutting-edge technology with creative innovation to deliver exceptional digital solutions."}
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button href={`/${lang}/contact`} variant="primary" text={translations?.hero?.startProject ?? "Start a Project"} />
-              <Button href={`/${lang}/works`} variant="secondary" text={translations?.hero?.viewWork ?? "View Our Work"} />
-            </div>
-          </div>
-
-          {/* Right Content - Abstract Shapes */}
-          <div class="relative w-full lg:w-1/2 h-[400px] lg:h-[500px]">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-primary/40 to-purple-500/40 rounded-full blur-3xl"></div>
-            <div class="absolute top-1/4 right-1/4 w-48 h-48 bg-gradient-to-br from-blue-500/30 to-primary/30 rounded-full blur-2xl"></div>
-            <div class="absolute bottom-1/4 left-1/3 w-60 h-60 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-2xl"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="relative w-80 h-80">
-                <div class="absolute inset-0 bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-3xl transform rotate-6"></div>
-                <div class="absolute inset-0 bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-3xl transform -rotate-6"></div>
-                <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-lg rounded-3xl">
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="font-inter text-6xl font-bold text-white/90">vebLabs</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32 pb-20">
+        {/* Centered Content */}
+        <div class="text-center">
+          <h1 class="font-inter text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400">
+              {heroT.services.heading}
+            </span>
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl mx-auto">
+            {heroT.services.description}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href={`/${lang}/contact`} variant="primary" text={heroT.services.startProject} />
+            <Button href={`/${lang}/works`} variant="secondary" text={heroT.services.viewWork} />
           </div>
         </div>
       </div>
@@ -106,26 +129,133 @@ const services = [
   </div>
 
   {/* Services Grid */}
-  <div id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    {/* Default Features Badges */}
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <div class="flex items-center space-x-2 rtl:space-x-reverse">
+        <Badge text="SEO Optimized" />
+        <Badge text="Lightning Fast" />
+        <Badge text="Fully Customizable" />
+        <Badge text="Multi-Language" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {services.map(service => (
         <ServiceCard
           title={service.title}
           description={service.description}
           icon={service.icon}
           features={service.features}
+          lang={lang}
         />
       ))}
     </div>
   </div>
 
-  {/* Why Choose Us Section */}
+  {/* Pricing Section */}
   <div class="bg-gray-50 dark:bg-gray-900/50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-          {translations?.whyChooseUs?.title ?? "Why Choose Veblabs?"}
+        <Badge text="Pricing" />
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          {pricing.title}
         </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          {pricing.subtitle}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Basic Plan */}
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              {pricing.basic.name}
+            </h3>
+            <div class="flex items-baseline mb-4">
+              <span class="text-4xl font-bold text-gray-900 dark:text-white">
+                {pricing.basic.price}
+              </span>
+              <span class={`${lang === 'ar' ? 'mr-2' : 'ml-2'} text-gray-500 dark:text-gray-400`}>
+                ({pricing.basic.usdPrice})
+              </span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              {pricing.basic.description}
+            </p>
+            <ul class="space-y-4 mb-8">
+              {pricing.basic.features.map((feature: string) => (
+                <li class="flex items-center">
+                  <svg class={`w-5 h-5 text-green-500 ${lang === 'ar' ? 'ml-2' : 'mr-2'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 dark:text-gray-400">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Button text={pricing.cta} href="#contact" variant="primary" class="w-full" />
+          </div>
+        </div>
+
+        {/* Professional Plan */}
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border-2 border-primary-500">
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              {pricing.professional.name}
+            </h3>
+            <div class="flex items-baseline mb-4">
+              <span class="text-4xl font-bold text-gray-900 dark:text-white">
+                {pricing.professional.price}
+              </span>
+              <span class={`${lang === 'ar' ? 'mr-2' : 'ml-2'} text-gray-500 dark:text-gray-400`}>
+                ({pricing.professional.usdPrice})
+              </span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              {pricing.professional.description}
+            </p>
+            <ul class="space-y-4 mb-8">
+              {pricing.professional.features.map((feature: string) => (
+                <li class="flex items-center">
+                  <svg class={`w-5 h-5 text-green-500 ${lang === 'ar' ? 'ml-2' : 'mr-2'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 dark:text-gray-400">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Button text={pricing.cta} href="#contact" variant="primary" class="w-full" />
+          </div>
+        </div>
+
+        {/* Enterprise Plan */}
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              {pricing.enterprise.name}
+            </h3>
+            <div class="flex items-baseline mb-4">
+              <span class="text-4xl font-bold text-gray-900 dark:text-white">
+                {pricing.enterprise.price}
+              </span>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              {pricing.enterprise.description}
+            </p>
+            <ul class="space-y-4 mb-8">
+              {pricing.enterprise.features.map((feature: string) => (
+                <li class="flex items-center">
+                  <svg class={`w-5 h-5 text-green-500 ${lang === 'ar' ? 'ml-2' : 'mr-2'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 dark:text-gray-400">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <Button text={pricing.cta} href="#contact" variant="primary" class="w-full" />
+          </div>
+        </div>
       </div>
     </div>
   </div>

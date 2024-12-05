@@ -6,9 +6,10 @@ export interface Props {
   href: string;
   variant: 'primary' | 'secondary';
   text: string;
+  class?: string;
 }
 
-const { href, variant, text } = Astro.props;
+const { href, variant, text, class: className } = Astro.props;
 const lang = getLanguageFromURL(Astro.url.pathname);
 const isRtl = lang === 'ar';
 
@@ -20,12 +21,14 @@ const variantClasses = {
   primary:
     'text-white bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 dark:from-blue-900 dark:via-blue-700 dark:to-purple-900 hover:scale-[1.02] shadow-md hover:shadow-lg hover:shadow-blue-500/25 dark:hover:shadow-blue-700/40 relative overflow-hidden',
   secondary:
-    'text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:scale-105 hover:shadow-lg',
-}[variant];
+    'text-gray-900 dark:text-white bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-[1.02] shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700'
+};
 
 const fontClass = isRtl ? 'font-arabic' : 'font-sans';
+const finalClass = `${baseClass} ${variantClasses[variant]} ${fontClass} ${className || ''}`;
+
 ---
-<a href={href} class:list={[baseClass, variantClasses, fontClass, "group"]}>
+<a href={href} class:list={[finalClass, "group"]}>
   <span class="relative z-10 flex items-center">
     {isRtl && (
       <svg

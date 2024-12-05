@@ -36,8 +36,7 @@
     "links": [
       { "name": "Our Works", "url": "/works" },
       { "name": "Services", "url": "/services" },
-      { "name": "Blog", "url": "/blog" },
-      { "name": "About Us", "url": "/about" }
+      { "name": "Blog", "url": "/blog" }
     ]
   },
   "services": {
@@ -49,10 +48,10 @@
       "Digital Marketing"
     ]
   },
+  "copyright": "All rights reserved.",
   "address": {
     "title": "Location",
     "line1": "Dubai Digital Park, Dubai Silicon Oasis",
     "line2": "Dubai, United Arab Emirates"
-  },
-  "copyright": "All rights reserved."
+  }
 }

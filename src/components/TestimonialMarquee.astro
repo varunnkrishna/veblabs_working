@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Badge from '../components/Badge.astro';
+import Button from '../components/Button.astro';
 import { getLanguageFromURL, useTranslations, getLanguageDirection } from '../i18n/utils';
 
 const lang = getLanguageFromURL(Astro.url.pathname);
@@ -19,7 +20,7 @@ const duplicatedTestimonials = [...testimonials, ...testimonials,...testimonials
       <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 leading-tight tracking-tight">
         {translations?.title || 'What Our Clients Say'}
       </h1>
-      <p class="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-4 text-lg font-medium tracking-normal">
+      <p class="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 text-lg font-medium tracking-normal">
         {translations?.description || "Don't just take our word for it. Here's what our amazing clients have to say about their experience working with us."}
       </p>
     </div>
@@ -54,6 +55,16 @@ const duplicatedTestimonials = [...testimonials, ...testimonials,...testimonials
           </div>
         ))}
       </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-center mt-8">
+      <Button
+        href={`/${lang}/contact`}
+        variant="primary"
+        text={translations?.cta || "Start Your Project"}
+      />
     </div>
   </div>
 </section>
