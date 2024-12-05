@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import BetaPopup from '../components/BetaPopup.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import { getLanguageFromURL } from '../i18n/utils';
 import { supportedLanguages } from '../i18n/config';
 
@@ -68,6 +69,8 @@ const schemaOrgData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <GoogleAnalytics />
 
     <!-- Prevent Flash of Wrong Theme -->
     <script is:inline>

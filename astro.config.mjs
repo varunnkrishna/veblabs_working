@@ -3,12 +3,18 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
+import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   site: 'https://veblabs.com',
   integrations: [
     tailwind(), 
     icon(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
     sitemap({
       i18n: {
         defaultLocale: 'en',
