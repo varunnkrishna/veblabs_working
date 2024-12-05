@@ -3,7 +3,7 @@ title: "KVK Estates Farmhouse"
 description: "A beautifully designed website showcasing a luxurious countryside farmhouse retreat"
 category: "Real Estate"
 client: "KVK Estates"
-image: "/images/projects/kvkestates-mockup.png"
+image: "/images/projects/kvkestates-mockup.webp"
 results: [
   "Effective showcase of farmhouse amenities",
   "Enhanced property visibility through digital presence",
