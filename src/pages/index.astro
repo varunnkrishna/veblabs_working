@@ -1,35 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import TestimonialMarquee from '../components/TestimonialMarquee.astro';
-import ProblemSection from '../components/ProblemSection.astro';
-import Verticletab from '../components/Verticletab.astro';
-import FeaturedWork from '../components/FeaturedWork.astro';
-import Multilanguage from "../components/Multilanguage.astro"
-import Features from '../components/Features.astro';
-import Comparision from '../components/Comparision.astro';
-import Faq from '../components/Faq.astro';
-import Hero from '../components/Hero.astro';
-import Ctaone from '../components/Ctaone.astro';
-import { defaultLang } from '../i18n/config';
+import { defaultLang, supportedLanguages } from '../i18n/config';
 
-// Redirect to default language
-return Astro.redirect(`/${defaultLang}`);
+// Get browser language
+const browserLang = Astro.request.headers.get('accept-language')?.split(',')[0].split('-')[0];
+
+// Check if browser language is supported, otherwise use default
+const targetLang = browserLang && Object.keys(supportedLanguages).includes(browserLang) 
+  ? browserLang 
+  : defaultLang;
+
+// Perform redirect with 301 status for better SEO
+return new Response("", {
+  status: 301,
+  headers: {
+    "Location": `/${targetLang}`
+  }
+});
 ---
-
-<Layout 
-  title="Professional Web Design Services | SEO-Optimized Websites | Veblabs"
-  description="Transform your online presence with Veblabs' professional web design services. We create SEO-optimized, high-converting websites that drive real business results."
->
- 
-
-
-  <Hero></Hero>
-  <Multilanguage></Multilanguage>
-  <TestimonialMarquee :visible/>
-  <Ctaone></Ctaone>
-  <FeaturedWork></FeaturedWork>
-  <Comparision></Comparision>
-  <Faq></Faq>
-  
-</Layout>

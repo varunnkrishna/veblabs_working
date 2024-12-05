@@ -3,17 +3,24 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import BetaPopup from '../components/BetaPopup.astro';
 import { getLanguageFromURL } from '../i18n/utils';
+import { supportedLanguages } from '../i18n/config';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
+  publishDate?: string;
+  modifiedDate?: string;
 }
 
 const { 
   title, 
   description = "Veblabs - Web Design & Development Services",
-  image = "/og-image.webp" // Updated to .webp
+  image = "/og-image.webp",
+  type = "website",
+  publishDate = new Date().toISOString(),
+  modifiedDate = new Date().toISOString()
 } = Astro.props;
 
 const { pathname } = Astro.url;
@@ -23,58 +30,180 @@ const lang = getLanguageFromURL(pathname);
 const siteUrl = import.meta.env.SITE ?? 'https://veblabs.com';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 const imageUrl = new URL(image.startsWith('http') ? image : image, siteUrl).toString();
+
+// Generate alternate language URLs
+const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({
+  href: new URL(pathname.replace(`/${lang}/`, `/${langCode}/`), siteUrl).toString(),
+  hreflang: langCode === 'en' ? 'en-US' : 'ar-SA'
+}));
+
+// Schema.org JSON-LD data
+const schemaOrgData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "VebLabs",
+  description,
+  url: canonicalURL.toString(),
+  sameAs: [
+    "https://www.linkedin.com/in/veblabs/",
+    "https://www.instagram.com/veblabs"
+  ],
+  publisher: {
+    "@type": "Organization",
+    name: "VebLabs",
+    logo: {
+      "@type": "ImageObject",
+      url: new URL("/images/veblabslogoblue.png", siteUrl).toString()
+    }
+  },
+  inLanguage: lang === 'en' ? 'en-US' : 'ar-SA',
+  datePublished: publishDate,
+  dateModified: modifiedDate
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Prevent Flash of Wrong Theme -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+
+    <style is:inline>
+      /* Initial state - page is invisible */
+      body {
+        opacity: 0;
+        transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
+        @apply bg-white dark:bg-black;
+      }
+      
+      /* When ready class is added, fade in */
+      body.ready {
+        opacity: 1;
+      }
+
+      /* Smooth theme transitions */
+      html {
+        transition: background-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Prevent FOUC and add transitions for all theme-related properties */
+      html.dark {
+        color-scheme: dark;
+      }
+
+      /* Global transition for all theme-related properties */
+      *, *::before, *::after {
+        transition-property: background-color, border-color, color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 400ms;
+      }
+
+      /* Respect reduced motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+
+    <script is:inline>
+      // Add ready class after everything is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('ready');
+      });
+
+      // Handle navigation transitions
+      document.addEventListener('astro:before-preparation', () => {
+        document.body.classList.remove('ready');
+      });
+
+      document.addEventListener('astro:after-preparation', () => {
+        document.body.classList.add('ready');
+      });
+    </script>
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content={lang === 'en' ? 'English' : 'Arabic'} />
+
+    <!-- Canonical and Alternate Language URLs -->
+    <link rel="canonical" href={canonicalURL} />
+    {alternateUrls.map(({ href, hreflang }) => (
+      <link rel="alternate" hreflang={hreflang} href={href} />
+    ))}
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ar_SA'} />
+    <meta property="og:site_name" content="VebLabs" />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalURL} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={imageUrl} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={imageUrl} />
 
-    <title>{title}</title>
-    <script is:inline>
-      // Initialize theme on page load
-      function initTheme() {
-        if (
-          localStorage.getItem('theme') === 'dark' ||
-          (!localStorage.getItem('theme') &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      }
-      initTheme();
-    </script>
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrgData)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Preconnect to domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
-  <body class="dark:bg-black">
+  <body class="dark:bg-black min-h-screen flex flex-col">
     <Nav />
-    <main class="pt-16">
+    <main class="flex-1 pt-16 relative">
       <slot />
     </main>
     <Footer lang={lang} />
     <BetaPopup />
+    <script>
+      // Dark mode initialization
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </body>
 </html>
 

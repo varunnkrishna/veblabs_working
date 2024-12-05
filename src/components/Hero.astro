@@ -63,11 +63,24 @@ const features = [
       </div>
     </div>
 
+    <div class="relative isolate">
+      <div
+        class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+        aria-hidden="true"
+      >
+        <div
+          class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] dark:from-[#1a365d] dark:to-[#1e40af] dark:opacity-40"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+        >
+        </div>
+      </div>
+    </div>
+
     <div class="relative flex flex-col items-center max-w-[1200px] mx-auto px-4">
       <div class="text-center">
         <div class="mb-8 max-w-[1000px] mx-auto">
           <!-- Main Heading -->
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6">
+          <h1 class="animate-title text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6">
             <span class="inline-block text-light-textPrimary dark:text-dark-textPrimary">
               {heroTranslations.mainHeading.part1}
             </span>
@@ -78,7 +91,7 @@ const features = [
           </h1>
 
           <!-- Subtitle -->
-          <p class="text-xl text-light-textSecondary dark:text-dark-textSecondary mt-6 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p class="animate-subtitle text-xl text-light-textSecondary dark:text-dark-textSecondary mt-6 mb-8 max-w-3xl mx-auto leading-relaxed">
             {heroTranslations.subtitle}
           </p>
         </div>
@@ -87,8 +100,8 @@ const features = [
           "flex flex-col sm:flex-row gap-4 justify-center mb-12",
           isRtl ? "sm:flex-row-reverse" : ""
         ]}>
-          <Button href="/get-in-touch" variant="primary" text={heroTranslations.cta.primary} />
-          <Button href="/works" variant="secondary" text={heroTranslations.cta.secondary} />
+          <Button class="animate-button" href="/get-in-touch" variant="primary" text={heroTranslations.cta.primary} />
+          <Button class="animate-button" href="/works" variant="secondary" text={heroTranslations.cta.secondary} />
         </div>
 
         <div class="flex justify-center items-center pt-8">
@@ -166,6 +179,59 @@ const features = [
 </section>
 
 <style>
+  @keyframes fadeUpIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-title {
+    animation: fadeUpIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-subtitle {
+    animation: fadeUpIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-description {
+    animation: fadeUpIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    opacity: 0;
+  }
+
+  .animate-button {
+    animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+    opacity: 0;
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-title,
+    .animate-subtitle,
+    .animate-description,
+    .animate-button {
+      animation: none;
+      opacity: 1;
+    }
+  }
+
   @keyframes float-slow {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }

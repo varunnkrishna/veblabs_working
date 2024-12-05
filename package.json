@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "^11.2.0",
     "@astrojs/markdown-remark": "^4.3.0",
+    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.0",
     "@iconify/json": "^2.2.277",
     "@studio-freight/lenis": "^1.0.42",

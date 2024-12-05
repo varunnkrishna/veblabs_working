@@ -59,6 +59,7 @@ export interface HeroTranslations {
 
 // Translation types for Navigation
 export interface NavTranslations {
+  logo: string;
   works: string;
   blog: string;
   services: string;

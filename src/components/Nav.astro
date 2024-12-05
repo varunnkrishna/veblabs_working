@@ -23,11 +23,10 @@ const getLanguageUrl = (newLang: string) => {
 const isRTL = lang === 'ar';
 ---
 
-<header class="fixed w-full bg-light-background/90 dark:bg-dark-background/90 backdrop-blur-md border-b border-light-border dark:border-dark-border z-50 font-sans" dir={isRTL ? 'rtl' : 'ltr'}>
-  <div class="container mx-auto px-4 md:px-6">
+<header class="fixed w-full top-0 z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50 transition-colors duration-200" dir={isRTL ? 'rtl' : 'ltr'}>  <div class="container mx-auto px-4 md:px-6">
     <div class="flex h-16 items-center justify-between">
       <!-- Left Section: Logo + Theme Toggle -->
-      <div class="flex items-center space-x-2">
+      <div class={`flex items-center ${isRTL ? 'space-x-reverse' : 'space-x-2'}`}>
         <a href={`/${lang}`} class="flex items-center">
           <img src="/images/veblabslogoblue.png" alt="VebLabs Logo" class="w-6 h-6 p-1" />
           {isRTL ? (
@@ -61,10 +60,7 @@ const isRTL = lang === 'ar';
 
       <!-- Center Section: Navigation Links (Desktop Only) -->
       <nav class="hidden md:flex items-center justify-center flex-1 mx-4">
-        <div class:list={[
-          "flex items-center",
-          isRTL ? "space-x-6 space-x-reverse" : "space-x-6"
-        ]}>
+        <div class="hidden lg:flex items-center gap-8">
           {navItems.map(item => (
             <a 
               href={item.href}
@@ -77,10 +73,7 @@ const isRTL = lang === 'ar';
       </nav>
 
       <!-- Right Section: CTA + Language (Desktop) / Language + Menu (Mobile) -->
-      <div class:list={[
-        "flex items-center",
-        isRTL ? "space-x-4 space-x-reverse" : "space-x-4"
-      ]}>
+      <div class={`flex items-center ${isRTL ? 'space-x-4 space-x-reverse' : 'space-x-4'}`}>
         <!-- Language Switcher -->
         <div class="relative">
           <button
@@ -91,7 +84,7 @@ const isRTL = lang === 'ar';
             aria-haspopup="true"
           >
             <span class={`${isRTL ? 'font-arabic' : ''}`}>{supportedLanguages[lang]}</span>
-            <svg class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+            <svg class={`h-4 w-4 ${isRTL ? 'mr-1' : 'ml-1'}`} viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
           </button>
@@ -133,7 +126,7 @@ const isRTL = lang === 'ar';
         >
           <span class="relative z-10 flex items-center gap-1">
             {navTranslations.cta}
-            <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+            <svg class={`w-4 h-4 transition-transform duration-300 ${isRTL ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`} viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
           </span>
@@ -158,23 +151,47 @@ const isRTL = lang === 'ar';
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-light-border dark:border-dark-border">
-    <div class="container mx-auto px-4 py-3 space-y-2">
-      {navItems.map(item => (
-        <a
-          href={item.href}
-          class="block px-3 py-2 text-base font-medium text-light-textSecondary dark:text-dark-textSecondary hover:text-light-primary dark:hover:text-dark-primary transition-colors"
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-0 z-50 bg-white dark:bg-gray-900 transform translate-x-full transition-transform duration-300 ease-in-out"
+  >
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between p-4 border-b dark:border-gray-800">
+        <div class="flex items-center">
+          <img src="/images/veblabslogoblue.png" alt="Logo" class="h-8 w-auto" />
+          {isRTL ? (
+            <span class="text-xl font-bold">
+              <span class="text-light-textPrimary dark:text-dark-textPrimary">فيب</span>
+              <span class="text-light-primary dark:text-dark-primary">لابز</span>
+            </span>
+          ) : (
+            <span class="text-xl font-bold">
+              <span class="text-light-textPrimary dark:text-dark-textPrimary">veb</span>
+              <span class="text-light-primary dark:text-dark-primary">Labs</span>
+            </span>
+          )}
+        </div>
+        <button
+          id="close-menu"
+          class="p-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
         >
-          {item.label}
-        </a>
-      ))}
-      <div class="border-t border-light-border dark:border-dark-border my-2"></div>
-      <a
-        href={`/${lang}/get-in-touch`}
-        class="block px-3 py-2 text-base font-medium text-light-primary dark:text-dark-primary hover:text-light-primary/80 dark:hover:text-dark-primary/80 transition-colors"
-      >
-        {navTranslations.cta}
-      </a>
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex-1 px-4 py-6">
+        <div class="flex flex-col space-y-6">
+          {navItems.map(item => (
+            <a
+              href={item.href}
+              class="text-lg font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
     </div>
   </div>
 </header>
@@ -251,11 +268,31 @@ const isRTL = lang === 'ar';
 
   // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const closeMenuButton = document.getElementById('close-menu');
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
 
-  mobileMenuButton?.addEventListener('click', function() {
-    const expanded = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', (!expanded).toString());
-    mobileMenu?.classList.toggle('hidden');
+  function toggleMenu() {
+    if (!mobileMenu) return;
+    const isOpen = mobileMenu.classList.contains('translate-x-0');
+    mobileMenu.classList.toggle('translate-x-0', !isOpen);
+    mobileMenu.classList.toggle('translate-x-full', isOpen);
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  }
+
+  mobileMenuButton?.addEventListener('click', toggleMenu);
+  closeMenuButton?.addEventListener('click', toggleMenu);
+
+  // Close menu when clicking outside
+  mobileMenu?.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      toggleMenu();
+    }
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('translate-x-0')) {
+      toggleMenu();
+    }
   });
 </script>
