@@ -7,8 +7,13 @@
         🚧 Beta Testing
       </h3>
       <p class="text-gray-600 dark:text-gray-300 text-sm">
-        This website is currently in beta. For project inquiries, please contact us at 
-        <a href="mailto:hi@veblabs.com" class="text-blue-600 dark:text-blue-400 hover:underline">hi@veblabs.com</a>
+        This website is currently in beta. For project inquiries, please contact us at{" "}
+        <a 
+          href="#" 
+          data-email="hi@veblabs.com"
+          class="text-blue-600 dark:text-blue-400 hover:underline"
+          onclick="window.location.href = 'mailto:' + this.dataset.email; return false;"
+        >hi[at]veblabs.com</a>
       </p>
     </div>
     <button 

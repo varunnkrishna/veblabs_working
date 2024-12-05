@@ -43,24 +43,15 @@ const features = [
     <!-- Background Pattern -->
     <div class="absolute inset-0 -z-10">
       <div class="absolute inset-0 bg-light-background dark:bg-dark-background"></div>
-      <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.02] dark:opacity-[0.05]"></div>
+      <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.02] dark:opacity-[0.05] bg-fixed"></div>
     </div>
 
-    <!-- Gradient Orbs -->
+    <!-- Simplified Gradient Background -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <!-- Main gradient sphere -->
       <div 
-        class="absolute -top-1/4 left-1/2 w-[800px] h-[800px] -translate-x-1/2 rounded-full"
-        style="background: radial-gradient(circle at center, rgba(59,130,246,0.08) 0%, rgba(147,51,234,0.08) 50%, transparent 70%);"
+        class="absolute -top-1/4 left-1/2 w-[800px] h-[800px] -translate-x-1/2 rounded-full opacity-10"
+        style="background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(147,51,234,0.3));"
       ></div>
-      
-      <!-- Animated floating orbs -->
-      <div class="absolute top-1/4 right-1/4 w-[300px] h-[300px] rounded-full animate-float-slow"
-        style="background: radial-gradient(circle at center, rgba(59,130,246,0.1) 0%, transparent 70%);">
-      </div>
-      <div class="absolute bottom-1/4 left-1/4 w-[200px] h-[200px] rounded-full animate-float-slower"
-        style="background: radial-gradient(circle at center, rgba(147,51,234,0.1) 0%, transparent 70%);">
-      </div>
     </div>
 
     <div class="relative isolate">
@@ -80,12 +71,12 @@ const features = [
       <div class="text-center">
         <div class="mb-8 max-w-[1000px] mx-auto">
           <!-- Main Heading -->
-          <h1 class="animate-title text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6">
             <span class="inline-block text-light-textPrimary dark:text-dark-textPrimary">
               {heroTranslations.mainHeading.part1}
             </span>
             <br class="hidden sm:block" />
-            <span class="inline-block bg-gradient-to-r from-light-primary via-light-secondary to-light-primary dark:from-dark-primary dark:via-dark-secondary dark:to-dark-primary bg-[length:200%_auto] animate-gradient text-transparent bg-clip-text">
+            <span class="inline-block bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary text-transparent bg-clip-text">
               {heroTranslations.mainHeading.part2}
             </span>
           </h1>
@@ -201,18 +192,8 @@ const features = [
     }
   }
 
-  .animate-title {
-    animation: fadeUpIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    opacity: 0;
-  }
-
   .animate-subtitle {
     animation: fadeUpIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
-    opacity: 0;
-  }
-
-  .animate-description {
-    animation: fadeUpIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
     opacity: 0;
   }
 
@@ -223,9 +204,7 @@ const features = [
 
   /* Respect reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
-    .animate-title,
     .animate-subtitle,
-    .animate-description,
     .animate-button {
       animation: none;
       opacity: 1;

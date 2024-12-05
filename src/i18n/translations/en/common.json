@@ -1,6 +1,7 @@
 {
   "languageName": "English",
   "switchToArabic": "العربية",
+  "closeMenu": "Close menu",
   "languageNotice": {
     "title": "Note",
     "message": "This content is available in English only for better explanation of project details and services"

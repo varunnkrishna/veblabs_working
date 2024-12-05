@@ -71,6 +71,7 @@ export interface CommonTranslations {
   languageName: string;
   switchToArabic?: string;
   switchToEnglish?: string;
+  closeMenu: string;
   languageNotice: {
     title: string;
     message: string;

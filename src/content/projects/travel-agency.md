@@ -3,7 +3,7 @@ title: "Padmavati Travels Website"
 description: "A professional travel agency website showcasing tour packages and travel services"
 category: "Technology"
 client: "Padmavati Travels"
-image: "/images/projects/padmavatitravels-mockup.png"
+image: "/images/projects/padmavatitravels-mockup.webp"
 results: [
   "Enhanced online visibility for travel packages",
   "Improved customer engagement through digital platform",
