@@ -49,12 +49,23 @@ export default defineConfig({
     mode: "directory"
   }),
   vite: {
+    build: {
+      cssMinify: true,
+      cssCodeSplit: true,
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        },
+      },
+    },
     css: {
       preprocessorOptions: {
         css: {
           additionalData: `@import "/src/styles/global.css";`,
         },
       },
+      devSourcemap: true,
     },
     ssr: {
       noExternal: ['path-to-regexp']

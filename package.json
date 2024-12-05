@@ -30,6 +30,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "terser": "^5.37.0",
     "wrangler": "^3.91.0"
   }
 }
