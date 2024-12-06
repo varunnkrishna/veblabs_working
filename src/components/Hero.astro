@@ -71,17 +71,16 @@ const features = [
       <div class="text-center">
         <div class="mb-8 max-w-[1000px] mx-auto">
           <!-- Main Heading -->
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6">
-            <span class="inline-block text-light-textPrimary dark:text-dark-textPrimary font-display">
-              {heroTranslations.mainHeading.part1}
-            </span>
-            <span class="inline-block bg-gradient-to-r from-light-primary via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 text-transparent bg-clip-text font-display">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6 text-light-textPrimary dark:text-dark-textPrimary font-display">
+            {heroTranslations.mainHeading.part1}
+            {' '}
+            <span class="text-blue-600 dark:text-blue-400">
               {heroTranslations.mainHeading.part2}
             </span>
           </h1>
 
           <!-- Subtitle -->
-          <p class="text-xl text-light-textSecondary dark:text-dark-textSecondary mt-6 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p class="text-base sm:text-lg text-light-textSecondary/80 dark:text-dark-textSecondary/80 mt-4 mb-6 max-w-2xl mx-auto leading-relaxed">
             {heroTranslations.subtitle}
           </p>
         </div>
