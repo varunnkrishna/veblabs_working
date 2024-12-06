@@ -46,7 +46,35 @@ export default defineConfig({
   ],
   output: "hybrid",
   adapter: cloudflare({
-    mode: "directory"
+    mode: "directory",
+    runtime: {
+      mode: "local",
+      type: "pages"
+    },
+    build: {
+      baseDirectory: "dist",
+      assetsInclude: ['**/*.woff2', '**/*.css'],
+      headers: [
+        {
+          source: "**/*.woff2",
+          headers: [
+            {
+              key: "Content-Type",
+              value: "font/woff2"
+            }
+          ]
+        },
+        {
+          source: "**/*.css",
+          headers: [
+            {
+              key: "Content-Type",
+              value: "text/css"
+            }
+          ]
+        }
+      ]
+    }
   }),
   vite: {
     build: {
