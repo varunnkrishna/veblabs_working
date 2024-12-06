@@ -10,7 +10,7 @@ const translations = await t('testimonial');
 const isRTL = getLanguageDirection(lang) === 'rtl';
 
 const testimonials = await getCollection('testimonials');
-const duplicatedTestimonials = [...testimonials, ...testimonials,...testimonials]; // Duplicate for seamless loop
+const duplicatedTestimonials = [...testimonials, ...testimonials]; // Duplicate for seamless loop
 ---
 
 <section title="Testimonials" class="bg-blue-950/5 dark:bg-blue-950/50 py-24 font-inter">

@@ -3,7 +3,7 @@ title: "SSP Infotech Services Website"
 description: "A professional website showcasing software testing and quality assurance services"
 category: "Technology"
 client: "SSP Infotech Services"
-image: "/images/projects/ttsps-mockup.png"
+image: "/images/projects/ttsps-mockup.webp"
 results: [
   "Enhanced online presence for software testing services",
   "Improved client engagement through service showcase",

@@ -3,7 +3,7 @@ title: "Perfect Dental Sites"
 description: "A specialized web platform for dental practices to establish their online presence"
 category: "Healthcare"
 client: "Perfect Dental Sites"
-image: "/images/projects/pds-mockup.png"
+image: "/images/projects/pds-mockup.webp"
 results: [
   "Successfully launched and maintained dental practice websites",
   "Improved online visibility for dental practices",
