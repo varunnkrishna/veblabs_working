@@ -80,6 +80,40 @@ export interface CommonTranslations {
     title: string;
     description: string;
   };
+  meta: {
+    home: {
+      title: string;
+      description: string;
+    };
+    services: {
+      title: string;
+      description: string;
+    };
+    works: {
+      title: string;
+      description: string;
+    };
+    blog: {
+      title: string;
+      description: string;
+    };
+    contact: {
+      title: string;
+      description: string;
+    };
+    'get-in-touch': {
+      title: string;
+      description: string;
+    };
+    sitemap: {
+      title: string;
+      description: string;
+    };
+    accessibility: {
+      title: string;
+      description: string;
+    };
+  };
 }
 
 // Translation types for Vertical Tabs

@@ -4,16 +4,31 @@ import Footer from '../components/Footer.astro';
 import BetaPopup from '../components/BetaPopup.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import { getLanguageFromURL } from '../i18n/utils';
+import { loadTranslations } from '../i18n/utils';
+import type { Translations } from '../i18n/types';
 import { supportedLanguages } from '../i18n/config';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   image?: string;
   type?: 'website' | 'article';
   publishDate?: string;
   modifiedDate?: string;
+  theme?: string;
+  pageType?: 'home' | 'services' | 'works' | 'blog' | 'contact' | 'get-in-touch' | 'sitemap' | 'accessibility';
 }
+
+const { pathname } = Astro.url;
+const lang = getLanguageFromURL(pathname);
+
+// Load translations
+const common = await loadTranslations(lang, 'common');
+const t = common;
+
+// Get the canonical URL safely
+const siteUrl = new URL(Astro.url.pathname, import.meta.env.SITE ?? 'https://veblabs.com').origin;
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
 
 const { 
   title, 
@@ -21,16 +36,31 @@ const {
   image = "/og-image.webp",
   type = "website",
   publishDate = new Date().toISOString(),
-  modifiedDate = new Date().toISOString()
+  modifiedDate = new Date().toISOString(),
+  theme = '',
+  pageType = 'home'
 } = Astro.props;
 
-const { pathname } = Astro.url;
-const lang = getLanguageFromURL(pathname);
+const getPageTypeFromURL = (path: string): Props['pageType'] => {
+  const cleanPath = path.replace(/^\/[a-z]{2}\//, '').replace(/\/$/, '');
+  switch (cleanPath) {
+    case '': return 'home';
+    case 'services': return 'services';
+    case 'works': return 'works';
+    case 'blog': return 'blog';
+    case 'contact': return 'contact';
+    case 'get-in-touch': return 'get-in-touch';
+    case 'sitemap': return 'sitemap';
+    case 'accessibility': return 'accessibility';
+    default: return 'home';
+  }
+};
 
-// Get the canonical URL safely
-const siteUrl = new URL(Astro.url.pathname, import.meta.env.SITE ?? 'https://veblabs.com').origin;
-const canonicalURL = new URL(Astro.url.pathname, siteUrl);
-const imageUrl = new URL(image.startsWith('http') ? image : image, siteUrl).toString();
+const currentPageType = pageType || getPageTypeFromURL(pathname);
+
+// Use provided title/description or fallback to translations
+const pageTitle = title || common.meta?.[currentPageType]?.title || 'VEB Labs';
+const pageDescription = description || common.meta?.[currentPageType]?.description || 'Professional web development and digital solutions';
 
 // Generate alternate language URLs
 const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({
@@ -43,7 +73,7 @@ const schemaOrgData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "VebLabs",
-  description,
+  description: pageDescription,
   url: canonicalURL.toString(),
   sameAs: [
     "https://www.linkedin.com/in/veblabs/",
@@ -61,10 +91,13 @@ const schemaOrgData = {
   datePublished: publishDate,
   dateModified: modifiedDate
 };
+
+const imageUrl = new URL(image.startsWith('http') ? image : image, siteUrl).toString();
+
 ---
 
 <!doctype html>
-<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'} class={theme}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -253,9 +286,9 @@ const schemaOrgData = {
     </script>
 
     <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
     <meta name="robots" content="index, follow" />
     <meta name="language" content={lang === 'en' ? 'English' : 'Arabic'} />
 
@@ -268,8 +301,8 @@ const schemaOrgData = {
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'ar_SA'} />
     <meta property="og:site_name" content="VebLabs" />
@@ -277,8 +310,8 @@ const schemaOrgData = {
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
     <meta property="twitter:image" content={imageUrl} />
 
     <!-- Schema.org JSON-LD -->
@@ -337,6 +370,24 @@ const schemaOrgData = {
       // Add ready class when content is loaded
       document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('ready');
+      });
+    </script>
+    <script>
+      // Defer non-critical script loading
+      window.addEventListener('load', () => {
+        // Load hoisted scripts after page load
+        const scripts = document.querySelectorAll('script[data-astro-hoisted]');
+        scripts.forEach(script => {
+          if (!script.hasAttribute('loaded')) {
+            script.setAttribute('loaded', 'true');
+            const newScript = document.createElement('script');
+            if (script instanceof HTMLScriptElement) {
+              newScript.src = script.src;
+            }
+            newScript.type = 'module';
+            document.body.appendChild(newScript);
+          }
+        });
       });
     </script>
   </body>

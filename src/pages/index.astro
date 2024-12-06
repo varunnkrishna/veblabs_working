@@ -1,22 +1,18 @@
 ---
-import { defaultLang, supportedLanguages } from '../i18n/config';
+import { defaultLang } from '../i18n/config';
 
-// Get browser language
-const browserLang = Astro.request.headers.get('accept-language')?.split(',')[0].split('-')[0];
-
-// Check if browser language is supported, otherwise use default
-const targetLang = browserLang && Object.keys(supportedLanguages).includes(browserLang) 
-  ? browserLang 
-  : defaultLang;
-
-// Perform redirect with 307 status for language detection
-return new Response("", {
-  status: 307,
-  headers: {
-    "Location": `/${targetLang}`,
-    "Cache-Control": "no-cache, no-store, must-revalidate",
-    "Pragma": "no-cache",
-    "Expires": "0"
-  }
-});
+// Default redirect path (actual redirect will be handled by middleware)
+const redirectPath = `/${defaultLang}`;
 ---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VEB Labs</title>
+    <meta name="viewport" content="width=device-width" />
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>

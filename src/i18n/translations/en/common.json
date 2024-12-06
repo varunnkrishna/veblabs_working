@@ -9,5 +9,39 @@
   "ctaBanner": {
     "title": "Ready to Build Your Website?",
     "description": "Get your professional website built by our expert team. Let's turn your vision into reality"
+  },
+  "meta": {
+    "home": {
+      "title": "VEB Labs - Professional Web Development & Digital Solutions in Dubai",
+      "description": "Transform your digital presence with VEB Labs' expert web development, UI/UX design, and digital solutions. Based in Dubai, serving globally."
+    },
+    "services": {
+      "title": "Web Development & Digital Services | VEB Labs Dubai",
+      "description": "Discover our comprehensive range of web development, digital transformation, and software solutions. From custom development to cloud solutions, we deliver excellence."
+    },
+    "works": {
+      "title": "Portfolio & Case Studies - Web Development Projects | VEB Labs",
+      "description": "Explore our successful web development and digital transformation projects. See how we've helped businesses achieve their digital goals through innovative solutions."
+    },
+    "blog": {
+      "title": "Digital Insights & Web Development Blog | VEB Labs",
+      "description": "Stay updated with the latest insights in web development, digital trends, and technology innovations. Expert articles and guides from our development team."
+    },
+    "contact": {
+      "title": "Contact VEB Labs | Web Development Consultation",
+      "description": "Get in touch with VEB Labs for your web development and digital solution needs. Schedule a free consultation to discuss your project."
+    },
+    "get-in-touch": {
+      "title": "Schedule a Free Consultation | VEB Labs Dubai",
+      "description": "Book a free consultation with VEB Labs' web development experts. Let's discuss your project requirements and digital goals."
+    },
+    "sitemap": {
+      "title": "Site Map - VEB Labs Website Navigation",
+      "description": "Navigate through VEB Labs' website structure. Find all our services, portfolio, blog posts, and resources in one place."
+    },
+    "accessibility": {
+      "title": "Accessibility Statement | VEB Labs Website",
+      "description": "Learn about VEB Labs' commitment to web accessibility. Our guidelines and measures to ensure inclusive digital experiences."
+    }
   }
 }
