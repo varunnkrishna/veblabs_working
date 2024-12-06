@@ -33,6 +33,8 @@ const features = [
     icon: "fa-language"
   }
 ];
+
+
 ---
 <section class:list={[
   "relative min-h-[90vh] flex flex-col items-center justify-center",
@@ -71,13 +73,14 @@ const features = [
       <div class="text-center">
         <div class="mb-8 max-w-[1000px] mx-auto">
           <!-- Main Heading -->
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] mb-6 text-light-textPrimary dark:text-dark-textPrimary font-display">
-            {heroTranslations.mainHeading.part1}
-            {' '}
-            <span class="text-blue-600 dark:text-blue-400">
-              {heroTranslations.mainHeading.part2}
-            </span>
-          </h1>
+<!-- Main Heading - Optimized for LCP -->
+<h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-bold tracking-tight leading-[1.1] mb-6 text-light-textPrimary dark:text-dark-textPrimary">
+  {heroTranslations.mainHeading.part1}
+  {' '}
+  <span class="text-blue-600 dark:text-blue-400">
+    {heroTranslations.mainHeading.part2}
+  </span>
+</h1>
 
           <!-- Subtitle -->
           <p class="text-base sm:text-lg text-light-textSecondary/80 dark:text-dark-textSecondary/80 mt-4 mb-6 max-w-2xl mx-auto leading-relaxed">

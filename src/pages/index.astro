@@ -9,11 +9,14 @@ const targetLang = browserLang && Object.keys(supportedLanguages).includes(brows
   ? browserLang 
   : defaultLang;
 
-// Perform redirect with 301 status for better SEO
+// Perform redirect with 307 status for language detection
 return new Response("", {
-  status: 301,
+  status: 307,
   headers: {
-    "Location": `/${targetLang}`
+    "Location": `/${targetLang}`,
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0"
   }
 });
 ---

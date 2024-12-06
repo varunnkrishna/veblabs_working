@@ -23,11 +23,6 @@ export function getStaticPaths() {
 const { pathname } = Astro.url;
 const lang = getLanguageFromURL(pathname);
 
-// Redirect from root to language-specific home page
-if (pathname === '/') {
-  return Astro.redirect('/en');
-}
-
 const t = useTranslations(lang as keyof typeof supportedLanguages);
 ---
 <Layout 
