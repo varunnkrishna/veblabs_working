@@ -10,8 +10,7 @@ const validRoutes = new Set([
   'contact',
   'get-in-touch',
   'services',
-  'works',
-  'sitemap'
+  'works'
 ]);
 
 export const onRequest = defineMiddleware(async (context, next) => {

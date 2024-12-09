@@ -7,6 +7,10 @@ import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   site: 'https://veblabs.com',
+  trailingSlash: 'never',
+  build: {
+    format: 'directory'
+  },
   integrations: [
     tailwind(), 
     icon(),
@@ -27,20 +31,37 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       serialize(item) {
-        // Special handling for language-specific URLs
-        if (item.url.includes('/en/') || item.url.includes('/ar/')) {
+        // Remove trailing slashes from URLs
+        const url = item.url.endsWith('/') ? item.url.slice(0, -1) : item.url;
+        
+        // Add root URL with highest priority
+        if (url === 'https://veblabs.com') {
           return {
             ...item,
+            url,
+            priority: 1.0,
+            changefreq: 'daily'
+          };
+        }
+        
+        // Special handling for language-specific URLs
+        if (url.includes('/en/') || url.includes('/ar/')) {
+          return {
+            ...item,
+            url,
             // Higher priority for main pages
-            priority: item.url.split('/').length <= 3 ? 1.0 : 0.7,
-            // Add language-specific alternates
+            priority: url.split('/').length <= 3 ? 0.9 : 0.7,
+            // Add language-specific alternates without trailing slashes
             links: [
-              { lang: 'en', url: item.url.replace(/\/(en|ar)\//, '/en/') },
-              { lang: 'ar', url: item.url.replace(/\/(en|ar)\//, '/ar/') }
+              { lang: 'en', url: url.replace(/\/(en|ar)\//, '/en') },
+              { lang: 'ar', url: url.replace(/\/(en|ar)\//, '/ar') }
             ]
           };
         }
-        return item;
+        return {
+          ...item,
+          url
+        };
       }
     })
   ],
