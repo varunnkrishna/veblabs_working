@@ -16,7 +16,7 @@ interface Props {
   publishDate?: string;
   modifiedDate?: string;
   theme?: string;
-  pageType?: 'home' | 'services' | 'works' | 'blog' | 'contact' | 'get-in-touch' | 'sitemap' | 'accessibility';
+  pageType?: 'home' | 'services' | 'works' | 'blog' | 'contact' | 'get-in-touch';
 }
 
 const { pathname } = Astro.url;
@@ -55,8 +55,6 @@ const getPageTypeFromURL = (path: string): Props['pageType'] => {
     case 'blog': return 'blog';
     case 'contact': return 'contact';
     case 'get-in-touch': return 'get-in-touch';
-    case 'sitemap': return 'sitemap';
-    case 'accessibility': return 'accessibility';
     default: return 'home';
   }
 };
@@ -71,8 +69,20 @@ const pageTitle = title
 
 // Create language-specific meta description
 const pageDescription = description || (lang === 'ar' 
-  ? 'شركة تصميم وتطوير مواقع الويب في دبي. نقدم خدمات تطوير المواقع الإلكترونية وتحسين محركات البحث وتطوير التطبيقات.'
-  : 'Web Design & Development Agency in Dubai. We offer website development, SEO, and application development services.');
+  ? currentPageType === 'works' 
+    ? 'استكشف مجموعة مشاريعنا المتنوعة في تصميم وتطوير المواقع الإلكترونية. نقدم حلولاً مبتكرة تلبي احتياجات عملائنا.'
+    : currentPageType === 'services'
+    ? 'اكتشف خدماتنا المتخصصة في تطوير المواقع الإلكترونية وتحسين محركات البحث وتطوير التطبيقات. نقدم حلولاً تقنية متكاملة لنمو أعمالك.'
+    : currentPageType === 'contact'
+    ? 'تواصل معنا للحصول على استشارة مجانية حول مشروعك. فريقنا جاهز لمساعدتك في تحقيق رؤيتك الرقمية.'
+    : 'شركة تصميم وتطوير مواقع الويب في دبي. نقدم خدمات تطوير المواقع الإلكترونية وتحسين محركات البحث وتطوير التطبيقات.'
+  : currentPageType === 'works'
+    ? 'Explore our diverse portfolio of web design and development projects. We deliver innovative solutions tailored to our clients\' needs.'
+    : currentPageType === 'services'
+    ? 'Discover our specialized services in web development, SEO, and application development. We provide comprehensive tech solutions for your business growth.'
+    : currentPageType === 'contact'
+    ? 'Get in touch with us for a free consultation about your project. Our team is ready to help bring your digital vision to life.'
+    : 'Web Design & Development Agency in Dubai. We offer website development, SEO, and application development services.');
 
 // Generate alternate language URLs
 const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({

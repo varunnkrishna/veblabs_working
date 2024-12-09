@@ -31,10 +31,20 @@ const t = useTranslations(lang as keyof typeof supportedLanguages);
 const navT = await t('nav');
 const footerT = await t('footer');
 const commonT = await t('common');
+const projectsT = await t('projects');
 const { Content } = await project.render();
+
+// Get translated project data
+const translatedProject = projectsT.projects[project.slug as keyof typeof projectsT.projects] || project.data;
+const title = translatedProject.title || project.data.title;
+const description = translatedProject.description || project.data.description;
+
 ---
 
-<Layout title={`${project.data.title} | ${navT.works} | Veblabs`}>
+<Layout 
+  title={`${title} | ${navT.works} | Veblabs`}
+  description={description}
+>
   <ProjectHeader project={project.data} />
   
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

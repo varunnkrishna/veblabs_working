@@ -11,7 +11,6 @@ const validRoutes = new Set([
   'get-in-touch',
   'services',
   'works',
-  'accessibility',
   'sitemap'
 ]);
 

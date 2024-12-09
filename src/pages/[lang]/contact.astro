@@ -11,8 +11,15 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as keyof typeof supportedLanguages);
+const navT = await t('nav');
+
 ---
-<Layout title="Contact | VebLabs">
+<Layout 
+  title={`${navT?.cta || 'Contact'} | VebLabs`}
+  description={lang === 'ar' 
+    ? 'تواصل مع فريقنا المتخصص للحصول على استشارة مجانية حول مشروعك. نحن هنا لمساعدتك في تحقيق رؤيتك الرقمية.'
+    : 'Connect with our expert team for a free consultation about your project. We\'re here to help bring your digital vision to life.'}
+>
   <main>
     <h1>Contact Us</h1>
     <!-- Your contact page content here -->

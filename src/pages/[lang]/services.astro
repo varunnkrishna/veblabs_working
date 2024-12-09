@@ -100,7 +100,12 @@ const defaultPricing = {
 const pricing = translations?.pricing ?? defaultPricing;
 ---
 
-<Layout title={translations?.title ?? "Services - Veblabs"}>
+<Layout 
+  title={translations?.title ?? "Services - Veblabs"}
+  description={lang === 'ar' 
+    ? 'نقدم خدمات احترافية في تطوير المواقع الإلكترونية، تصميم واجهات المستخدم، تحسين محركات البحث، وحلول التجارة الإلكترونية.'
+    : 'Professional web development, UI/UX design, SEO optimization, and e-commerce solutions. Transform your digital presence with our expert services.'}
+>
   {/* Hero Section */}
   <div class="relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-light-primary/30 via-light-primary/5 to-transparent dark:from-dark-primary/20 dark:via-dark-primary/10">

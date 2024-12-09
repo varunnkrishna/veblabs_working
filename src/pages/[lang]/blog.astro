@@ -40,7 +40,12 @@ const categories = [...new Set(posts.map((post: CollectionEntry<'posts'>) => pos
 console.log('Blog Translations:', blogT);
 ---
 
-<Layout title={`${navT?.blog || 'Blog'} | Veblabs`}>
+<Layout 
+  title={`${navT?.blog || 'Blog'} | Veblabs`}
+  description={lang === 'ar' 
+    ? 'اكتشف أحدث المقالات والأفكار حول تصميم وتطوير المواقع الإلكترونية، وتحسين محركات البحث، والتسويق الرقمي.'
+    : 'Discover our latest articles and insights about web design, development, SEO, and digital marketing strategies.'}
+>
   <div class="relative bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
     <div class="absolute inset-0">
       <div class="absolute inset-0 bg-[url('/images/grid.svg')] opacity-10"></div>

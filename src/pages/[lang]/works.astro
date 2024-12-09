@@ -22,7 +22,12 @@ const categories = [...new Set(projects.map((project: CollectionEntry<'projects'
 
 ---
 
-<Layout title={`${navT.works} | Veblabs`}>
+<Layout 
+  title={`${navT.works} | Veblabs`}
+  description={lang === 'ar' 
+    ? 'استكشف مجموعة مشاريعنا المتنوعة في تصميم وتطوير المواقع الإلكترونية. نقدم حلولاً مبتكرة تلبي احتياجات عملائنا في مختلف القطاعات.'
+    : 'Explore our diverse portfolio of web design and development projects. We deliver innovative solutions tailored to our clients\' needs across various industries.'}
+>
   {/* Hero Section */}
   <div class="relative bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
     <div class="absolute inset-0">

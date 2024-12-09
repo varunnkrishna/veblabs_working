@@ -105,14 +105,6 @@ export interface CommonTranslations {
       title: string;
       description: string;
     };
-    sitemap: {
-      title: string;
-      description: string;
-    };
-    accessibility: {
-      title: string;
-      description: string;
-    };
   };
 }
 
