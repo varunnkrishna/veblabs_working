@@ -1,18 +1,7 @@
 ---
 import { defaultLang } from '../i18n/config';
 
-// Default redirect path (actual redirect will be handled by middleware)
-const redirectPath = `/${defaultLang}`;
+// Server-side redirect to default language
+export const prerender = false;
+const response = Astro.redirect(`/${defaultLang}`, 301);
 ---
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>VEB Labs</title>
-    <meta name="viewport" content="width=device-width" />
-  </head>
-  <body>
-    <p>Redirecting...</p>
-  </body>
-</html>

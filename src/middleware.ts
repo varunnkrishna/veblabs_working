@@ -2,6 +2,19 @@ import { defineMiddleware } from 'astro:middleware';
 import { getLanguageFromURL } from './i18n/utils';
 import { defaultLang, supportedLanguages } from './i18n/config';
 
+// Define valid routes that should have language prefixes
+const validRoutes = new Set([
+  '',
+  'about',
+  'blog',
+  'contact',
+  'get-in-touch',
+  'services',
+  'works',
+  'accessibility',
+  'sitemap'
+]);
+
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname, hostname } = context.url;
   
@@ -18,12 +31,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return next();
   }
 
-  // Get language from URL
-  const lang = getLanguageFromURL(pathname);
-  const hasLangPrefix = pathname.match(/^\/[a-z]{2}\//);
-
+  // Get the path segments
+  const segments = pathname.split('/').filter(Boolean);
+  const firstSegment = segments[0];
+  
+  // Check if the first segment is a valid language
+  const isValidLang = Object.keys(supportedLanguages).includes(firstSegment);
+  
   // If no language prefix or invalid language, redirect
-  if (!hasLangPrefix || !Object.keys(supportedLanguages).includes(lang)) {
+  if (!isValidLang) {
     // Get user's preferred language from browser
     const acceptLanguage = context.request.headers.get('accept-language');
     let preferredLang = defaultLang;
@@ -37,12 +53,23 @@ export const onRequest = defineMiddleware(async (context, next) => {
       ) || defaultLang;
     }
 
-    // Create new path with language prefix
-    const pathWithoutLang = hasLangPrefix ? pathname.substring(3) : pathname;
-    const newPath = `/${preferredLang}${pathWithoutLang === '/' ? '' : pathWithoutLang}`;
-    
-    // Always redirect to language-prefixed URL
-    return context.redirect(newPath, 301);
+    // If it's a valid route without language prefix, redirect to language version
+    const route = segments[0] || '';
+    if (validRoutes.has(route)) {
+      const newPath = `/${preferredLang}${pathname}`;
+      return context.redirect(newPath, 301);
+    }
+
+    // For invalid or root paths, redirect to language home
+    return context.redirect(`/${preferredLang}`, 301);
+  }
+
+  // Handle invalid routes with language prefix
+  if (segments.length > 1) {
+    const route = segments[1] || '';
+    if (!validRoutes.has(route) && !route.startsWith('blog/') && !route.startsWith('works/')) {
+      return context.redirect(`/${firstSegment}`, 301);
+    }
   }
 
   // Continue to the next middleware/route
