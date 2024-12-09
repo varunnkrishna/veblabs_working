@@ -3,6 +3,7 @@ User-agent: *
 Allow: /
 Allow: /en/
 Allow: /ar/
+Crawl-delay: 5
 
 # Prevent duplicate content indexing
 Disallow: /*?*
@@ -23,5 +24,5 @@ User-agent: SemrushBot
 Crawl-delay: 10
 
 # Sitemaps
+Sitemap: https://veblabs.com/sitemap.xml
 Sitemap: https://veblabs.com/sitemap-index.xml
-Sitemap: https://veblabs.com/sitemap-0.xml

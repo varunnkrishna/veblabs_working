@@ -357,6 +357,19 @@ export interface ServiceTranslations {
   };
 }
 
+// Translation types for 404 page
+export interface NotFoundTranslations {
+  meta: {
+    title: string;
+    description: string;
+  };
+  message: string;
+  buttons: {
+    home: string;
+    contact: string;
+  };
+}
+
 // All translation namespaces
 export interface Translations {
   hero: HeroTranslations;
@@ -374,4 +387,5 @@ export interface Translations {
   contact: ContactTranslations;
   blog: BlogTranslations;
   services: ServiceTranslations;
+  "404": NotFoundTranslations;
 }

@@ -10,7 +10,24 @@ const validRoutes = new Set([
   'contact',
   'get-in-touch',
   'services',
-  'works'
+  'works',
+  'quote'
+]);
+
+// URL redirects map for old URLs
+const redirectMap = new Map([
+  // Blog post redirects
+  ['/why-your-website-obsolete-2025', '/web-design-trends-2025'],
+  ['/comparing-web-development-dubai', '/website-design-in-dubai'],
+  ['/professional-web-development', '/website-design-in-dubai'],
+  // Add more redirects for commonly accessed old URLs
+  ['/contact-us', '/get-in-touch'],
+  ['/portfolio', '/works'],
+  ['/about-us', '/about'],
+  ['/blog/web-design', '/blog/web-design-trends-2025'],
+  ['/services/web-development', '/services'],
+  ['/services/mobile-development', '/services'],
+  ['/services/digital-marketing', '/services']
 ]);
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -25,13 +42,22 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   // Skip API routes and static assets
   if (pathname.startsWith('/api/') || 
-      pathname.match(/\.(jpg|png|gif|svg|css|js|webp|ico|xml)$/)) {
+      pathname.match(/\.(jpg|png|gif|svg|css|js|webp|ico|xml|txt|pdf)$/)) {
     return next();
   }
 
   // Remove trailing slashes
   if (pathname.length > 1 && pathname.endsWith('/')) {
     return context.redirect(context.url.toString().replace(/\/$/, ''), 301);
+  }
+
+  // Handle redirects for old URLs
+  const pathWithoutLang = pathname.replace(/^\/[a-z]{2}\//, '');
+  for (const [oldPath, newPath] of redirectMap) {
+    if (pathWithoutLang.startsWith(oldPath)) {
+      const lang = getLanguageFromURL(pathname);
+      return context.redirect(`/${lang}${newPath}`, 301);
+    }
   }
 
   // Get the path segments
@@ -67,8 +93,27 @@ export const onRequest = defineMiddleware(async (context, next) => {
   
   // Check if route is valid
   if (!validRoutes.has(route) && !route.startsWith('blog/') && !route.startsWith('works/')) {
+    // If it's a blog post that doesn't exist, redirect to blog index
+    if (route.startsWith('blog/')) {
+      return context.redirect(`/${firstSegment}/blog`, 301);
+    }
+    // If it's a work that doesn't exist, redirect to works index
+    if (route.startsWith('works/')) {
+      return context.redirect(`/${firstSegment}/works`, 301);
+    }
+    // For any other invalid route, redirect to homepage with language prefix
     return context.redirect(`/${firstSegment}`, 301);
   }
 
-  return next();
+  // Handle potential 404s for dynamic routes
+  try {
+    const response = await next();
+    return response;
+  } catch (error: any) {
+    if (error.status === 404) {
+      // Redirect to homepage with language prefix for 404s
+      return context.redirect(`/${firstSegment}`, 301);
+    }
+    throw error;
+  }
 });

@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLanguageFromURL, useTranslations } from '../i18n/utils';
+import Button from '../components/Button.astro';
+
+const pathname = Astro.url.pathname;
+const lang = getLanguageFromURL(pathname);
+const t = useTranslations(lang);
+const translations = await t('404');
+---
+
+<Layout title={translations.meta.title} description={translations.meta.description}>
+  <main class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="max-w-lg w-full space-y-8 text-center">
+      <div>
+        <h1 class="text-6xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">{translations.message}</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            href={`/${lang}`} 
+            variant="primary" 
+            text={translations.buttons.home} 
+          />
+          <Button 
+            href={`/${lang}/contact`} 
+            variant="secondary" 
+            text={translations.buttons.contact} 
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

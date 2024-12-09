@@ -40,5 +40,16 @@
       }
     },
     "trust": "Trusted by Visionary Founders and Entrepreneurs Worldwide"
+  },
+  "404": {
+    "meta": {
+      "title": "Page Not Found - vebLabs",
+      "description": "The page you are looking for does not exist. Please check the URL or go back to the homepage."
+    },
+    "message": "Oops! The page you are looking for does not exist. Please check the URL or go back to the homepage.",
+    "buttons": {
+      "home": "Go to Homepage",
+      "contact": "Contact Us"
+    }
   }
 }

@@ -27,11 +27,11 @@ const common = await loadTranslations(lang, 'common');
 const t = common;
 
 // Get the canonical URL safely
-const siteUrl = new URL(Astro.url.pathname, import.meta.env.SITE ?? 'https://veblabs.com').origin;
-const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString().replace(/\/$/, '');
-
-// Generate alternate URLs for language versions
+const siteUrl = 'https://veblabs.com';
 const currentPath = pathname.replace(/^\/[a-z]{2}\//, '').replace(/\/$/, '');
+const canonicalURL = new URL(pathname, siteUrl).toString().replace(/\/$/, '');
+
+// Generate hreflang URLs
 const currentLangCode = lang === 'en' ? 'en-US' : 'ar-SA';
 
 // Create self-referencing hreflang first
@@ -40,21 +40,19 @@ const hreflangTags = [{
   hreflang: currentLangCode
 }];
 
-// Add alternate language versions
-Object.keys(supportedLanguages).forEach(langCode => {
-  if (langCode !== lang) { // Skip current language as it's already added
-    const path = currentPath ? `/${langCode}/${currentPath}` : `/${langCode}`;
-    hreflangTags.push({
-      href: new URL(path, siteUrl).toString().replace(/\/$/, ''),
-      hreflang: langCode === 'en' ? 'en-US' : 'ar-SA'
-    });
-  }
+// Add alternate language version
+const alternateLang = lang === 'en' ? 'ar' : 'en';
+const alternateLangCode = alternateLang === 'en' ? 'en-US' : 'ar-SA';
+const alternatePath = currentPath ? `/${alternateLang}/${currentPath}` : `/${alternateLang}`;
+hreflangTags.push({
+  href: new URL(alternatePath, siteUrl).toString().replace(/\/$/, ''),
+  hreflang: alternateLangCode
 });
 
-// Add x-default hreflang for homepage
+// Add x-default hreflang for homepage (pointing to English version)
 if (!currentPath) {
   hreflangTags.push({
-    href: siteUrl,
+    href: `${siteUrl}/en`,
     hreflang: 'x-default'
   });
 }
@@ -153,7 +151,12 @@ const schemaOrgData = {
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalURL} />
-
+    
+    <!-- Hreflang tags -->
+    {hreflangTags.map(({ href, hreflang }) => (
+      <link rel="alternate" href={href} hreflang={hreflang} />
+    ))}
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
@@ -167,11 +170,6 @@ const schemaOrgData = {
     <meta property="twitter:title" content={pageTitle} />
     <meta property="twitter:description" content={pageDescription} />
     {image && <meta property="twitter:image" content={new URL(image, siteUrl).toString()} />}
-    
-    <!-- Language alternates -->
-    {hreflangTags.map(({ href, hreflang }) => (
-      <link rel="alternate" href={href} hreflang={hreflang} />
-    ))}
     
     <!-- Cloudflare optimizations -->
     <meta http-equiv="Cache-Control" content="public, max-age=31536000" />

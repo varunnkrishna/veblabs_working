@@ -1,11 +1,12 @@
 ---
-title: "Why Your Website Will Be Obsolete by 2025: Critical Web Design Changes Ahead"
+title: "Web Design Trends 2025: The Future of Digital Experience"
 author: "VebLabs Team"
 date: "2024-03-21"
 excerpt: "Discover why 75% of current websites will become obsolete by 2025 due to radical changes in web design, AI integration, and SEO requirements. Learn what you need to survive the digital evolution."
 category: "Web Design"
 image: "/images/web-design-2025.webp"
 language: "en"
+slug: "web-design-trends-2025"
 ---
 
 The web design landscape is undergoing its most dramatic transformation since the mobile revolution. By 2025, an estimated 75% of current websites will be considered obsolete due to rapidly evolving user expectations and technological requirements. This isn't just about aesthetics – it's about survival in an increasingly competitive digital marketplace.
