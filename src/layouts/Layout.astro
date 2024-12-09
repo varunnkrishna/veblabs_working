@@ -28,7 +28,36 @@ const t = common;
 
 // Get the canonical URL safely
 const siteUrl = new URL(Astro.url.pathname, import.meta.env.SITE ?? 'https://veblabs.com').origin;
-const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString();
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).toString().replace(/\/$/, '');
+
+// Generate alternate URLs for language versions
+const currentPath = pathname.replace(/^\/[a-z]{2}\//, '').replace(/\/$/, '');
+const currentLangCode = lang === 'en' ? 'en-US' : 'ar-SA';
+
+// Create self-referencing hreflang first
+const hreflangTags = [{
+  href: canonicalURL,
+  hreflang: currentLangCode
+}];
+
+// Add alternate language versions
+Object.keys(supportedLanguages).forEach(langCode => {
+  if (langCode !== lang) { // Skip current language as it's already added
+    const path = currentPath ? `/${langCode}/${currentPath}` : `/${langCode}`;
+    hreflangTags.push({
+      href: new URL(path, siteUrl).toString().replace(/\/$/, ''),
+      hreflang: langCode === 'en' ? 'en-US' : 'ar-SA'
+    });
+  }
+});
+
+// Add x-default hreflang for homepage
+if (!currentPath) {
+  hreflangTags.push({
+    href: siteUrl,
+    hreflang: 'x-default'
+  });
+}
 
 // Ensure image URL is absolute
 const imageUrl = Astro.props.image
@@ -83,12 +112,6 @@ const pageDescription = description || (lang === 'ar'
     : currentPageType === 'contact'
     ? 'Get in touch with us for a free consultation about your project. Our team is ready to help bring your digital vision to life.'
     : 'Web Design & Development Agency in Dubai. We offer website development, SEO, and application development services.');
-
-// Generate alternate language URLs
-const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({
-  href: new URL(pathname.replace(`/${lang}/`, `/${langCode}/`), siteUrl).toString(),
-  hreflang: langCode === 'en' ? 'en-US' : 'ar-SA'
-}));
 
 // Schema.org JSON-LD data
 const schemaOrgData = {
@@ -146,11 +169,10 @@ const schemaOrgData = {
     {image && <meta property="twitter:image" content={new URL(image, siteUrl).toString()} />}
     
     <!-- Language alternates -->
-    {alternateUrls.map(({ href, hreflang }) => (
-      <link rel="alternate" hreflang={hreflang} href={href} />
+    {hreflangTags.map(({ href, hreflang }) => (
+      <link rel="alternate" href={href} hreflang={hreflang} />
     ))}
-    <link rel="canonical" href={canonicalURL} />
-
+    
     <!-- Cloudflare optimizations -->
     <meta http-equiv="Cache-Control" content="public, max-age=31536000" />
     <meta name="cf-2fa-verify" content="true" />
@@ -336,8 +358,8 @@ const schemaOrgData = {
     <meta name="language" content={lang === 'en' ? 'English' : 'Arabic'} />
 
     <!-- Canonical and Alternate Language URLs -->
-    {alternateUrls.map(({ href, hreflang }) => (
-      <link rel="alternate" hreflang={hreflang} href={href} />
+    {hreflangTags.map(({ href, hreflang }) => (
+      <link rel="alternate" href={href} hreflang={hreflang} />
     ))}
 
     <!-- Schema.org JSON-LD -->

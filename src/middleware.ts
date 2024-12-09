@@ -20,13 +20,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (hostname.startsWith('www.')) {
     const newUrl = new URL(context.url);
     newUrl.hostname = newUrl.hostname.replace('www.', '');
-    return context.redirect(newUrl.toString(), 301);
+    return context.redirect(newUrl.toString().replace(/\/$/, ''), 301);
   }
 
   // Skip API routes and static assets
   if (pathname.startsWith('/api/') || 
       pathname.match(/\.(jpg|png|gif|svg|css|js|webp|ico|xml)$/)) {
     return next();
+  }
+
+  // Remove trailing slashes
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    return context.redirect(context.url.toString().replace(/\/$/, ''), 301);
   }
 
   // Get the path segments
@@ -51,25 +56,19 @@ export const onRequest = defineMiddleware(async (context, next) => {
       ) || defaultLang;
     }
 
-    // If it's a valid route without language prefix, redirect to language version
-    const route = segments[0] || '';
-    if (validRoutes.has(route)) {
-      const newPath = `/${preferredLang}${pathname}`;
-      return context.redirect(newPath, 301);
-    }
-
-    // For invalid or root paths, redirect to language home
-    return context.redirect(`/${preferredLang}`, 301);
+    // Construct new URL with language prefix
+    const newUrl = new URL(context.url);
+    newUrl.pathname = `/${preferredLang}${pathname}`;
+    return context.redirect(newUrl.toString().replace(/\/$/, ''), 301);
   }
 
-  // Handle invalid routes with language prefix
-  if (segments.length > 1) {
-    const route = segments[1] || '';
-    if (!validRoutes.has(route) && !route.startsWith('blog/') && !route.startsWith('works/')) {
-      return context.redirect(`/${firstSegment}`, 301);
-    }
+  // Get the route without language prefix
+  const route = segments[1] || '';
+  
+  // Check if route is valid
+  if (!validRoutes.has(route) && !route.startsWith('blog/') && !route.startsWith('works/')) {
+    return context.redirect(`/${firstSegment}`, 301);
   }
 
-  // Continue to the next middleware/route
   return next();
 });
