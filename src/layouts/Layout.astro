@@ -7,6 +7,7 @@ import { getLanguageFromURL } from '../i18n/utils';
 import { loadTranslations } from '../i18n/utils';
 import type { Translations } from '../i18n/types';
 import { supportedLanguages } from '../i18n/config';
+import type { SupportedLanguage } from '../i18n/config';
 
 interface Props {
   title?: string;
@@ -19,6 +20,8 @@ interface Props {
   pageType?: 'home' | 'services' | 'works' | 'blog' | 'contact' | 'get-in-touch';
 }
 
+type HreflangValue = SupportedLanguage | 'x-default';
+
 const { pathname } = Astro.url;
 const lang = getLanguageFromURL(pathname);
 
@@ -28,31 +31,36 @@ const t = common;
 
 // Get the canonical URL safely
 const siteUrl = 'https://veblabs.com';
-const currentPath = pathname.replace(/^\/[a-z]{2}\//, '').replace(/\/$/, '');
-const canonicalURL = new URL(pathname, siteUrl).toString().replace(/\/$/, '');
+const currentPath = pathname.replace(/^\/[a-z]{2}\//, '');
+const canonicalURL = new URL(currentPath ? `/${lang}/${currentPath}` : `/${lang}`, siteUrl).toString();
 
 // Generate hreflang URLs
-const currentLangCode = lang === 'en' ? 'en-US' : 'ar-SA';
-
-// Create self-referencing hreflang first
-const hreflangTags = [{
+// Always include self-referencing hreflang first
+const hreflangTags: Array<{ href: string; hreflang: HreflangValue }> = [{
   href: canonicalURL,
-  hreflang: currentLangCode
+  hreflang: lang
 }];
 
 // Add alternate language version
 const alternateLang = lang === 'en' ? 'ar' : 'en';
-const alternateLangCode = alternateLang === 'en' ? 'en-US' : 'ar-SA';
 const alternatePath = currentPath ? `/${alternateLang}/${currentPath}` : `/${alternateLang}`;
+const alternateURL = new URL(alternatePath, siteUrl).toString();
+
+// Add alternate language
 hreflangTags.push({
-  href: new URL(alternatePath, siteUrl).toString().replace(/\/$/, ''),
-  hreflang: alternateLangCode
+  href: alternateURL,
+  hreflang: alternateLang
 });
 
-// Add x-default hreflang for homepage (pointing to English version)
-if (!currentPath) {
+// Add x-default hreflang (always pointing to English version)
+if (lang === 'en') {
   hreflangTags.push({
-    href: `${siteUrl}/en`,
+    href: canonicalURL,
+    hreflang: 'x-default'
+  });
+} else {
+  hreflangTags.push({
+    href: alternateURL,
     hreflang: 'x-default'
   });
 }
