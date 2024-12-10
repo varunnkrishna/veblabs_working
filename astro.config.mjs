@@ -31,11 +31,11 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       serialize(item) {
-        // Remove trailing slashes from URLs
-        const url = item.url.endsWith('/') ? item.url.slice(0, -1) : item.url;
+        // Ensure URL ends with trailing slash to match our configuration
+        const url = item.url.endsWith('/') ? item.url : `${item.url}/`;
         
         // Add root URL with highest priority
-        if (url === 'https://veblabs.com') {
+        if (url === 'https://veblabs.com/') {
           return {
             ...item,
             url,
@@ -44,24 +44,66 @@ export default defineConfig({
           };
         }
         
-        // Special handling for language-specific URLs
-        if (url.includes('/en/') || url.includes('/ar/')) {
+        // Higher priority for main section pages
+        if (url.match(/\/(blog|services|works)\//)) {
           return {
             ...item,
             url,
-            // Higher priority for main pages
-            priority: url.split('/').length <= 3 ? 0.9 : 0.7,
-            // Add language-specific alternates without trailing slashes
-            links: [
-              { lang: 'en', url: url.replace(/\/(en|ar)\//, '/en') },
-              { lang: 'ar', url: url.replace(/\/(en|ar)\//, '/ar') }
-            ]
+            priority: 0.8,
+            changefreq: 'weekly'
           };
         }
+
+        // Blog posts and work items
+        if (url.match(/\/(blog|works)\/[^/]+\//)) {
+          return {
+            ...item,
+            url,
+            priority: 0.6,
+            changefreq: 'monthly'
+          };
+        }
+
+        // Default case
         return {
           ...item,
           url
         };
+      },
+      filter: (page) => {
+        // Exclude 404 page and any other utility pages
+        return !page.includes('404');
+      }
+    }),
+    cloudflare({
+      mode: "directory",
+      runtime: {
+        mode: "local",
+        type: "pages"
+      },
+      build: {
+        baseDirectory: "dist",
+        assetsInclude: ['**/*.woff2', '**/*.css'],
+        headers: [
+          {
+            source: "**/*.woff2",
+            headers: [
+              {
+                key: "Content-Type",
+                value: "font/woff2"
+              }
+            ]
+          },
+          {
+            source: "**/*.css",
+            headers: [
+              {
+                key: "Content-Type",
+                value: "text/css"
+              }
+            ]
+          }
+        ]
       }
     })
   ],
