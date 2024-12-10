@@ -30,39 +30,45 @@ const t = common;
 
 // Get the canonical URL safely
 const siteUrl = 'https://veblabs.com';
+
+// Function to properly format URLs with consistent trailing slashes
+const formatUrl = (path: string) => {
+  return new URL(path, siteUrl).toString()
+    .replace(/([^:]\/)\/+/g, '$1') // Replace multiple slashes with single slash
+    .replace(/\/?$/, '/'); // Ensure trailing slash
+};
+
+// Get the current path without language prefix
 const currentPath = pathname.replace(/^\/[a-z]{2}\//, '');
-const canonicalURL = new URL(currentPath ? `/${lang}/${currentPath}` : `/${lang}`, siteUrl).toString();
 
-// Generate hreflang URLs
-// Always include self-referencing hreflang first
-const hreflangTags: Array<{ href: string; hreflang: HreflangValue }> = [{
-  href: canonicalURL,
-  hreflang: lang
-}];
+// Construct the canonical URL for the current page
+const canonicalURL = formatUrl(`/${lang}/${currentPath}`);
 
-// Add alternate language version
-const alternateLang = lang === 'en' ? 'ar' : 'en';
-const alternatePath = currentPath ? `/${alternateLang}/${currentPath}` : `/${alternateLang}`;
-const alternateURL = new URL(alternatePath, siteUrl).toString();
-
-// Add alternate language
-hreflangTags.push({
-  href: alternateURL,
-  hreflang: alternateLang
+// Generate hreflang URLs for all supported languages
+const hreflangTags = Object.entries(supportedLanguages).map(([langCode]) => {
+  const path = `/${langCode}/${currentPath}`;
+  return {
+    href: formatUrl(path),
+    hreflang: langCode as HreflangValue
+  };
 });
 
-// Add x-default hreflang (always pointing to English version)
-if (lang === 'en') {
-  hreflangTags.push({
-    href: canonicalURL,
-    hreflang: 'x-default'
-  });
-} else {
-  hreflangTags.push({
-    href: alternateURL,
-    hreflang: 'x-default'
-  });
+// Add self-referencing hreflang
+const selfReferencing = {
+  href: canonicalURL,
+  hreflang: lang as HreflangValue
+};
+
+// Ensure self-referencing is included only once
+if (!hreflangTags.some(tag => tag.href === selfReferencing.href)) {
+  hreflangTags.push(selfReferencing);
 }
+
+// Add x-default hreflang tag pointing to English version
+hreflangTags.push({
+  href: formatUrl(`/en/${currentPath}`),
+  hreflang: 'x-default'
+});
 
 // Ensure image URL is absolute
 const imageUrl = Astro.props.image
@@ -361,11 +367,6 @@ const schemaOrgData = {
     <meta name="title" content={pageTitle} />
     <meta name="robots" content="index, follow" />
     <meta name="language" content={lang === 'en' ? 'English' : 'Arabic'} />
-
-    <!-- Canonical and Alternate Language URLs -->
-    {hreflangTags.map(({ href, hreflang }) => (
-      <link rel="alternate" href={href} hreflang={hreflang} />
-    ))}
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrgData)} />

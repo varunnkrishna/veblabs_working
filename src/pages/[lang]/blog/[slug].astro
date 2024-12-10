@@ -35,7 +35,13 @@ const footerT = await t('footer');
 const { Content } = await post.render();
 
 // Construct absolute URL for the blog post
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const siteUrl = 'https://veblabs.com';
+const formatUrl = (path: string) => {
+  return new URL(path, siteUrl).toString()
+    .replace(/([^:]\/)\/+/g, '$1')
+    .replace(/\/?$/, '/');
+};
+const canonicalURL = formatUrl(Astro.url.pathname);
 // Ensure image URL is absolute
 const imageUrl = post.data.image 
   ? new URL(post.data.image.startsWith('http') ? post.data.image : post.data.image, Astro.site).toString()
