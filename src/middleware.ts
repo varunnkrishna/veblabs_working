@@ -111,8 +111,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return response;
   } catch (error: any) {
     if (error.status === 404) {
-      // Redirect to homepage with language prefix for 404s
-      return context.redirect(`/${firstSegment}`, 301);
+      return next();  // Let Astro handle the 404 page
     }
     throw error;
   }

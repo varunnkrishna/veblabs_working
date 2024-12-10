@@ -36,8 +36,6 @@ const allPosts: CollectionEntry<'posts'>[] = await getCollection('posts');
 const posts = allPosts.filter((post: CollectionEntry<'posts'>) => post.data.language === 'en');
 const categories = [...new Set(posts.map((post: CollectionEntry<'posts'>) => post.data.category))].sort();
 
-// Debug translations
-console.log('Blog Translations:', blogT);
 ---
 
 <Layout 
