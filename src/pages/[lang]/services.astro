@@ -9,6 +9,17 @@ import Badge from '../../components/Badge.astro';
 import type { ServiceTranslations } from '../../i18n/types';
 import Verticletab from '@/components/Verticletab.astro';
 
+// URL formatting utilities
+const siteUrl = 'https://veblabs.com';
+const formatUrl = (path: string) => {
+  // Remove leading and trailing slashes, then split into segments
+  const segments = path.split('/').filter(segment => segment.length > 0);
+  // Reconstruct the path with single slashes
+  const cleanPath = segments.join('/');
+  // Create the full URL with trailing slash
+  return `${siteUrl}/${cleanPath}/`;
+};
+
 export function getStaticPaths() {
   return Object.keys(supportedLanguages).map(lang => ({
     params: { lang }
@@ -19,6 +30,22 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as keyof typeof supportedLanguages);
 const translations = await t('services') as ServiceTranslations;
 const heroT = await t('hero');
+
+// Generate URLs for all languages
+const currentPath = 'services';
+const canonicalURL = formatUrl(`${lang}/${currentPath}`);
+
+// Generate alternate language URLs
+const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({
+  href: formatUrl(`${langCode}/${currentPath}`),
+  hreflang: langCode
+}));
+
+// Add x-default pointing to English version
+alternateUrls.push({
+  href: formatUrl(`en/${currentPath}`),
+  hreflang: 'x-default'
+});
 
 const services = [
   {
@@ -105,6 +132,9 @@ const pricing = translations?.pricing ?? defaultPricing;
   description={lang === 'ar' 
     ? 'نقدم خدمات احترافية في تطوير المواقع الإلكترونية، تصميم واجهات المستخدم، تحسين محركات البحث، وحلول التجارة الإلكترونية.'
     : 'Professional web development, UI/UX design, SEO optimization, and e-commerce solutions. Transform your digital presence with our expert services.'}
+  canonicalURL={canonicalURL}
+  alternateUrls={alternateUrls}
+  pageType="services"
 >
   {/* Hero Section */}
   <div class="relative overflow-hidden">

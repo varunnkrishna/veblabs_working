@@ -7,7 +7,7 @@ import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   site: 'https://veblabs.com',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   build: {
     format: 'directory'
   },

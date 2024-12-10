@@ -19,6 +19,8 @@ interface Props {
   modifiedDate?: string;
   theme?: string;
   pageType?: 'home' | 'services' | 'works' | 'blog' | 'contact' | 'get-in-touch';
+  canonicalURL?: string;
+  alternateUrls?: Array<{ href: string; hreflang: string; }>;
 }
 
 const { pathname } = Astro.url;
@@ -33,42 +35,45 @@ const siteUrl = 'https://veblabs.com';
 
 // Function to properly format URLs with consistent trailing slashes
 const formatUrl = (path: string) => {
-  return new URL(path, siteUrl).toString()
-    .replace(/([^:]\/)\/+/g, '$1') // Replace multiple slashes with single slash
-    .replace(/\/?$/, '/'); // Ensure trailing slash
+  // Remove leading and trailing slashes, then split into segments
+  const segments = path.split('/').filter(segment => segment.length > 0);
+  // Reconstruct the path with single slashes
+  const cleanPath = segments.join('/');
+  // Create the full URL with trailing slash
+  return `${siteUrl}/${cleanPath}/`;
 };
 
-// Get the current path without language prefix
-const currentPath = pathname.replace(/^\/[a-z]{2}\//, '');
+// Get the current path without language prefix and clean it
+const currentPath = pathname.replace(/^\/[a-z]{2}\//, '').replace(/^\/+|\/+$/g, '');
 
-// Construct the canonical URL for the current page
-const canonicalURL = formatUrl(`/${lang}/${currentPath}`);
+// Use provided canonical URL or generate one
+const canonicalURL = Astro.props.canonicalURL || formatUrl(`${lang}/${currentPath}`);
 
-// Generate hreflang URLs for all supported languages
-const hreflangTags = Object.entries(supportedLanguages).map(([langCode]) => {
-  const path = `/${langCode}/${currentPath}`;
-  return {
-    href: formatUrl(path),
+// Use provided alternate URLs or generate default ones
+const hreflangTags = Astro.props.alternateUrls || (() => {
+  const tags = Object.entries(supportedLanguages).map(([langCode]) => ({
+    href: formatUrl(`${langCode}/${currentPath}`),
     hreflang: langCode as HreflangValue
-  };
-});
+  }));
 
-// Add self-referencing hreflang
-const selfReferencing = {
-  href: canonicalURL,
-  hreflang: lang as HreflangValue
-};
+  // Add self-referencing if not present
+  if (!tags.some(tag => tag.href === canonicalURL)) {
+    tags.push({
+      href: canonicalURL,
+      hreflang: lang as HreflangValue
+    });
+  }
 
-// Ensure self-referencing is included only once
-if (!hreflangTags.some(tag => tag.href === selfReferencing.href)) {
-  hreflangTags.push(selfReferencing);
-}
+  // Add x-default if not present
+  if (!tags.some(tag => tag.hreflang === 'x-default')) {
+    tags.push({
+      href: formatUrl(`en/${currentPath}`),
+      hreflang: 'x-default'
+    });
+  }
 
-// Add x-default hreflang tag pointing to English version
-hreflangTags.push({
-  href: formatUrl(`/en/${currentPath}`),
-  hreflang: 'x-default'
-});
+  return tags;
+})();
 
 // Ensure image URL is absolute
 const imageUrl = Astro.props.image

@@ -2,9 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import { getLanguageFromURL } from '../i18n/utils';
 import Button from '../components/Button.astro';
+import { defaultLang } from '../i18n/config';
 
 const pathname = Astro.url.pathname;
-const lang = getLanguageFromURL(pathname);
+// If no language is detected, default to the default language
+const detectedLang = getLanguageFromURL(pathname);
+const lang = detectedLang || defaultLang;
 
 type NotFoundContent = {
   title: string;
@@ -18,7 +21,7 @@ type NotFoundContent = {
 
 const defaultContent: NotFoundContent = {
   title: "Page Not Found",
-  description: "The page you are looking for could not be found.",
+  description: "The page you are looking for could not be found. You will be redirected to our homepage.",
   message: "Sorry, we couldn't find the page you're looking for.",
   buttons: {
     home: "Back to Home",
@@ -28,7 +31,7 @@ const defaultContent: NotFoundContent = {
 
 const arabicContent: NotFoundContent = {
   title: "الصفحة غير موجودة",
-  description: "الصفحة التي تبحث عنها غير موجودة.",
+  description: "الصفحة التي تبحث عنها غير موجودة. سيتم إعادة توجيهك إلى الصفحة الرئيسية.",
   message: "عذراً، لم نتمكن من العثور على الصفحة التي تبحث عنها.",
   buttons: {
     home: "العودة للرئيسية",
@@ -38,6 +41,12 @@ const arabicContent: NotFoundContent = {
 
 const content: NotFoundContent = lang === 'ar' ? arabicContent : defaultContent;
 
+// Auto-redirect after 5 seconds
+const redirectScript = `
+  setTimeout(() => {
+    window.location.href = '/${lang}';
+  }, 5000);
+`;
 ---
 
 <Layout title={content.title} description={content.description}>
@@ -45,7 +54,10 @@ const content: NotFoundContent = lang === 'ar' ? arabicContent : defaultContent;
     <div class="max-w-lg w-full space-y-8 text-center">
       <div>
         <h1 class="text-6xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
-        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">{content.message}</p>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">{content.message}</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">
+          {content.description}
+        </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
             href={`/${lang}`} 
@@ -62,3 +74,5 @@ const content: NotFoundContent = lang === 'ar' ? arabicContent : defaultContent;
     </div>
   </main>
 </Layout>
+
+<script set:html={redirectScript} />

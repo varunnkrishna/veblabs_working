@@ -2,11 +2,39 @@
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import { getLanguageFromURL, useTranslations } from '../../i18n/utils';
+import { supportedLanguages } from '../../i18n/config';
 
 const lang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslations(lang);
 const contact = await t('contact');
 const isRtl = lang === 'ar';
+
+// URL formatting utilities
+const siteUrl = 'https://veblabs.com';
+const formatUrl = (path: string) => {
+  // Remove leading and trailing slashes, then split into segments
+  const segments = path.split('/').filter(segment => segment.length > 0);
+  // Reconstruct the path with single slashes
+  const cleanPath = segments.join('/');
+  // Create the full URL with trailing slash
+  return `${siteUrl}/${cleanPath}/`;
+};
+
+// Generate URLs for all languages
+const currentPath = 'get-in-touch';
+const canonicalURL = formatUrl(`${lang}/${currentPath}`);
+
+// Generate alternate language URLs
+const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({
+  href: formatUrl(`${langCode}/${currentPath}`),
+  hreflang: langCode
+}));
+
+// Add x-default pointing to English version
+alternateUrls.push({
+  href: formatUrl(`en/${currentPath}`),
+  hreflang: 'x-default'
+});
 
 export function getStaticPaths() {
   return [
@@ -19,6 +47,9 @@ export function getStaticPaths() {
 <Layout 
   title={contact.meta.title}
   description={contact.meta.description}
+  canonicalURL={canonicalURL}
+  alternateUrls={alternateUrls}
+  pageType="get-in-touch"
 >
   <div class="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">

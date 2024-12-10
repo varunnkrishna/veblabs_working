@@ -34,14 +34,33 @@ const commonT = await t('common');
 const footerT = await t('footer');
 const { Content } = await post.render();
 
-// Construct absolute URL for the blog post
+// URL formatting utilities
 const siteUrl = 'https://veblabs.com';
 const formatUrl = (path: string) => {
-  return new URL(path, siteUrl).toString()
-    .replace(/([^:]\/)\/+/g, '$1')
-    .replace(/\/?$/, '/');
+  // Remove leading and trailing slashes, then split into segments
+  const segments = path.split('/').filter(segment => segment.length > 0);
+  // Reconstruct the path with single slashes
+  const cleanPath = segments.join('/');
+  // Create the full URL with trailing slash
+  return `${siteUrl}/${cleanPath}/`;
 };
-const canonicalURL = formatUrl(Astro.url.pathname);
+
+// Get the current path and ensure proper formatting
+const currentPath = `${lang}/blog/${post.slug}`;
+const canonicalURL = formatUrl(currentPath);
+
+// Generate alternate language URLs
+const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({
+  href: formatUrl(`${langCode}/blog/${post.slug}`),
+  hreflang: langCode
+}));
+
+// Add x-default pointing to English version
+alternateUrls.push({
+  href: formatUrl(`en/blog/${post.slug}`),
+  hreflang: 'x-default'
+});
+
 // Ensure image URL is absolute
 const imageUrl = post.data.image 
   ? new URL(post.data.image.startsWith('http') ? post.data.image : post.data.image, Astro.site).toString()
@@ -51,10 +70,13 @@ const imageUrl = post.data.image
 
 <Layout 
   title={`${post.data.title} | ${navT.blog} | Veblabs`}
-  description={post.data.excerpt || post.data.title}
+  description={post.data.excerpt}
   image={imageUrl}
   type="article"
   publishDate={post.data.date}
+  canonicalURL={canonicalURL}
+  alternateUrls={alternateUrls}
+  pageType="blog"
 >
   <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
     {/* Language Notice for Arabic Users */}

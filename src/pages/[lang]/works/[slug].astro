@@ -39,11 +39,41 @@ const translatedProject = projectsT.projects[project.slug as keyof typeof projec
 const title = translatedProject.title || project.data.title;
 const description = translatedProject.description || project.data.description;
 
+// URL formatting utilities
+const siteUrl = 'https://veblabs.com';
+const formatUrl = (path: string) => {
+  // Remove leading and trailing slashes, then split into segments
+  const segments = path.split('/').filter(segment => segment.length > 0);
+  // Reconstruct the path with single slashes
+  const cleanPath = segments.join('/');
+  // Create the full URL with trailing slash
+  return `${siteUrl}/${cleanPath}/`;
+};
+
+// Get the current path and ensure proper formatting
+const currentPath = `${lang}/works/${project.slug}`;
+const canonicalURL = formatUrl(currentPath);
+
+// Generate alternate language URLs
+const alternateUrls = Object.keys(supportedLanguages).map(langCode => ({
+  href: formatUrl(`${langCode}/works/${project.slug}`),
+  hreflang: langCode
+}));
+
+// Add x-default pointing to English version
+alternateUrls.push({
+  href: formatUrl(`en/works/${project.slug}`),
+  hreflang: 'x-default'
+});
+
 ---
 
 <Layout 
   title={`${title} | ${navT.works} | Veblabs`}
   description={description}
+  canonicalURL={canonicalURL}
+  alternateUrls={alternateUrls}
+  pageType="works"
 >
   <ProjectHeader project={project.data} />
   
