@@ -1,7 +1,9 @@
 ---
 import { defaultLang } from '../i18n/config';
 
-// Server-side redirect to default language
-export const prerender = false;
-const response = Astro.redirect(`/${defaultLang}`, 301);
+// Redirect to default language only if we're at the root
+const url = new URL(Astro.request.url);
+if (url.pathname === '/' || url.pathname === '') {
+  return Astro.redirect(`/${defaultLang}`, 301);
+}
 ---

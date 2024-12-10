@@ -30,7 +30,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "terser": "^5.37.0",
+    "typescript": "^5.7.2",
     "wrangler": "^3.91.0"
   }
 }

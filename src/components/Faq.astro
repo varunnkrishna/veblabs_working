@@ -1,6 +1,6 @@
 ---
-import { useTranslations, getLanguageDirection } from "../i18n/utils";
-const { lang } = Astro.props;
+import { useTranslations, getLanguageDirection, getLanguageFromURL } from "../i18n/utils";
+const lang = getLanguageFromURL(Astro.url.pathname);
 const t = useTranslations(lang);
 const translations = await t('faq');
 const isRTL = getLanguageDirection(lang) === 'rtl';
@@ -57,7 +57,7 @@ import Button from "./Button.astro";
 
     <div class="mt-12 text-center reveal-on-scroll">
       <a 
-        href="/contact" 
+        href={`/${lang}/get-in-touch`} 
         class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl"
       >
         Have more questions?

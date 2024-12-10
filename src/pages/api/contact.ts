@@ -11,6 +11,7 @@ interface ContactForm {
   message: string;
   form_type?: string;
   status?: string;
+  [key: string]: string | undefined;
 }
 
 export const POST: APIRoute = async ({ request }) => {

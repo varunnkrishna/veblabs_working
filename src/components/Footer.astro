@@ -105,8 +105,7 @@ const supportOptions = [
             <a 
               href="#" 
               data-email={contactInfo.email}
-              class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group"
-              onclick="window.location.href = 'mailto:' + this.dataset.email; return false;"
+              class="flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 group email-link"
             >
               <span class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-gray-800 flex items-center justify-center group-hover:bg-blue-500">
                 <i class="fas fa-envelope text-blue-600 dark:text-blue-400 group-hover:text-white"></i>
@@ -221,8 +220,7 @@ const supportOptions = [
             <a 
               href="#" 
               data-email={contactInfo.email}
-              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
-              onclick="window.location.href = 'mailto:' + this.dataset.email; return false;"
+              class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 email-link"
             >
               {contactInfo.email}
             </a>
@@ -241,3 +239,17 @@ const supportOptions = [
     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.email-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = link.getAttribute('data-email');
+        if (email) {
+          window.location.href = `mailto:${email}`;
+        }
+      });
+    });
+  });
+</script>

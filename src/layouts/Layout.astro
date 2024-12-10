@@ -1,13 +1,14 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import BetaPopup from '../components/BetaPopup.astro';
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
-import { getLanguageFromURL } from '../i18n/utils';
-import { loadTranslations } from '../i18n/utils';
 import type { Translations } from '../i18n/types';
 import { supportedLanguages } from '../i18n/config';
-import type { SupportedLanguage } from '../i18n/config';
+import { getLanguageFromURL, useTranslations } from '../i18n/utils';
+import { loadTranslations } from '../i18n/utils';
+
+type HreflangValue = keyof typeof supportedLanguages | 'x-default';
 
 interface Props {
   title?: string;
@@ -19,8 +20,6 @@ interface Props {
   theme?: string;
   pageType?: 'home' | 'services' | 'works' | 'blog' | 'contact' | 'get-in-touch';
 }
-
-type HreflangValue = SupportedLanguage | 'x-default';
 
 const { pathname } = Astro.url;
 const lang = getLanguageFromURL(pathname);
@@ -402,7 +401,6 @@ const schemaOrgData = {
       <slot />
     </main>
     <Footer lang={lang} />
-    <BetaPopup />
     <script>
       // Dark mode initialization
       if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

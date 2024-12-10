@@ -90,17 +90,17 @@ export function getLanguageDirection(lang: SupportedLanguage): 'ltr' | 'rtl' {
 
 export function getRelativeURL(pathname: string, lang: SupportedLanguage): string {
   const segments = pathname.split('/').filter(Boolean);
-  const currentLang = getLanguageFromURL(pathname);
   
-  // If we're already on a language route, remove the language segment
-  if (currentLang === segments[0]) {
-    segments.shift();
-  }
-  
-  // If no path segments remain, return just the language
+  // If no segments, just return the language route
   if (segments.length === 0) {
     return `/${lang}`;
   }
   
-  return `/${lang}/${segments.join('/')}`;
+  // Remove the current language segment if it exists
+  if (segments[0] in supportedLanguages) {
+    segments.shift();
+  }
+  
+  // Construct the new URL with the target language
+  return segments.length === 0 ? `/${lang}` : `/${lang}/${segments.join('/')}`;
 }

@@ -25,7 +25,7 @@ const isRTL = getLanguageDirection(lang) === 'rtl';
       </div>
       <div class={`flex flex-col sm:flex-row gap-4 shrink-0 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
         <a
-          href="/contact"
+          href={`/${lang}/get-in-touch`}
           class="font-inter px-8 py-4 bg-white text-blue-600 hover:bg-blue-50 font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-center whitespace-nowrap"
         >
           {translations?.getStarted || "Get Started"}
