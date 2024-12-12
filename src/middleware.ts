@@ -21,8 +21,6 @@ const redirectMap = new Map([
   ['/comparing-web-development-dubai', '/website-design-in-dubai'],
   ['/professional-web-development', '/website-design-in-dubai'],
   // Add more redirects for commonly accessed old URLs
-  ['/contact', '/get-in-touch'],
-  ['/contact-us', '/get-in-touch'],
   ['/portfolio', '/works'],
   ['/about-us', '/about'],
   ['/blog/web-design', '/blog/web-design-trends-2025'],

@@ -1,0 +1,10 @@
+---
+import { supportedLanguages } from "../../i18n/config";
+
+export function getStaticPaths() {
+  return Object.keys(supportedLanguages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+return Astro.redirect(`/${lang}/get-in-touch/`);
+---

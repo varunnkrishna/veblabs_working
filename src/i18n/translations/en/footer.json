@@ -38,7 +38,7 @@
       { "name": "Our Works", "url": "works" },
       { "name": "Services", "url": "services" },
       { "name": "Blog", "url": "blog" },
-      { "name": "Contact", "url": "contact" }
+      { "name": "Contact", "url": "get-in-touch" }
     ]
   },
   "services": {

@@ -1,11 +1,25 @@
 ---
+// Add TypeScript declarations for gtag
+interface Window {
+  dataLayer: any[];
+  gtag: (...args: any[]) => void;
+}
+
+declare const dataLayer: any[];
+declare function gtag(...args: any[]): void;
+
+const GA_ID = 'G-LR8D6S6F92';
 ---
 <!-- Google tag (gtag.js) -->
-<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-LR8D6S6F92"></script>
-<script type="text/partytown">
-  // @ts-nocheck
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script is:inline define:vars={{ GA_ID }}>
+  // @ts-ignore
+  (window as any).dataLayer = (window as any).dataLayer || [];
+  // @ts-ignore
+  function gtag(){(window as any).dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-LR8D6S6F92');
+  gtag('config', GA_ID, {
+    page_path: window.location.pathname,
+    send_page_view: true
+  });
 </script>

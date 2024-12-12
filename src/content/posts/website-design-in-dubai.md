@@ -18,7 +18,7 @@ Understanding your target audience is key to creating a website that resonates w
 
 ### Assessing Your Business Goals and Objectives
 
-What do you aim to achieve with your website? Clearly defining your goals will help shape the design and content of your website. Need assistance? [Contact VebLabs Now](/{lang}/get-in-touch) to get expert advice tailored to your business.
+What do you aim to achieve with your website? Clearly defining your goals will help shape the design and content of your website. Need assistance? [Contact VebLabs Now](/get-in-touch) to get expert advice tailored to your business.
 
 ### Analyzing Your Budget and Resources for Website Design
 
@@ -38,7 +38,7 @@ DIY website builders like [Wix](https://www.wix.com/) and [Squarespace](https://
 
 ### Benefits of Working with a Professional Agency
 
-Professional agencies bring expertise to create tailored solutions. Wondering how we can help? [Contact VebLabs Now](/{lang}/get-in-touch).
+Professional agencies bring expertise to create tailored solutions. Wondering how we can help? [Contact VebLabs Now](/get-in-touch).
 
 ### Factors to Consider When Choosing a Web Development Agency
 
@@ -50,4 +50,4 @@ Look at portfolios and case studies, such as those highlighted by [Clutch](https
 
 By evaluating your needs, goals, and resources, you can make an informed decision to ensure your website drives growth. Whether you're considering DIY or a professional approach, prioritizing scalability and customization is key.  
 
-Ready to take your website to the next level? [Contact VebLabs Now](/{lang}/get-in-touch) to start your journey.
+Ready to take your website to the next level? [Contact VebLabs Now](/get-in-touch) to start your journey.

@@ -36,9 +36,9 @@
     "links": [
       { "name": "الرئيسية", "url": "" },
       { "name": "أعمالنا", "url": "works" },
-      { "name": "خدماتنا", "url": "services" },
       { "name": "المدونة", "url": "blog" },
-      { "name": "اتصل بنا", "url": "contact" }
+      { "name": "خدماتنا", "url": "services" },
+      { "name": "اتصل بنا", "url": "get-in-touch" }
     ]
   },
   "services": {

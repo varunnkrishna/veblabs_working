@@ -3,22 +3,24 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   site: 'https://veblabs.com',
   trailingSlash: 'always',
+  redirects: {
+    '/contact': '/get-in-touch',
+    '/contact/': '/get-in-touch/',
+    '/en/contact': '/en/get-in-touch',
+    '/en/contact/': '/en/get-in-touch/',
+    '/ar/contact': '/ar/get-in-touch',
+    '/ar/contact/': '/ar/get-in-touch/'
+  },
   build: {
     format: 'directory'
   },
   integrations: [
     tailwind(), 
     icon(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
     sitemap({
       i18n: {
         defaultLocale: 'en',
@@ -31,11 +33,26 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       serialize(item) {
+        // Skip invalid URLs
+        if (
+          item.url.includes('//ar') || 
+          item.url.includes('//en') ||
+          item.url === 'https://veblabs.com/services' || 
+          item.url === 'https://veblabs.com/index'
+        ) {
+          return undefined;
+        }
+
         // Ensure URL ends with trailing slash to match our configuration
         const url = item.url.endsWith('/') ? item.url : `${item.url}/`;
         
-        // Add root URL with highest priority
+        // Skip the root URL as it redirects to /en
         if (url === 'https://veblabs.com/') {
+          return undefined;
+        }
+
+        // Language root pages get highest priority
+        if (url.match(/https:\/\/veblabs\.com\/(en|ar)\/$/)) {
           return {
             ...item,
             url,
@@ -45,7 +62,7 @@ export default defineConfig({
         }
         
         // Higher priority for main section pages
-        if (url.match(/\/(blog|services|works)\//)) {
+        if (url.match(/\/(en|ar)\/(blog|services|works)\/$/)) {
           return {
             ...item,
             url,
@@ -55,7 +72,7 @@ export default defineConfig({
         }
 
         // Blog posts and work items
-        if (url.match(/\/(blog|works)\/[^/]+\//)) {
+        if (url.match(/\/(en|ar)\/(blog|works)\/[^/]+\/$/)) {
           return {
             ...item,
             url,
@@ -64,15 +81,22 @@ export default defineConfig({
           };
         }
 
-        // Default case
-        return {
-          ...item,
-          url
-        };
+        // Default case - only include if it has a language prefix
+        if (url.match(/\/(en|ar)\//)) {
+          return {
+            ...item,
+            url,
+            priority: 0.5,
+            changefreq: 'monthly'
+          };
+        }
+
+        return undefined; // Skip all other URLs
       },
-      filter: (page) => {
-        // Exclude 404 page and any other utility pages
-        return !page.includes('404');
+      filter(page) {
+        // Exclude 404 page, non-language prefixed pages, and any other utility pages
+        return !page.includes('404') && 
+               (page.includes('/en/') || page.includes('/ar/'));
       }
     }),
     cloudflare({

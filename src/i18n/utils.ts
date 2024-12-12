@@ -101,6 +101,10 @@ export function getRelativeURL(pathname: string, lang: SupportedLanguage): strin
     segments.shift();
   }
   
-  // Construct the new URL with the target language
-  return segments.length === 0 ? `/${lang}` : `/${lang}/${segments.join('/')}`;
+  // Construct the new URL with the new language
+  const newPath = segments.length > 0 ? `/${segments.join('/')}` : '';
+  const url = `/${lang}${newPath}`;
+  
+  // Ensure no double slashes and add trailing slash if needed
+  return url.replace(/\/+/g, '/').replace(/\/?$/, '/');
 }

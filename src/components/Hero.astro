@@ -1,6 +1,7 @@
 ---
 import Verticletab from "./Verticletab.astro";
 import Button from "./Button.astro";
+import Badge from "./Badge.astro";
 import { getLanguageFromURL, useTranslations } from '../i18n/utils';
 import type { HeroTranslations } from '../i18n/types';
 
@@ -74,65 +75,66 @@ const features = [
         <div class="mb-8 max-w-[1000px] mx-auto">
           <!-- Main Heading -->
 <!-- Main Heading - Optimized for LCP -->
-<h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-bold tracking-tight leading-[1.1] mb-6 text-light-textPrimary dark:text-dark-textPrimary">
-  {heroTranslations.mainHeading.part1}
-  {' '}
-  <span class="text-blue-600 dark:text-blue-400">
-    {heroTranslations.mainHeading.part2}
-  </span>
-</h1>
+<div class="max-w-4xl mx-auto text-center">
+  <Badge text={lang === 'ar' ? "👋 مرحباً بك يا رائد الأعمال" : "👋 Hi Entrepreneur"} />
+  <h1 class="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] font-bold tracking-tight leading-[1.1] mb-6 text-light-textPrimary dark:text-dark-textPrimary">
+    {heroTranslations.mainHeading.part1}
+    <br />
+    <span class="text-blue-600 dark:text-blue-400">
+      {heroTranslations.mainHeading.part2}
+    </span>
+  </h1>
+</div>
 
           <!-- Subtitle -->
-          <p class="text-base sm:text-lg text-light-textSecondary/80 dark:text-dark-textSecondary/80 mt-4 mb-6 max-w-2xl mx-auto leading-relaxed">
+          <p class="text-base font-medium sm:text-lg text-light-textSecondary/80 dark:text-dark-textSecondary mt-4 mb-6 max-w-2xl mx-auto leading-relaxed">
             {heroTranslations.subtitle}
           </p>
         </div>
 
         <div class:list={[
-          "flex flex-col sm:flex-row gap-4 justify-center mb-12",
+          "flex flex-col sm:flex-row gap-4 justify-center",
           isRtl ? "sm:flex-row-reverse" : ""
         ]}>
           <Button href={`/${lang}/get-in-touch`} variant="primary" text={heroTranslations.cta.primary} />
           <Button href={`/${lang}/works`} variant="secondary" text={heroTranslations.cta.secondary} />
         </div>
+        <p class="text-sm text-light-textSecondary/70 dark:text-dark-textSecondary/70 text-center mt-2 mb-12">
+          {heroTranslations.noUpfrontCost}
+        </p>
 
         <div class="flex justify-center items-center pt-8">
           <div class:list={[
-            "grid sm:grid-cols-2 gap-8",
+            "grid sm:grid-cols-2 gap-8 w-full",
             isRtl ? "text-right" : "text-left"
           ]}>
             {features.map((feature, index) => (
               <div 
                 class:list={[
                   "flex items-start p-4 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]",
-                  isRtl ? "flex-row-reverse space-x-4 space-x-reverse" : "flex-row space-x-4"
+                  isRtl ? "flex-row-reverse" : "flex-row"
                 ]}
               >
-                <div class:list={[
-                  "flex items-start",
-                  isRtl ? "flex-row-reverse space-x-4 space-x-reverse" : "flex-row space-x-4"
-                ]}>
-                  <div class="flex-shrink-0">
-                    <div class={`p-2 rounded-lg ${
-                      feature.icon === "fa-search" 
-                        ? "bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:bg-gradient-to-br dark:from-blue-500 dark:to-purple-500"
-                        : feature.icon === "fa-bolt"
-                        ? "bg-gradient-to-br from-green-500/20 to-blue-500/20 dark:bg-gradient-to-br dark:from-green-500 dark:to-blue-500"
-                        : feature.icon === "fa-sliders"
-                        ? "bg-gradient-to-br from-yellow-500/20 to-red-500/20 dark:bg-gradient-to-br dark:from-yellow-500 dark:to-red-500"
-                        : "bg-gradient-to-br from-purple-500/20 to-pink-500/20 dark:bg-gradient-to-br dark:from-purple-500 dark:to-pink-500"
-                    }`}>
-                      <i class={`fas ${feature.icon} text-xl text-light-textPrimary dark:text-dark-textPrimary`}></i>
-                    </div>
+                <div class={`flex-shrink-0 ${isRtl ? 'order-2' : 'order-1'}`}>
+                  <div class={`p-2 rounded-lg ${
+                    feature.icon === "fa-search" 
+                      ? "bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:bg-gradient-to-br dark:from-blue-500 dark:to-purple-500"
+                      : feature.icon === "fa-bolt"
+                      ? "bg-gradient-to-br from-green-500/20 to-blue-500/20 dark:bg-gradient-to-br dark:from-green-500 dark:to-blue-500"
+                      : feature.icon === "fa-sliders"
+                      ? "bg-gradient-to-br from-yellow-500/20 to-red-500/20 dark:bg-gradient-to-br dark:from-yellow-500 dark:to-red-500"
+                      : "bg-gradient-to-br from-purple-500/20 to-pink-500/20 dark:bg-gradient-to-br dark:from-purple-500 dark:to-pink-500"
+                  }`}>
+                    <i class={`fas ${feature.icon} text-xl text-light-textPrimary dark:text-dark-textPrimary ${isRtl ? 'fa-flip-horizontal' : ''}`}></i>
                   </div>
-                  <div>
-                    <h3 class="font-semibold text-lg text-light-textPrimary dark:text-dark-textPrimary">
-                      {feature.title}
-                    </h3>
-                    <p class="mt-1 text-light-textSecondary dark:text-dark-textSecondary">
-                      {feature.description}
-                    </p>
-                  </div>
+                </div>
+                <div class={`flex-1 ${isRtl ? 'order-1 ml-0 mr-6' : 'order-2 ml-4'}`}>
+                  <h3 class="font-semibold text-lg text-light-textPrimary dark:text-dark-textPrimary">
+                    {feature.title}
+                  </h3>
+                  <p class="mt-1 text-light-textSecondary dark:text-dark-textSecondary">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -146,15 +148,15 @@ const features = [
           <div class="flex flex-row justify-center items-center mt-4 space-x-4">
             <div class="flex flex-row justify-center items-center mt-4 space-x-4">
               <div class="flex -space-x-4 hover:space-x-1 transition-all duration-300">
-                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk1.webp" alt="" />
-                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk2.webp" alt="" />
-                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk3.webp" alt="" />
-                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk4.webp" alt="" />
+                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk1.webp" alt="john doe veblabs client" />
+                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk2.webp" alt="jane doe veblabs client" />
+                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk3.webp" alt="joe doe veblabs client" />
+                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk4.webp" alt="jill doe veblabs client" />
               </div>
               <div class="flex -space-x-4 hover:space-x-1 transition-all duration-300">
-                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk4.webp" alt="" />
-                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk5.webp" alt="" />
-                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk6.webp" alt="" />
+                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk4.webp" alt="joe smith veblabs client" />
+                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk5.webp" alt="jane smith veblabs client" />
+                <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800 transform hover:scale-110 transition-transform" src="/pk6.webp" alt="john smith veblabs client" />
                 <a class="flex items-center justify-center w-10 h-10 text-xs font-medium text-white bg-gradient-to-br from-gray-700 to-gray-600 border-2 border-white rounded-full hover:from-gray-600 hover:to-gray-500 dark:border-gray-800 transform hover:scale-110 transition-all duration-300" href="#">
                   +99
                 </a>

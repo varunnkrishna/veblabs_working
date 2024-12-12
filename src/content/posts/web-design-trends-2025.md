@@ -109,4 +109,4 @@ The web design landscape of 2025 will be unforgiving to outdated websites. The c
 
 Don't wait until your website becomes obsolete. Contact VebLabs today for a free assessment of your website's readiness for 2025. Our team of experts can help you navigate these changes and ensure your digital presence remains strong and competitive.
 
-[Contact VebLabs Now](/{lang}/get-in-touch) to secure your website's future.
+[Contact VebLabs Now](/get-in-touch) to secure your website's future.

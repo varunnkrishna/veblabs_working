@@ -9,6 +9,7 @@ export interface HeroTranslations {
     primary: string;
     secondary: string;
   };
+  noUpfrontCost: string;
   features: {
     seo: {
       title: string;
