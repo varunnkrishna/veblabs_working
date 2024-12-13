@@ -29,74 +29,108 @@ export default defineConfig({
           ar: 'ar-SA'
         }
       },
+      customPages: [
+        // Root language pages (highest priority)
+        'https://veblabs.com/en/',  // English homepage
+        'https://veblabs.com/ar/',  // Arabic homepage
+        // Main section pages
+        'https://veblabs.com/en/blog/',
+        'https://veblabs.com/ar/blog/',
+        'https://veblabs.com/en/works/',
+        'https://veblabs.com/ar/works/',
+        'https://veblabs.com/en/services/',
+        'https://veblabs.com/ar/services/',
+        'https://veblabs.com/en/get-in-touch/',
+        'https://veblabs.com/ar/get-in-touch/',
+        // Blog posts
+        'https://veblabs.com/en/blog/dubai-tech-capital-2025/',
+        'https://veblabs.com/ar/blog/dubai-tech-capital-2025/',
+        'https://veblabs.com/en/blog/web-design-trends-2025/',
+        'https://veblabs.com/ar/blog/web-design-trends-2025/',
+        'https://veblabs.com/en/blog/website-design-in-dubai/',
+        'https://veblabs.com/ar/blog/website-design-in-dubai/',
+        // Work items
+        'https://veblabs.com/en/works/realestate/',
+        'https://veblabs.com/ar/works/realestate/',
+        'https://veblabs.com/en/works/healthcare/',
+        'https://veblabs.com/ar/works/healthcare/',
+        'https://veblabs.com/en/works/appointment-system/',
+        'https://veblabs.com/ar/works/appointment-system/',
+        'https://veblabs.com/en/works/cab-service/',
+        'https://veblabs.com/ar/works/cab-service/',
+        'https://veblabs.com/en/works/farmhouse/',
+        'https://veblabs.com/ar/works/farmhouse/',
+        'https://veblabs.com/en/works/software-testing/',
+        'https://veblabs.com/ar/works/software-testing/',
+        'https://veblabs.com/en/works/travel-agency/',
+        'https://veblabs.com/ar/works/travel-agency/'
+      ],
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
       serialize(item) {
-        // Skip invalid URLs
-        if (
-          item.url.includes('//ar') || 
-          item.url.includes('//en') ||
-          item.url === 'https://veblabs.com/services' || 
-          item.url === 'https://veblabs.com/index'
-        ) {
-          return undefined;
+        // Normalize URL to ensure proper format
+        let url = item.url;
+        if (!url.endsWith('/')) {
+          url = `${url}/`;
         }
 
-        // Ensure URL ends with trailing slash to match our configuration
-        const url = item.url.endsWith('/') ? item.url : `${item.url}/`;
-        
-        // Skip the root URL as it redirects to /en
-        if (url === 'https://veblabs.com/') {
-          return undefined;
+        // Skip any non-language prefixed URLs or the root URL
+        if (!url.match(/^https:\/\/veblabs\.com\/(en|ar)\/$/)) {
+          if (!url.match(/^https:\/\/veblabs\.com\/(en|ar)\//)) {
+            return undefined;
+          }
         }
 
-        // Language root pages get highest priority
-        if (url.match(/https:\/\/veblabs\.com\/(en|ar)\/$/)) {
-          return {
-            ...item,
-            url,
+        // Define URL patterns and their priorities
+        const patterns = [
+          {
+            // Language root pages (e.g., /en/, /ar/)
+            pattern: /^https:\/\/veblabs\.com\/(en|ar)\/$/,
             priority: 1.0,
+            changefreq: 'daily',
+            lastmod: new Date()  // Always update lastmod for homepages
+          },
+          {
+            // Main section pages (e.g., /en/blog/, /en/works/, /en/services/)
+            pattern: /\/(en|ar)\/(blog|services|works)\/$/,
+            priority: 0.9,
             changefreq: 'daily'
-          };
-        }
-        
-        // Higher priority for main section pages
-        if (url.match(/\/(en|ar)\/(blog|services|works)\/$/)) {
-          return {
-            ...item,
-            url,
-            priority: 0.8,
+          },
+          {
+            // Blog posts
+            pattern: /\/(en|ar)\/blog\/[^/]+\/$/,
+            priority: 0.7,
             changefreq: 'weekly'
-          };
-        }
-
-        // Blog posts and work items
-        if (url.match(/\/(en|ar)\/(blog|works)\/[^/]+\/$/)) {
-          return {
-            ...item,
-            url,
+          },
+          {
+            // Work items
+            pattern: /\/(en|ar)\/works\/[^/]+\/$/,
             priority: 0.6,
             changefreq: 'monthly'
-          };
+          }
+        ];
+
+        // Find matching pattern and return appropriate configuration
+        for (const { pattern, priority, changefreq, lastmod } of patterns) {
+          if (url.match(pattern)) {
+            return {
+              ...item,
+              url,
+              priority,
+              changefreq,
+              lastmod: lastmod || item.lastmod
+            };
+          }
         }
 
-        // Default case - only include if it has a language prefix
-        if (url.match(/\/(en|ar)\//)) {
-          return {
-            ...item,
-            url,
-            priority: 0.5,
-            changefreq: 'monthly'
-          };
-        }
-
-        return undefined; // Skip all other URLs
-      },
-      filter(page) {
-        // Exclude 404 page, non-language prefixed pages, and any other utility pages
-        return !page.includes('404') && 
-               (page.includes('/en/') || page.includes('/ar/'));
+        // Default case for other valid pages
+        return {
+          ...item,
+          url,
+          priority: 0.5,
+          changefreq: 'monthly'
+        };
       }
     }),
     cloudflare({
