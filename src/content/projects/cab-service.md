@@ -3,7 +3,7 @@ title: "Joy Cabs Website"
 description: "A professional website for premium cab services focusing on comfort and reliability"
 category: "Technology"
 client: "Joy Cabs"
-image: "/images/projects/joycabs-mockup.webp"
+image: "https://idoxb8u.sufydely.com/joycabs-mockup.webp"
 results: [
   "Enhanced online booking experience",
   "Improved service visibility",

@@ -3,7 +3,7 @@ title: "SSP Engineering Website"
 description: "A professional engineering consultancy website showcasing structural and civil engineering services"
 category: "Real Estate"
 client: "SSP Engineering"
-image: "/images/projects/sspengg-mockup.webp"
+image: "https://idoxb8u.sufydely.com/sspengg-mockup.webp"
 results: [
   "Established strong online presence for engineering services",
   "Improved client engagement through portfolio showcase",

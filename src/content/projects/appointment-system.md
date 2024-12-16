@@ -3,7 +3,7 @@ title: "Hy-Quest Healthcare Platform"
 description: "A comprehensive appointment scheduling system and website for healthcare providers"
 category: "Healthcare"
 client: "Hy-Quest"
-image: "/images/projects/hyquest-mockup.webp"
+image: "https://idoxb8u.sufydely.com/hyquest-mockup.webp"
 results: [
   "Streamlined appointment scheduling process",
   "Enhanced patient-doctor communication",
