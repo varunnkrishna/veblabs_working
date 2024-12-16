@@ -124,4 +124,4 @@ As Dubai races toward becoming the world's next tech capital, your website is ei
 
 Don't let an outdated website hold your business back in Dubai's tech revolution. Contact VebLabs today for a free assessment of your website's readiness for Dubai's digital future. Our team of experts understands the unique requirements of the UAE market and can help you create a world-class digital presence that drives business success.
 
-[Contact VebLabs Now](/get-in-touch) to secure your position in Dubai's tech future.
+[Contact VebLabs Now](/get-in-touch/) to secure your position in Dubai's tech future.
