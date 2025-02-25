@@ -14,7 +14,8 @@ SITE = "https://veblabs.com"
 # - RECIPIENT_EMAIL
 
 [build]
-command = ""
+command = "npm run build"
+pages_build_output_dir = "dist"
 
 [site]
 bucket = "./dist"
