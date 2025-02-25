@@ -1,13 +1,46 @@
 {
-  "companyDescription": "Transforming ideas into exceptional digital experiences. We craft innovative solutions that drive business growth.",
+  "companyDescription": "VebLabs specializes in professional bug fixing and technical solutions for businesses and developers. With rapid turnaround times and guaranteed fixes, we help you maintain stable, high-performance software.",
+  "quickLinks": {
+    "title": "Quick Links",
+    "links": [
+      {
+        "name": "Bug Fixing Services",
+        "url": "/services"
+      },
+      {
+        "name": "Success Stories",
+        "url": "/works"
+      },
+      {
+        "name": "Technical Blog",
+        "url": "/blog"
+      },
+      {
+        "name": "Get Support",
+        "url": "/get-in-touch"
+      }
+    ]
+  },
+  "services": {
+    "title": "Our Services",
+    "list": [
+      "Emergency Bug Fixes",
+      "Performance Optimization",
+      "Code Review & Audit",
+      "Technical Consulting"
+    ]
+  },
   "contact": {
     "title": "Contact Us",
-    "readyToStart": "Ready to start your next project?",
+    "readyToStart": "Ready to fix your bugs?",
     "benefits": {
-      "consultation": "Free initial consultation",
-      "response": "Quick response time",
-      "manager": "Dedicated project manager"
-    }
+      "consultation": "Free Initial Assessment",
+      "response": "24/7 Emergency Support",
+      "manager": "Dedicated Technical Lead"
+    },
+    "address": "Dubai, UAE",
+    "email": "support@veblabs.com",
+    "phone": "+971 50 123 4567"
   },
   "support": {
     "title": "Support",
@@ -17,12 +50,12 @@
         "description": "24/7 expert assistance"
       },
       {
-        "name": "Project Inquiries",
-        "description": "Start your project with us"
+        "name": "Bug Reports",
+        "description": "Submit and track issues"
       },
       {
         "name": "Client Portal",
-        "description": "Access your project dashboard"
+        "description": "Monitor fix progress"
       }
     ],
     "businessHours": {
@@ -31,24 +64,34 @@
       "weekend": "Fri-Sunday: 9:00 AM - 5:00 PM"
     }
   },
-  "quickLinks": {
-    "title": "Quick Links",
+  "social": {
+    "title": "Follow Us",
     "links": [
-      { "name": "Home", "url": "" },
-      { "name": "Our Works", "url": "works" },
-      { "name": "Services", "url": "services" },
-      { "name": "Blog", "url": "blog" },
-      { "name": "Contact", "url": "get-in-touch" }
+      {
+        "text": "LinkedIn",
+        "url": "https://linkedin.com/company/veblabs"
+      },
+      {
+        "text": "GitHub",
+        "url": "https://github.com/veblabs"
+      },
+      {
+        "text": "Twitter",
+        "url": "https://twitter.com/veblabs"
+      }
     ]
   },
-  "services": {
-    "title": "Services",
-    "list": [
-      "Web Development",
-      "Mobile Apps",
-      "UI/UX Design",
-      "Digital Marketing"
+  "copyright": " 2025 VebLabs. All rights reserved.",
+  "policy": {
+    "links": [
+      {
+        "text": "Privacy Policy",
+        "url": "/privacy"
+      },
+      {
+        "text": "Terms of Service",
+        "url": "/terms"
+      }
     ]
-  },
-  "copyright": "All rights reserved."
+  }
 }

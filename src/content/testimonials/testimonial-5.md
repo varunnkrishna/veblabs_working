@@ -1,15 +1,15 @@
 ---
 author:
-  en: "Zain Al-Abidin"
-  ar: "زين العابدين"
+  en: "Alex Foster"
+  ar: "أليكس فوستر"
 role:
-  en: "Tech Lead"
-  ar: "قائد التقنية"
+  en: "Integration Specialist"
+  ar: "أخصائي التكامل"
 company:
-  en: "Digital Pioneers"
-  ar: "رواد الرقمية"
+  en: "CloudSync Solutions"
+  ar: "كلاود سينك سوليوشنز"
 testimonial:
-  en: "Their technical expertise combined with cultural understanding made our website project a huge success. The seamless language switching feature is particularly impressive."
-  ar: "خبرتهم التقنية مع فهمهم الثقافي جعلت مشروع موقعنا نجاحاً كبيراً. ميزة التبديل السلس للغة مثيرة للإعجاب بشكل خاص."
-avatar: "/avatars/zain.jpg"
+  en: "VebLabs modernized our legacy API system with a microservices architecture using Node.js and GraphQL. They seamlessly integrated multiple third-party services while maintaining robust security. Outstanding technical prowess!"
+  ar: "قام فيب لابز بتحديث نظام API القديم لدينا بهيكلية الخدمات المصغرة باستخدام Node.js و GraphQL. قاموا بدمج العديد من الخدمات الخارجية بسلاسة مع الحفاظ على الأمان القوي. براعة تقنية متميزة!"
+avatar: "/avatars/alex.jpg"
 ---

@@ -1,15 +1,15 @@
 ---
 author:
-  en: "Sarah Johnson"
-  ar: "سارة جونسون"
+  en: "Michael Rodriguez"
+  ar: "مايكل رودريغيز"
 role:
-  en: "Marketing Director"
-  ar: "مديرة التسويق"
+  en: "Lead Developer"
+  ar: "مطور رئيسي"
 company:
-  en: "Global Tech Solutions"
-  ar: "الحلول التقنية العالمية"
+  en: "Startup Forge"
+  ar: "ستارت أب فورج"
 testimonial:
-  en: "The team's attention to detail and commitment to delivering a seamless user experience sets them apart. Our website's performance metrics have improved significantly."
-  ar: "يميز الفريق اهتمامه بالتفاصيل والتزامه بتقديم تجربة مستخدم سلسة. لقد تحسنت مقاييس أداء موقعنا بشكل كبير."
-avatar: "/avatars/sarah.jpg"
+  en: "We had a complex bug in our Node.js microservices that was causing data inconsistencies. VebLabs not only fixed the issue but also implemented automated tests to prevent similar problems. Their debugging skills are top-notch!"
+  ar: "كان لدينا خطأ معقد في خدمات Node.js الدقيقة مما تسبب في عدم اتساق البيانات. لم يقم فيب لابز بإصلاح المشكلة فحسب، بل قام أيضًا بتنفيذ اختبارات آلية لمنع حدوث مشاكل مماثلة. مهاراتهم في تصحيح الأخطاء من الدرجة الأولى!"
+avatar: "/avatars/michael.jpg"
 ---

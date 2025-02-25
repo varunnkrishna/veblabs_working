@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title="Get Started | VebLabs">
+	<main class="min-h-screen">
+		<!-- Hero Section -->
+		<section class="bg-gradient-to-br from-blue-900 to-purple-900 text-white py-20">
+			<div class="container mx-auto px-4">
+				<div class="max-w-4xl mx-auto text-center">
+					<h1 class="text-5xl md:text-6xl font-bold mb-6">Boost your conversions with optimized landing pages</h1>
+					<p class="text-xl mb-8">Our expertly designed landing pages are proven to increase sales and drive more traffic to your website.</p>
+					<a href="#contact" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full text-lg transition-all">
+						Get Started Now
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Lead Capture Form -->
+		<section id="contact" class="py-16 bg-white">
+			<div class="container mx-auto px-4">
+				<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8">
+					<h2 class="text-3xl font-bold text-center mb-8">Start Your Journey Today</h2>
+					<form class="space-y-6" id="leadForm">
+						<div>
+							<label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+							<input type="text" id="name" name="name" required
+								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+						</div>
+						<div>
+							<label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+							<input type="email" id="email" name="email" required
+								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+						</div>
+						<div>
+							<label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+							<input type="tel" id="phone" name="phone" required
+								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+						</div>
+						<div>
+							<label for="website" class="block text-sm font-medium text-gray-700">Website URL</label>
+							<input type="url" id="website" name="website"
+								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+						</div>
+						<div>
+							<label for="message" class="block text-sm font-medium text-gray-700">How can we help?</label>
+							<textarea id="message" name="message" rows="4"
+								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+						</div>
+						<button type="submit"
+							class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition-all">
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section class="py-16 bg-gray-50">
+			<div class="container mx-auto px-4">
+				<h2 class="text-3xl font-bold text-center mb-12">Why Choose Us?</h2>
+				<div class="grid md:grid-cols-3 gap-8">
+					<div class="text-center">
+						<div class="mb-4">
+							<i class="fas fa-rocket text-4xl text-blue-600"></i>
+						</div>
+						<h3 class="text-xl font-bold mb-2">Fast Implementation</h3>
+						<p class="text-gray-600">Get up and running quickly with our streamlined onboarding process</p>
+					</div>
+					<div class="text-center">
+						<div class="mb-4">
+							<i class="fas fa-chart-line text-4xl text-blue-600"></i>
+						</div>
+						<h3 class="text-xl font-bold mb-2">Proven Results</h3>
+						<p class="text-gray-600">Join thousands of businesses who have grown with our solutions</p>
+					</div>
+					<div class="text-center">
+						<div class="mb-4">
+							<i class="fas fa-headphones text-4xl text-blue-600"></i>
+						</div>
+						<h3 class="text-xl font-bold mb-2">24/7 Support</h3>
+						<p class="text-gray-600">Get help whenever you need it with our dedicated support team</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Testimonials Section -->
+		<section class="py-16 bg-white">
+			<div class="container mx-auto px-4">
+				<h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+				<div class="grid md:grid-cols-2 gap-8">
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<p class="text-gray-600 mb-4">"VebLabs has transformed our business. We've seen a 300% increase in leads since implementing their solutions."</p>
+						<div class="flex items-center">
+							<div class="ml-3">
+								<p class="font-bold">John Smith</p>
+								<p class="text-sm text-gray-500">CEO, Tech Solutions Inc</p>
+							</div>
+						</div>
+					</div>
+					<div class="bg-gray-50 p-6 rounded-lg">
+						<p class="text-gray-600 mb-4">"The best decision we made for our business growth. Their team is responsive and the results speak for themselves."</p>
+						<div class="flex items-center">
+							<div class="ml-3">
+								<p class="font-bold">Sarah Johnson</p>
+								<p class="text-sm text-gray-500">Marketing Director, Growth Co</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<!-- Add Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+<script>
+	document.getElementById('leadForm').addEventListener('submit', async (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target as HTMLFormElement);
+		const data = Object.fromEntries(formData);
+		
+		try {
+			// Here you can add your form submission logic
+			console.log('Form data:', data);
+			alert('Thank you for your submission! We will contact you soon.');
+			(e.target as HTMLFormElement).reset();
+		} catch (error) {
+			console.error('Error submitting form:', error);
+			alert('There was an error submitting your form. Please try again.');
+		}
+	});
+</script>

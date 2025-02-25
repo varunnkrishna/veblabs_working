@@ -1,8 +1,8 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
+import react from "@astrojs/react";
 
 export default defineConfig({
   site: 'https://veblabs.com',
@@ -18,15 +18,24 @@ export default defineConfig({
   build: {
     format: 'directory'
   },
+  prefetch: {
+    defaultStrategy: 'hover',
+    prefetchAll: true
+  },
+  vite: {
+    ssr: {
+      noExternal: ['path-to-regexp']
+    }
+  },
   integrations: [
     tailwind(), 
-    icon(),
+    react(),
     sitemap({
       i18n: {
         defaultLocale: 'en',
         locales: {
-          en: 'en-US',
-          ar: 'ar-SA'
+          en: 'en',
+          ar: 'ar'
         }
       },
       customPages: [
@@ -49,6 +58,8 @@ export default defineConfig({
         'https://veblabs.com/ar/blog/web-design-trends-2025/',
         'https://veblabs.com/en/blog/website-design-in-dubai/',
         'https://veblabs.com/ar/blog/website-design-in-dubai/',
+        'https://veblabs.com/en/blog/ai-tools-in-mental-health/',
+        'https://veblabs.com/ar/blog/ai-tools-in-mental-health/',
         // Work items
         'https://veblabs.com/en/works/realestate/',
         'https://veblabs.com/ar/works/realestate/',

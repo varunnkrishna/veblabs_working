@@ -1,106 +1,106 @@
 {
   "mainHeading": {
-    "part1": "Unlock Your Business",
-    "part2": "Hidden Online Potential"
+    "part1": "Fix Your Code",
+    "part2": "Get Back on Track Fast"
   },
-  "subtitle": "We Build lightning-fast, SEO-optimized websites that convert visitors into customers. Our AI-powered solutions support multiple languages and deliver exceptional performance to maximize your ROI",
+  "subtitle": "We solve critical bugs and code issues within 24 hours. Our expert developers troubleshoot problems across all frameworks and technologies to get your projects moving again with minimal downtime.",
   "cta": {
-    "primary": "Start Your Project",
-    "secondary": "Learn More"
+    "primary": "Get Free Diagnosis",
+    "secondary": "Our Process"
   },
-  "noUpfrontCost": "✨ No upfront costs - only pay when you see your site in action",
+  "noUpfrontCost": "✨ Free initial diagnosis - only pay when your code is fixed",
   "features": {
     "seo": {
-      "title": "SEO Optimized",
-      "description": "Rank higher in search results"
+      "title": "All Technologies",
+      "description": "Support for any framework or language"
     },
     "speed": {
-      "title": "Lightning Fast",
-      "description": "Blazing fast load times"
+      "title": "24-Hour Fixes",
+      "description": "Rapid problem resolution"
     },
     "customization": {
-      "title": "Fully Customizable",
-      "description": "Tailored to your needs"
+      "title": "No Fix, No Fee",
+      "description": "Only pay for successful solutions"
     },
     "multilingual": {
-      "title": "Multi-Language",
-      "description": "Reach global audiences with multilingual capabilities"
+      "title": "Expert Developers",
+      "description": "Senior-level troubleshooting expertise"
     }
   },
-  "trust": "Trusted by entrepreneurs and startups worldwide",
+  "trust": "Trusted by developers, startups, and businesses worldwide",
   "verticalTab": {
-    "title": "What Makes Us Stand Out",
-    "description": "At vebLabs, we don't just build websites — we deliver solutions designed to help your business thrive. Here's what sets us apart.",
+    "title": "Why We're Your Emergency Code Team",
+    "description": "At vebLabs, we don't just fix bugs — we provide complete solutions to get your projects back on track. Here's what makes us different.",
     "tabs": {
-      "datadriven": "Data-Driven Design",
-      "seamless": "Seamless Experience",
-      "custom": "Custom Solutions",
-      "multilanguage": "Multi-Language Support"
+      "datadriven": "Diagnostic Precision",
+      "seamless": "Rapid Response",
+      "custom": "Cross-Platform Expertise",
+      "multilanguage": "Complete Documentation"
     },
     "tabContent": {
-      "datadriven": "We blend creativity with analytics to create websites that not only look stunning but perform exceptionally well. Every design decision is backed by user behavior data and industry best practices.",
-      "datadrivenWhy": "Data-driven design ensures your website not only captures attention but converts visitors into customers effectively.",
-      "seamless": "We prioritize intuitive navigation, fast loading times, and responsive designs to deliver an exceptional experience across devices. Visitors stay longer, explore deeper, and trust your brand.",
-      "seamlessWhy": "A seamless UX builds trust and credibility, reducing bounce rates and increasing conversions for your business.",
-      "custom": "We take the time to understand your unique business goals, industry, and target audience. Every website we create is tailored to reflect your brand and drive measurable growth.",
-      "customWhy": "Custom solutions ensure that your website aligns perfectly with your brand identity and helps achieve your business objectives.",
-      "multilanguage": "Reach a global audience with ease through websites that support multiple languages. We implement seamless language switching, ensuring every visitor feels at home.",
-      "multilanguageWhy": "Expanding your website's reach with multi-language support enhances user engagement and builds trust across diverse markets."
+      "datadriven": "We apply systematic debugging methodologies to identify root causes quickly. Our diagnostic process pinpoints issues with precision, allowing for targeted, efficient fixes rather than band-aid solutions.",
+      "datadrivenWhy": "Precise diagnostics means we fix the actual problem, not just the symptoms, preventing issues from recurring.",
+      "seamless": "When your code breaks, every minute counts. Our team responds within hours, not days, and works efficiently to implement solutions that get your project back online fast.",
+      "seamlessWhy": "Quick response times minimize downtime, reduce lost revenue, and keep your project timeline on track.",
+      "custom": "From React to Python, iOS to Android, we have experts in all major frameworks and technologies. No matter what stack you're using, we have the expertise to solve your specific issues.",
+      "customWhy": "Cross-platform expertise ensures we can tackle any technical problem regardless of your technology choices.",
+      "multilanguage": "We provide complete documentation with every fix, explaining what went wrong, how we fixed it, and recommendations to prevent similar issues in the future.",
+      "multilanguageWhy": "Detailed documentation helps your team understand the solution and learn from the process, improving code quality long-term."
     },
     "whyItMatters": "Why It Matters: "
   },
   "services": {
-    "heading": "Modern Websites That Work While You Sleep",
-    "description": "We build lightning-fast, SEO-optimized websites that Google loves. Unlike traditional agencies stuck with outdated tech, our mobile-first designs are built to perform and generate revenue 24/7. Your success is on autopilot.",
-    "startProject": "Start a Project",
-    "viewWork": "View Our Work"
+    "heading": "Code Solutions That Unblock Your Progress",
+    "description": "We fix critical bugs and technical issues that are holding your projects hostage. Unlike generalist developers, our team specializes in rapid problem diagnosis and efficient resolution. Whether it's frontend, backend, or mobile, we've got the expertise to get you unstuck and moving forward again.",
+    "startProject": "Request Free Diagnosis",
+    "viewWork": "View Our Solutions"
   },
   "pricing": {
-    "title": "Simple, Transparent Pricing",
-    "subtitle": "Choose the perfect plan for your business needs",
+    "title": "Transparent, Value-Based Pricing",
+    "subtitle": "Only pay for successful solutions to your code problems",
     "basic": {
-      "name": "Basic",
-      "price": "4,999 AED",
-      "usdPrice": "$1,360",
-      "description": "Perfect for small businesses starting their digital journey",
+      "name": "Quick Fix",
+      "price": "499 AED",
+      "usdPrice": "$135",
+      "description": "For simple bugs and minor code issues",
       "features": [
-        "Modern Responsive Website",
-        "SEO Optimization",
-        "5 Pages",
-        "Contact Form",
-        "Social Media Integration",
-        "3 Months Support"
+        "Single Bug Resolution",
+        "24-Hour Turnaround",
+        "Solution Documentation",
+        "30-Day Guarantee",
+        "Code Optimization",
+        "1 Week Support"
       ]
     },
     "professional": {
-      "name": "Professional",
-      "price": "9,999 AED",
-      "usdPrice": "$2,720",
-      "description": "Ideal for growing businesses needing more features",
+      "name": "Complex Solution",
+      "price": "1,999 AED",
+      "usdPrice": "$545",
+      "description": "For challenging bugs affecting multiple features",
       "features": [
-        "Everything in Basic",
-        "Custom Design",
-        "10 Pages",
-        "Blog Integration",
-        "Analytics Setup",
-        "6 Months Support",
-        "Performance Optimization"
+        "Everything in Quick Fix",
+        "Multiple Bug Resolution",
+        "Root Cause Analysis",
+        "Performance Improvement",
+        "Best Practice Implementation",
+        "2 Weeks Support",
+        "Developer Handover Session"
       ]
     },
     "enterprise": {
-      "name": "Enterprise",
+      "name": "Project Rescue",
       "price": "Contact Us",
-      "description": "Custom solutions for large organizations",
+      "description": "For critical projects with multiple issues",
       "features": [
-        "Everything in Professional",
-        "Custom Features",
-        "Unlimited Pages",
-        "Advanced Security",
+        "Everything in Complex Solution",
+        "Comprehensive Codebase Review",
+        "Architecture Improvements",
         "Priority Support",
-        "Custom Integrations",
-        "Training Sessions"
+        "Technical Debt Reduction",
+        "Extended Support Options",
+        "Developer Training"
       ]
     },
-    "cta": "Get Started"
+    "cta": "Get Free Diagnosis"
   }
 }

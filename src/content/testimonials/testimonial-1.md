@@ -1,15 +1,15 @@
 ---
 author:
-  en: "Ahmed Al-Farsi"
-  ar: "أحمد الفارسي"
+  en: "Sarah Chen"
+  ar: "سارة تشن"
 role:
-  en: "Founder"
-  ar: "مؤسس"
+  en: "CTO"
+  ar: "المدير التقني"
 company:
-  en: "Dubai Innovations"
-  ar: "دبي للابتكارات"
+  en: "TechFlow Solutions"
+  ar: "تيك فلو سوليوشنز"
 testimonial:
-  en: "Their multilingual website design exceeded our expectations! Offering both Arabic and English support has truly expanded our reach in the Middle East and beyond."
-  ar: "تجاوز تصميم موقعهم متعدد اللغات توقعاتنا! إن تقديم الدعم باللغتين العربية والإنجليزية قد وسع حقاً نطاق وصولنا في الشرق الأوسط وخارجه."
-avatar: "/avatars/ahmed.jpg"
+  en: "VebLabs team fixed a critical performance issue in our React application that was causing major slowdowns. They identified the root cause and implemented optimizations that improved our load times by 70%. Exceptional technical expertise!"
+  ar: "قام فريق فيب لابز بإصلاح مشكلة أداء حرجة في تطبيق React الخاص بنا والتي كانت تسبب تباطؤًا كبيرًا. لقد حددوا السبب الجذري ونفذوا تحسينات أدت إلى تحسين أوقات التحميل بنسبة 70%. خبرة تقنية استثنائية!"
+avatar: "/avatars/sarah.jpg"
 ---

@@ -1,27 +1,31 @@
 {
   "badge": "FAQ",
   "title": "Frequently Asked Questions",
-  "description": "Find answers to common questions about our services and process",
+  "description": "Find answers to common questions about our bug fixing services",
   "faqs": [
     {
-      "question": "What services does VebLabs offer?",
-      "answer": "VebLabs offers comprehensive web development services including custom website design, e-commerce solutions, SEO optimization, multilingual website development, and digital marketing strategies tailored to your business needs."
+      "question": "What types of bugs do you fix?",
+      "answer": "We fix a wide range of software bugs including functional errors, compatibility issues, performance problems, UI/UX glitches, security vulnerabilities, database errors, API integration issues, and cross-browser/cross-platform bugs for both businesses and individual developers."
     },
     {
-      "question": "How long does it take to complete a website project?",
-      "answer": "Project timelines vary depending on complexity and requirements. Typically, a standard website takes 4-8 weeks from concept to launch. We'll provide you with a detailed timeline during our initial consultation."
+      "question": "How quickly can you resolve my software bugs?",
+      "answer": "Our turnaround time depends on the complexity of the bug. Simple issues are typically resolved within 24-48 hours, while more complex bugs may take 3-5 business days. For urgent fixes, we offer priority service with expedited resolution times."
     },
     {
-      "question": "Do you provide ongoing support after the website launch?",
-      "answer": "Yes, we offer comprehensive post-launch support and maintenance packages. This includes regular updates, security monitoring, performance optimization, and technical support to ensure your website runs smoothly."
+      "question": "What is your bug fixing process?",
+      "answer": "Our process includes: 1) Bug identification and analysis, 2) Reproduction of the issue in our test environment, 3) Root cause analysis, 4) Fix development and testing, 5) Implementation of the solution, and 6) Post-fix verification to ensure the problem is completely resolved."
     },
     {
-      "question": "How do you ensure websites are SEO-friendly?",
-      "answer": "We implement SEO best practices throughout development, including optimized code structure, fast loading times, mobile responsiveness, and proper meta tags. We also provide guidance on content optimization and keyword strategy."
+      "question": "Do you provide warranties on your bug fixes?",
+      "answer": "Yes, all our bug fixes come with a 30-day warranty. If the same issue reoccurs within this period, we'll fix it at no additional cost. We also provide detailed documentation of the fixes implemented to help prevent future issues."
     },
     {
-      "question": "Can you help with multilingual website development?",
-      "answer": "Absolutely! We specialize in creating multilingual websites that effectively reach global audiences. We implement proper language switching, content translation, and cultural adaptation to ensure your website resonates with users worldwide."
+      "question": "Can you fix bugs in any programming language or framework?",
+      "answer": "We have expertise in fixing bugs across multiple languages and frameworks including JavaScript, Python, PHP, Java, C#, Ruby, React, Angular, Vue.js, Laravel, Django, and many others. Our team of specialized developers can handle bugs in most modern development environments."
+    },
+    {
+      "question": "How do I submit a bug for you to fix?",
+      "answer": "You can submit bugs through our online portal, where you'll provide details about the issue, steps to reproduce it, and relevant code snippets or error messages. For larger projects, we offer a comprehensive code review service to identify and fix multiple bugs simultaneously."
     }
   ]
 }

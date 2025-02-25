@@ -15,6 +15,20 @@ const arabicContent = {
   title: "مرحبًا بكم في موقعنا",
   description: "اكتشف أفضل الخدمات التي نقدمها.",
 };
+
+// Technology icons data - single set is enough now
+const technologies = [
+  { name: 'React', icon: 'fab fa-react' },
+  { name: 'Vue', icon: 'fab fa-vuejs' },
+  { name: 'Angular', icon: 'fab fa-angular' },
+  { name: 'Node.js', icon: 'fab fa-node-js' },
+  { name: 'Python', icon: 'fab fa-python' },
+  { name: 'Django', icon: 'fab fa-python' },
+  { name: 'Laravel', icon: 'fab fa-laravel' },
+  { name: 'Flutter', icon: 'fab fa-flutter' },
+  { name: 'Swift', icon: 'fab fa-swift' },
+  { name: 'Kotlin', icon: 'fab fa-java' }
+];
 ---
 
 <section id="localized-section" class="relative py-32 overflow-hidden bg-gradient-to-br from-blue-50/80 via-purple-50/80 to-blue-50/80 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-inter">
@@ -48,42 +62,32 @@ const arabicContent = {
       </p>
     </div>
 
-    <!-- Content Card -->
-    <div class="max-w-4xl mx-auto transform hover:-translate-y-1 transition-all duration-300">
-      <div class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl dark:shadow-blue-500/5 overflow-hidden">
-        <!-- Glowing Border Effect -->
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-20 dark:opacity-30"></div>
-        
-        <!-- Card Content -->
-        <div class="relative p-8 md:p-12">
-          <!-- Header -->
-          <div class="flex justify-between items-center mb-12">
-            <div class="flex items-center space-x-4">
-              <!-- Logo placeholder with gradient -->
-              <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl">
-                L
+   
+    <!-- Infinite Scroll Technology Logos -->
+    <div class="relative w-full overflow-hidden py-12">
+      <!-- First Row -->
+      <div class="slider">
+        <div class="slide-track">
+          {[...technologies, ...technologies].map((tech, index) => (
+            <div class="slide">
+              <div class="w-32 h-32 rounded-2xl bg-white/50 dark:bg-gray-800/50 p-6 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:scale-110 transition-transform duration-300 flex items-center justify-center mx-8">
+                <i class={`${tech.icon} text-5xl text-blue-600/80 dark:text-blue-400/80`}></i>
               </div>
-
             </div>
-            
-            <!-- Language Toggle Button -->
-            <button
-              id="toggle-language"
-              class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
-            >
-              Switch to Arabic
-            </button>
-          </div>
+          ))}
+        </div>
+      </div>
 
-          <!-- Content Area -->
-          <div id="content" class="space-y-6 text-left transition-all duration-300 ease-in-out">
-            <h1 id="title" class="text-4xl font-bold text-gray-800 dark:text-white transition-all duration-300">
-              {englishContent.title}
-            </h1>
-            <p id="description" class="text-xl text-gray-600 dark:text-gray-300 transition-all duration-300">
-              {englishContent.description}
-            </p>
-          </div>
+      <!-- Second Row -->
+      <div class="slider mt-12">
+        <div class="slide-track-reverse">
+          {[...technologies, ...technologies].map((tech, index) => (
+            <div class="slide">
+              <div class="w-32 h-32 rounded-2xl bg-white/50 dark:bg-gray-800/50 p-6 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:scale-110 transition-transform duration-300 flex items-center justify-center mx-8">
+                <i class={`${tech.icon} text-5xl text-purple-600/80 dark:text-purple-400/80`}></i>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -117,6 +121,53 @@ const arabicContent = {
 
   .font-inter {
     font-family: 'Inter', sans-serif;
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .slide-track {
+    display: flex;
+    width: calc(160px * 20); /* Adjust based on slide width */
+    animation: scroll 40s linear infinite;
+  }
+
+  .slide-track-reverse {
+    display: flex;
+    width: calc(160px * 20); /* Adjust based on slide width */
+    animation: scroll-reverse 40s linear infinite;
+  }
+
+  .slide {
+    flex: 0 0 auto;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-160px * 10)); /* Half of the total width */
+    }
+  }
+
+  @keyframes scroll-reverse {
+    0% {
+      transform: translateX(calc(-160px * 10)); /* Half of the total width */
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Pause animation on hover */
+  .slide-track:hover,
+  .slide-track-reverse:hover {
+    animation-play-state: paused;
   }
 </style>
 

@@ -1,21 +1,21 @@
 {
   "badge": "ميزتنا",
-  "title": "لماذا تختار فيب لابز؟",
-  "description": "قارن حلولنا الشاملة مع الخيارات الأخرى وتعرف على سبب كوننا الخيار الأمثل لعملك",
+  "title": "لماذا تختار خدمة إصلاح الأخطاء البرمجية لدينا؟",
+  "description": "قارن حلولنا المتخصصة لإصلاح الأخطاء البرمجية مع الخيارات الأخرى وشاهد لماذا نحن الخيار المثالي لمشاكل البرمجيات لديك",
   "columnHeaders": {
     "feature": "الميزة",
-    "vebLabs": "فيب لابز",
-    "inHouse": "فريق داخلي",
-    "typicalAgency": "وكالة نموذجية"
+    "vebLabs": "خدمة إصلاح الأخطاء لدينا",
+    "inHouse": "تصحيح الأخطاء داخل الشركة",
+    "typicalAgency": "وكالة تطوير عامة"
   },
   "features": {
-    "multilingualExpertise": "خبرة متعددة اللغات",
-    "revenueDrivenDesign": "تصميم موجه للإيرادات",
-    "tailoredSolutions": "حلول مخصصة",
-    "dedicatedSupport": "دعم مخصص",
-    "cuttingEdgeTools": "أدوات متطورة",
-    "scalableServices": "خدمات قابلة للتوسع",
-    "regionalKnowledge": "معرفة إقليمية"
+    "multilingualExpertise": "سرعة الإنجاز (24-48 ساعة)",
+    "revenueDrivenDesign": "متخصصون في إصلاح الأخطاء",
+    "tailoredSolutions": "دعم متعدد المنصات",
+    "dedicatedSupport": "تحليل السبب الجذري",
+    "cuttingEdgeTools": "توثيق مفصل",
+    "scalableServices": "ضمان إصلاح لمدة 30 يوم",
+    "regionalKnowledge": "دعم على مدار الساعة"
   },
-  "cta": "احصل على استشارة مجانية"
+  "cta": "أصلح أخطاءك البرمجية الآن"
 }

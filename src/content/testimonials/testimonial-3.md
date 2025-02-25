@@ -1,15 +1,15 @@
 ---
 author:
-  en: "Mohammed Al-Rashid"
-  ar: "محمد الراشد"
+  en: "Emma Thompson"
+  ar: "إيما طومسون"
 role:
-  en: "CEO"
-  ar: "الرئيس التنفيذي"
+  en: "Product Manager"
+  ar: "مدير المنتج"
 company:
-  en: "Oasis Solutions"
-  ar: "حلول الواحة"
+  en: "Digital Innovate"
+  ar: "ديجيتال إنوفيت"
 testimonial:
-  en: "Working with this team has been transformative for our business. Their expertise in both technical implementation and cultural adaptation is unmatched."
-  ar: "العمل مع هذا الفريق كان تحولياً لأعمالنا. خبرتهم في كل من التنفيذ التقني والتكيف الثقافي لا مثيل لها."
-avatar: "/avatars/mohammed.jpg"
+  en: "VebLabs built our entire e-commerce platform from scratch using React and Django. The result was a blazing-fast, scalable solution that handles thousands of daily transactions flawlessly. Their full-stack expertise is remarkable!"
+  ar: "قام فيب لابز ببناء منصة التجارة الإلكترونية بالكامل من الصفر باستخدام React و Django. كانت النتيجة حلاً سريعًا وقابلاً للتطوير يتعامل مع آلاف المعاملات اليومية بشكل مثالي. خبرتهم في التطوير المتكامل مذهلة!"
+avatar: "/avatars/emma.jpg"
 ---

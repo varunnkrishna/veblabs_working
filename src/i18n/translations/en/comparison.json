@@ -1,21 +1,21 @@
 {
   "badge": "Our Advantage",
-  "title": "Why Choose VebLabs?",
-  "description": "Compare our comprehensive solutions with other options and see why we're the perfect choice for your business",
+  "title": "Why Choose Our Bug Fixing Service?",
+  "description": "Compare our specialized bug fixing solutions with other options and see why we're the perfect choice for your software issues",
   "columnHeaders": {
     "feature": "Feature",
-    "vebLabs": "VebLabs",
-    "inHouse": "In-House Team",
-    "typicalAgency": "Typical Agency"
+    "vebLabs": "Our Bug Fixing Service",
+    "inHouse": "In-House Debugging",
+    "typicalAgency": "General Dev Agency"
   },
   "features": {
-    "multilingualExpertise": "Multilingual Expertise",
-    "revenueDrivenDesign": "Revenue-Driven Design",
-    "tailoredSolutions": "Tailored Solutions",
-    "dedicatedSupport": "Dedicated Support",
-    "cuttingEdgeTools": "Cutting-Edge Tools",
-    "scalableServices": "Scalable Services",
-    "regionalKnowledge": "Regional Knowledge"
+    "multilingualExpertise": "Quick Turnaround (24-48 hrs)",
+    "revenueDrivenDesign": "Bug Fixing Specialists",
+    "tailoredSolutions": "Cross-Platform Support",
+    "dedicatedSupport": "Root Cause Analysis",
+    "cuttingEdgeTools": "Detailed Documentation",
+    "scalableServices": "30-Day Fix Warranty",
+    "regionalKnowledge": "24/7 Priority Support"
   },
-  "cta": "Get a Free Consultation"
+  "cta": "Fix Your Bugs Now"
 }
